@@ -11,7 +11,7 @@ ros2 launch c300_description view_base_urdf.launch.py
 ros2 launch c300_bringup c300_sim.launch.py
 ```
 
-# To teleoperate the robot with a Logitech F710 joystick run:
+## To teleoperate the robot with a Logitech F710 joystick run:
 ``` bash
 ros2 launch c300_driver teleop.launch.py
 ```

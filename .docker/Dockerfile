@@ -53,7 +53,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install packages required to run the robot
 # hadolint ignore=DL3008, DL3013
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-humble-moveit \
     ros-humble-moveit-resources \
     ros-humble-cartographer \
