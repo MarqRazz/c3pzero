@@ -3,7 +3,7 @@
   <world name="depot">
     <scene>
       <grid>false</grid>
-    </scene> 
+    </scene>
     <physics name="2ms" type="ignored">
       <max_step_size>0.002</max_step_size>
       <real_time_factor>1.0</real_time_factor>

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from nav_msgs.msg import Odometry
 from tf_transformations import quaternion_from_euler
 from math import cos, sin

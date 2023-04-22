@@ -64,8 +64,8 @@
     </xacro:if>
 
     <!-- NOTE: this assumes that your robot has included the Gazebo plugin "ignition::gazebo::systems::Sensors"
-               see: https://github.com/gazebosim/docs/blob/master/fortress/sensors.md#lidar-sensor -->      
-    <xacro:if value="${sim_ignition}">      
+               see: https://github.com/gazebosim/docs/blob/master/fortress/sensors.md#lidar-sensor -->
+    <xacro:if value="${sim_ignition}">
       <gazebo reference="${frame}">
         <sensor name="${frame}" type="gpu_lidar">
           <topic>${topic}</topic>
@@ -101,7 +101,7 @@
           </lidar>
         </sensor>
       </gazebo>
-    </xacro:if>    
-  </xacro:macro>    
+    </xacro:if>
+  </xacro:macro>
 
 </robot>

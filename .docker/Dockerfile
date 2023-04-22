@@ -4,13 +4,14 @@ SHELL ["/bin/bash", "-c", "-o", "pipefail"]
 
 # Add the latest binaries for MoveIt2
 RUN echo "deb [trusted=yes] https://raw.githubusercontent.com/moveit/moveit2_packages/jammy-humble/ ./" \
-    | sudo tee /etc/apt/sources.list.d/moveit_moveit2_packages.list
+    | tee /etc/apt/sources.list.d/moveit_moveit2_packages.list
 RUN echo "yaml https://raw.githubusercontent.com/moveit/moveit2_packages/jammy-humble/local.yaml humble" \
-    | sudo tee /etc/ros/rosdep/sources.list.d/1-moveit_moveit2_packages.list
+    | tee /etc/ros/rosdep/sources.list.d/1-moveit_moveit2_packages.list
 
 # Bring the container up to date to get the latest ROS2 humble sync
 # hadolint ignore=DL3008, DL3013
-RUN apt-get update && apt-get upgrade -y && rosdep update
+RUN apt-get update && apt-get upgrade -y && rosdep update \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install recommended developer dependencies
 # hadolint ignore=DL3008, DL3013
@@ -47,9 +48,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     flake8-quotes \
     pytest-repeat \
     pytest-rerunfailures \
-    pytest
+    pytest \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install packages required to run the robot
+# hadolint ignore=DL3008, DL3013
 RUN apt-get install -y --no-install-recommends \
     ros-humble-moveit \
     ros-humble-moveit-resources \
@@ -57,7 +60,8 @@ RUN apt-get install -y --no-install-recommends \
     ros-humble-cartographer-ros \
     ros-humble-navigation2 \
     ros-humble-nav2-bringup \
-    ros-humble-rmw-cyclonedds-cpp
+    ros-humble-rmw-cyclonedds-cpp \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy over the source code to rosdep install other dependencies.
 # The source code in this workspace will be mounted from the host at runtime.

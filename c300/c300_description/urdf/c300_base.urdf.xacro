@@ -4,9 +4,9 @@
   <xacro:macro name="load_robot" params="prefix sim_ignition:=false use_fake_hardware:=false">
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/hokuyo_uam05lp.urdf.xacro" />
-       
+
     <xacro:if value="${use_fake_hardware or sim_ignition}">
-      <!-- ros2 control is only used for simulation --> 
+      <!-- ros2 control is only used for simulation -->
       <xacro:include filename="$(find c300_description)/urdf/c300.ros2_control.xacro" />
       <xacro:property name="ros2_control_name" value="IgnitionSystem"/>
       <xacro:c300_ros2_control
@@ -30,7 +30,7 @@
 
     <xacro:property name="caster_xoff" value="0.65"/>
 
-    <!-- Define some commonly used intertial properties  -->
+    <!-- Define some commonly used inertial properties  -->
     <xacro:macro name="box_inertia" params="m w h d">
       <inertial>
         <origin xyz="${-base_length/2 + 0.177} 0 0" rpy="${pi/2} 0 ${pi/2}"/>
@@ -174,7 +174,7 @@
         </geometry>
       </visual>
 
-      <collision> 
+      <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh filename="file://$(find c300_description)/urdf/meshes/platform.dae"/>

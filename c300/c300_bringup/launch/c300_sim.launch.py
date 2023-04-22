@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Author: Marq Rasmussen
 
 from launch import LaunchDescription
@@ -74,9 +75,11 @@ def generate_launch_description():
             default_value="diff_drive_base_controller",
             description="Diff drive base controller to start.",
         )
-    )  
+    )
     declared_arguments.append(
-        DeclareLaunchArgument("launch_rviz", default_value="true", description="Launch RViz?")
+        DeclareLaunchArgument(
+            "launch_rviz", default_value="true", description="Launch RViz?"
+        )
     )
 
     # Initialize Arguments
@@ -155,15 +158,24 @@ def generate_launch_description():
         executable="create",
         output="screen",
         arguments=[
-            "-string", robot_description_content,
-            "-name", robot_name,
-            "-allow_renaming", "true",
-            '-x', '0.0',
-            '-y', '0.0',
-            '-z', '0.3',
-            '-R', '0.0',
-            '-P', '0.0',
-            '-Y', '0.0'
+            "-string",
+            robot_description_content,
+            "-name",
+            robot_name,
+            "-allow_renaming",
+            "true",
+            "-x",
+            "0.0",
+            "-y",
+            "0.0",
+            "-z",
+            "0.3",
+            "-R",
+            "0.0",
+            "-P",
+            "0.0",
+            "-Y",
+            "0.0",
         ],
         condition=IfCondition(sim_ignition),
     )
@@ -173,18 +185,19 @@ def generate_launch_description():
             [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
         ),
         # TODO (marqrazz): fix the hardcoded path to the gazebo world
-        launch_arguments={"ign_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"}.items(),
+        launch_arguments={
+            "ign_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
+        }.items(),
         condition=IfCondition(sim_ignition),
     )
 
     # Bridge
     camera_bridge = Node(
-        package='ros_ign_bridge',
-        executable='parameter_bridge',
+        package="ros_ign_bridge",
+        executable="parameter_bridge",
         # parameters=[{'use_sim_time': use_sim_time}],
-        arguments=['/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan'
-                   ],
-        output='screen'
+        arguments=["/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan"],
+        output="screen",
     )
 
     nodes_to_start = [
