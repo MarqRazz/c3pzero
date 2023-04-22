@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="hokuyo_uam05lp" params="prefix topic parent_link min_angle:=-2.35619 max_angle:=2.35619 *origin">
+
+    <xacro:include filename="$(find c300_description)/urdf/hokuyo.gazebo.xacro" />
+
+    <xacro:hokuyo_gazebo frame="${prefix}_laser" topic="${topic}" sim_gazebo="false" sim_ignition="true"/>
+
+    <joint name="${prefix}_laser_mount_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent_link}" />
+      <child link="${prefix}_laser_mount" />
+    </joint>
+
+    <link name="${prefix}_laser_mount">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!-- Origin of this mesh is the base of the bracket. -->
+          <mesh filename="file://$(find c300_description)/urdf/meshes/UAM-05LP.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${0.095/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.08 0.08 0.095"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${prefix}_laser_joint" type="fixed">
+      <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
+      <origin xyz="0 0 0.0674" rpy="0 0 0" />
+      <parent link="${prefix}_laser_mount" />
+      <child link="${prefix}_laser" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>

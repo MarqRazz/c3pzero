@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="c300" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Import macros for main hardware components -->
+    <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
+
+    <xacro:load_robot prefix="" sim_ignition="true" use_fake_hardware="false"/>
+
+</robot>
