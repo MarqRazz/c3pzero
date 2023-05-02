@@ -63,6 +63,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-humble-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
 
+# Upgrade binaries for Gazebo to get working RGBD camera
+# hadolint ignore=DL3008
+RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable jammy main" > /etc/apt/sources.list.d/gazebo-stable.list && \
+    wget -q http://packages.osrfoundation.org/gazebo.key && \
+    apt-key add gazebo.key && \
+    apt-get update && apt-get install --no-install-recommends -y \
+    libsdformat12 \
+    libignition-sensors6=6.7.0-1~jammy \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy over the source code to rosdep install other dependencies.
 # The source code in this workspace will be mounted from the host at runtime.
 RUN mkdir -p /root/c3pzero_ws/src

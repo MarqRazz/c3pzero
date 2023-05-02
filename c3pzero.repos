@@ -3,3 +3,11 @@ repositories:
     type: git
     url: https://github.com/PickNikRobotics/topic_based_ros2_control.git
     version: main
+  ros2_kortex:
+    type: git
+    url: git@github.com:PickNikRobotics/ros2_kortex.git
+    version: master
+  realsense-ros:
+    type: git
+    url: git@github.com:MarqRazz/realsense-ros.git
+    version: update_mesh_path

@@ -4,6 +4,6 @@
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
 
-    <xacro:load_robot prefix="" sim_ignition="true" use_fake_hardware="false"/>
+    <xacro:load_c300 prefix="" sim_ignition="true" use_fake_hardware="false"/>
 
 </robot>
