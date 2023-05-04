@@ -7,4 +7,4 @@ To view the robots URDF in Rviz you can use the following launch file:
 ros2 launch c3pzero_description view_robot_urdf.launch.py
 ```
 
-<img src="../doc/c3pzero_urdf.png"  width="100%" >
+<img src="../doc/c3pzero_urdf.png"  width="50%" >
