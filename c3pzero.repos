@@ -10,4 +10,12 @@ repositories:
   realsense-ros:
     type: git
     url: git@github.com:MarqRazz/realsense-ros.git
-    version: update_mesh_path
+    version: ros2-development
+  ros2_robotiq_gripper:
+    type: git
+    url: git@github.com:PickNikRobotics/ros2_robotiq_gripper.git
+    version: main
+  serial:
+    type: git
+    url: https://github.com/tylerjw/serial.git
+    version: ros2

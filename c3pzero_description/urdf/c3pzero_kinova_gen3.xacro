@@ -16,6 +16,7 @@
     <xacro:arg name="connection_inactivity_timeout_ms" default="2000" />
     <xacro:arg name="use_internal_bus_gripper_comm" default="true" />
     <xacro:arg name="sim_ignition" default="true" />
+    <xacro:arg name="sim_isaac" default="false" />
     <xacro:arg name="prefix" default="gen3_" />
     <xacro:arg name="use_fake_hardware" default="false" />
     <xacro:arg name="fake_sensor_commands" default="false" />
