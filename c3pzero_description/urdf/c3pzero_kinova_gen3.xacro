@@ -25,7 +25,7 @@
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
     <xacro:include filename="$(find kortex_description)/robots/kortex_robot.xacro" />
-    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro"/>    
+    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro"/>
 
     <xacro:load_c300 prefix="" sim_ignition="$(arg sim_ignition)" use_fake_hardware="false"/>
 
@@ -100,7 +100,7 @@
 
     <gazebo reference="wrist_mounted_camera_color_frame">
       <sensor name="wrist_camera" type="rgbd_camera">
-        <camera>          
+        <camera>
           <horizontal_fov>1.047</horizontal_fov>
           <image>
             <width>640</width>
