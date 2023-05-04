@@ -1,4 +1,4 @@
-# C3pzero mobile manipulator
+# c3pzero mobile manipulator
 
 [![Format Status](https://github.com/MarqRazz/c3pzero/actions/workflows/format.yaml/badge.svg)](https://github.com/MarqRazz/c3pzero/actions/workflows/format.yaml)
 
@@ -11,3 +11,5 @@ Description: This is a ROS 2 package for the C3pzero robot which consists of a P
 - [Installation](doc/installation.md)
 - [User Guide](doc/user.md)
 - [Developers Guide](doc/developer.md)
+- [c3pzero Simulation hand hardware Bringup Guide](c3pzero_bringup/README.md)
+- [C300 Mobile Base Guide](c300/README.md)
