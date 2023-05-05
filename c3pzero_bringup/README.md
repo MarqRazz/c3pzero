@@ -28,7 +28,7 @@ ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/Joi
 }" -1
 ```
 
-- GripperActionController (Open posiiton: 0, Closed: 0.8)
+- GripperActionController (Open position: 0, Closed: 0.8)
 ``` bash
-ros2 action send_goal /robotiq_gripper_controller/gripper_cmd control_msgs/action/GripperCommand "{command: {position: 0.0}}
+ros2 action send_goal /robotiq_gripper_controller/gripper_cmd control_msgs/action/GripperCommand "{command: {position: 0.0}}"
 ```
