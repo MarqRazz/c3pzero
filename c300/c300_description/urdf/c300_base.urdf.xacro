@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="c300" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:macro name="load_robot" params="prefix sim_ignition:=false use_fake_hardware:=false">
+  <xacro:macro name="load_c300" params="prefix sim_ignition:=false use_fake_hardware:=false">
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/hokuyo_uam05lp.urdf.xacro" />
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(c300_description)
+project(c3pzero_bringup)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -19,7 +19,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY urdf launch rviz world
+  DIRECTORY config launch rviz
   DESTINATION share/${PROJECT_NAME}
 )
 

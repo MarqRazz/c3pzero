@@ -1,0 +1,434 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /LaserScan1/Topic1
+      Splitter Ratio: 0.5
+    Tree Height: 209
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_laser_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        drivewhl_l_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        drivewhl_r_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_bracelet_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_end_effector_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        gen3_forearm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_half_arm_1_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_half_arm_2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_left_inner_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_left_inner_finger_pad:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_left_inner_knuckle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_left_outer_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_left_outer_knuckle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_right_inner_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_right_inner_finger_pad:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_right_inner_knuckle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_right_outer_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_right_outer_knuckle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_robotiq_arg2f_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_shoulder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_spherical_wrist_1_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_spherical_wrist_2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gen3_tool_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        lr_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        platform_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        robot_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rr_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wrist_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_camera_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wrist_mounted_camera_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_infra1_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_infra1_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_infra2_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_infra2_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wrist_mounted_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: false
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Marker Scale: 0.30000001192092896
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: false
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map
+      Update Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map_updates
+      Use Timestamp: false
+      Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /base_scan
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Class: rviz_default_plugins/Camera
+      Enabled: true
+      Far Plane Distance: 100
+      Image Rendering: background and overlay
+      Name: Camera
+      Overlay Alpha: 0.5
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /rgbd_camera/image
+      Value: true
+      Visibility:
+        Grid: true
+        LaserScan: true
+        Map: true
+        PointCloud2: true
+        RobotModel: true
+        TF: true
+        Value: true
+      Zoom Factor: 1
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: ""
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: ""
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /rgbd_camera/points
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: base_footprint
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 3.1943719387054443
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 0.08032668381929398
+        Y: -0.1415776014328003
+        Z: 0.683445155620575
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.3447972536087036
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 1.9553979635238647
+    Saved: ~
+Window Geometry:
+  Camera:
+    collapsed: false
+  Displays:
+    collapsed: false
+  Height: 773
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd0000000100000000000001e1000002affc0200000002fb000000100044006900730070006c006100790073010000003b0000015a000000c700fffffffb0000000c00430061006d006500720061010000019b0000014f0000002800ffffff000003b9000002af00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1440
+  X: 2134
+  Y: 194

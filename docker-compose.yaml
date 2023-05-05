@@ -59,6 +59,5 @@ services:
               capabilities: [gpu]
     environment:
       QT_X11_NO_MITSHM: 1
-      DISPLAY: $DISPLAY
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: all
