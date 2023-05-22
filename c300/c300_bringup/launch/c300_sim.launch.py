@@ -192,11 +192,14 @@ def generate_launch_description():
     )
 
     # Bridge
-    camera_bridge = Node(
+    gazebo_bridge = Node(
         package="ros_ign_bridge",
         executable="parameter_bridge",
         # parameters=[{'use_sim_time': use_sim_time}],
-        arguments=["/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan"],
+        arguments=[
+            "/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'
+        ],
         output="screen",
     )
 
@@ -207,7 +210,7 @@ def generate_launch_description():
         diff_drive_controller_spawner,
         ignition_launch_description,
         ignition_spawn_entity,
-        camera_bridge,
+        gazebo_bridge,
     ]
 
     return LaunchDescription(declared_arguments + nodes_to_start)

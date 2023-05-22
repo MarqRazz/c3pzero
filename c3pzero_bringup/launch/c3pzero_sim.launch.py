@@ -130,7 +130,7 @@ def generate_launch_description():
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=[robot_description],
+        parameters=[robot_description], # does this need the sim_time arg? This PR adds it here. https://github.com/ros-controls/gz_ros2_control/pull/137/files
     )
 
     rviz_node = Node(
@@ -224,7 +224,7 @@ def generate_launch_description():
     )
 
     # Bridge
-    camera_bridge = Node(
+    gazebo_bridge = Node(
         package="ros_ign_bridge",
         executable="parameter_bridge",
         # parameters=[{'use_sim_time': use_sim_time}],
@@ -237,6 +237,7 @@ def generate_launch_description():
             #    '/segmentation/labels_map@sensor_msgs/msg/Image@ignition.msgs.Image',
             "/segmentation/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
             "/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
         ],
         output="screen",
     )
@@ -251,7 +252,7 @@ def generate_launch_description():
         robot_hand_controller_spawner,
         ignition_launch_description,
         ignition_spawn_entity,
-        camera_bridge,
+        gazebo_bridge,
     ]
 
     return LaunchDescription(declared_arguments + nodes_to_start)
