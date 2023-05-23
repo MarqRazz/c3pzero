@@ -5,7 +5,7 @@ To test out this navigation package first start the robot in Gazebo and then run
 
 ## To start the `c300` mobile base in Gazebo run the following command:
 ``` bash
-ros2 launch c300_bringup c300_sim.launch.py
+ros2 launch c300_bringup c300_sim.launch.py launch_rviz:=false
 ```
 
 ## To start navigation run the following command:

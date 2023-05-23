@@ -83,7 +83,9 @@ WORKDIR /root/c3pzero_ws
 # hadolint ignore=SC1091
 RUN source /opt/ros/humble/setup.bash \
     && apt-get update -y \
-    && rosdep install --from-paths src --ignore-src --rosdistro "$ROS_DISTRO" -y \
+    && apt-get upgrade -y \
+    # TODO correct rosdep command from requiring -r command (its still looking for robotiq_description)
+    && rosdep install --from-paths src --ignore-src --rosdistro "$ROS_DISTRO" -y -r \
     && rm -rf /var/lib/apt/lists/*
 
 # Use CycloneDDS as the default but also setup Fast DDS to support NVIDIA Isaac Sim.
