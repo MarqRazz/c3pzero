@@ -90,95 +90,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        gen3_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_bracelet_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_end_effector_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        gen3_forearm_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_half_arm_1_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_half_arm_2_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_left_finger_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_left_finger_tip_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_left_inner_knuckle_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_left_knuckle_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_right_finger_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_right_finger_tip_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_right_inner_knuckle_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_robotiq_85_right_knuckle_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_shoulder_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_spherical_wrist_1_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gen3_spherical_wrist_2_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         lr_caster:
           Alpha: 1
           Show Axes: false
@@ -189,61 +100,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        robot_mount_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         rr_caster:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wrist_camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_camera_mount_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wrist_mounted_camera_bottom_screw_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_color_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_color_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_infra1_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_infra1_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_infra2_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_infra2_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_mounted_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -273,75 +130,13 @@ Visualization Manager:
           Value: true
         drivewhl_r_link:
           Value: true
-        gen3_base_link:
-          Value: true
-        gen3_bracelet_link:
-          Value: true
-        gen3_end_effector_link:
-          Value: true
-        gen3_forearm_link:
-          Value: true
-        gen3_half_arm_1_link:
-          Value: true
-        gen3_half_arm_2_link:
-          Value: true
-        gen3_robotiq_85_base_link:
-          Value: true
-        gen3_robotiq_85_left_finger_link:
-          Value: true
-        gen3_robotiq_85_left_finger_tip_link:
-          Value: true
-        gen3_robotiq_85_left_inner_knuckle_link:
-          Value: true
-        gen3_robotiq_85_left_knuckle_link:
-          Value: true
-        gen3_robotiq_85_right_finger_link:
-          Value: true
-        gen3_robotiq_85_right_finger_tip_link:
-          Value: true
-        gen3_robotiq_85_right_inner_knuckle_link:
-          Value: true
-        gen3_robotiq_85_right_knuckle_link:
-          Value: true
-        gen3_shoulder_link:
-          Value: true
-        gen3_spherical_wrist_1_link:
-          Value: true
-        gen3_spherical_wrist_2_link:
-          Value: true
         lr_caster:
           Value: true
         odom:
           Value: true
         platform_link:
           Value: true
-        robot_mount_link:
-          Value: true
         rr_caster:
-          Value: true
-        wrist_camera_link:
-          Value: true
-        wrist_camera_mount_link:
-          Value: true
-        wrist_mounted_camera_bottom_screw_frame:
-          Value: true
-        wrist_mounted_camera_color_frame:
-          Value: true
-        wrist_mounted_camera_color_optical_frame:
-          Value: true
-        wrist_mounted_camera_depth_frame:
-          Value: true
-        wrist_mounted_camera_depth_optical_frame:
-          Value: true
-        wrist_mounted_camera_infra1_frame:
-          Value: true
-        wrist_mounted_camera_infra1_optical_frame:
-          Value: true
-        wrist_mounted_camera_infra2_frame:
-          Value: true
-        wrist_mounted_camera_infra2_optical_frame:
-          Value: true
-        wrist_mounted_camera_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -363,46 +158,7 @@ Visualization Manager:
             lr_caster:
               {}
             platform_link:
-              robot_mount_link:
-                gen3_base_link:
-                  gen3_shoulder_link:
-                    gen3_half_arm_1_link:
-                      gen3_half_arm_2_link:
-                        gen3_forearm_link:
-                          gen3_spherical_wrist_1_link:
-                            gen3_spherical_wrist_2_link:
-                              gen3_bracelet_link:
-                                gen3_end_effector_link:
-                                  gen3_robotiq_85_base_link:
-                                    gen3_robotiq_85_left_inner_knuckle_link:
-                                      {}
-                                    gen3_robotiq_85_left_knuckle_link:
-                                      gen3_robotiq_85_left_finger_link:
-                                        gen3_robotiq_85_left_finger_tip_link:
-                                          {}
-                                    gen3_robotiq_85_right_inner_knuckle_link:
-                                      {}
-                                    gen3_robotiq_85_right_knuckle_link:
-                                      gen3_robotiq_85_right_finger_link:
-                                        gen3_robotiq_85_right_finger_tip_link:
-                                          {}
-                                wrist_camera_link:
-                                  wrist_mounted_camera_bottom_screw_frame:
-                                    wrist_mounted_camera_link:
-                                      wrist_mounted_camera_color_frame:
-                                        wrist_mounted_camera_color_optical_frame:
-                                          {}
-                                      wrist_mounted_camera_depth_frame:
-                                        wrist_mounted_camera_depth_optical_frame:
-                                          {}
-                                      wrist_mounted_camera_infra1_frame:
-                                        wrist_mounted_camera_infra1_optical_frame:
-                                          {}
-                                      wrist_mounted_camera_infra2_frame:
-                                        wrist_mounted_camera_infra2_optical_frame:
-                                          {}
-                                wrist_camera_mount_link:
-                                  {}
+              {}
             rr_caster:
               {}
       Update Interval: 0
@@ -422,9 +178,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: -999999
+      Max Intensity: 0
       Min Color: 0; 0; 0
-      Min Intensity: 999999
+      Min Intensity: 0
       Name: LaserScan
       Position Transformer: XYZ
       Selectable: true
@@ -437,7 +193,7 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Best Effort
-        Value: /scan
+        Value: /base_scan
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -846,7 +602,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.6150002479553223
+      Angle: -1.575000286102295
       Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -856,11 +612,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 151.37570190429688
+      Scale: 258.4468994140625
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
-      X: -0.044467076659202576
-      Y: -0.38726311922073364
+      X: 0.18391530215740204
+      Y: -0.3650076985359192
     Saved: ~
 Window Geometry:
   Displays:
