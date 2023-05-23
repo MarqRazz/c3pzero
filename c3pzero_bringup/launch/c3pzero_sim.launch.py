@@ -130,7 +130,7 @@ def generate_launch_description():
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=[robot_description], # does this need the sim_time arg? This PR adds it here. https://github.com/ros-controls/gz_ros2_control/pull/137/files
+        parameters=[robot_description],
     )
 
     rviz_node = Node(
@@ -237,7 +237,7 @@ def generate_launch_description():
             #    '/segmentation/labels_map@sensor_msgs/msg/Image@ignition.msgs.Image',
             "/segmentation/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
             "/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
-            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+            "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
         ],
         output="screen",
     )

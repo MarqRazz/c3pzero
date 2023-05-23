@@ -198,7 +198,7 @@ def generate_launch_description():
         # parameters=[{'use_sim_time': use_sim_time}],
         arguments=[
             "/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
-            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'
+            "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
         ],
         output="screen",
     )
