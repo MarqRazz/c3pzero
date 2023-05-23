@@ -30,7 +30,7 @@ class RoboclawTwistSubscriber(Node):
     def __init__(self):
         super().__init__("roboclaw_twist_subscriber")
 
-        cmd_vel_topic = "c300/cmd_vel"
+        cmd_vel_topic = "cmd_vel"
         self.wheel_radius = 0.1715  # meters
         self.wheel_circumference = 2 * math.pi * self.wheel_radius  # meters
         self.ppr = 11600  # pulses per wheel revolution
