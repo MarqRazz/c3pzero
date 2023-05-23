@@ -236,7 +236,7 @@ def generate_launch_description():
             "/segmentation/colored_map@sensor_msgs/msg/Image[ignition.msgs.Image",
             #    '/segmentation/labels_map@sensor_msgs/msg/Image@ignition.msgs.Image',
             "/segmentation/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
-            "/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
         ],
         output="screen",

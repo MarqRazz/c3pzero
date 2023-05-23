@@ -190,7 +190,7 @@
       <origin xyz="-0.2 0 0.3" rpy="0 0 0"/>
     </joint>
 
-    <xacro:hokuyo_uam05lp prefix="base" topic="base_scan" parent_link="base_link">
+    <xacro:hokuyo_uam05lp prefix="base" topic="scan" parent_link="base_link">
       <origin xyz="0 0 0.155" rpy="0 0 0" />
     </xacro:hokuyo_uam05lp>
 

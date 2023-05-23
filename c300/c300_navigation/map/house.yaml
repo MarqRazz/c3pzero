@@ -1,4 +1,4 @@
-image: /root/c3pzero_ws/install/c300_navigation/share/c300_navigation/map/house.pgm
+image: house.pgm
 mode: trinary
 resolution: 0.05
 origin: [-9.29, -5.92, 0]

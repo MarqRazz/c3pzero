@@ -1,4 +1,4 @@
-image: /root/c3pzero_ws/install/c300_navigation/share/c300_navigation/map/empty_world.pgm
+image: empty_world.pgm
 resolution: 0.050000
 origin: [-1024.000000, -1024.000000, 0.000000]
 negate: 0
