@@ -81,6 +81,13 @@ def generate_launch_description():
             "launch_rviz", default_value="true", description="Launch RViz?"
         )
     )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "use_sim_time",
+            default_value="True",
+            description="Use simulation (Gazebo) clock if true",
+        )
+    )
 
     # Initialize Arguments
     sim_ignition = LaunchConfiguration("sim_ignition")
@@ -93,6 +100,7 @@ def generate_launch_description():
     prefix = LaunchConfiguration("prefix")
     diff_drive_controller = LaunchConfiguration("diff_drive_controller")
     launch_rviz = LaunchConfiguration("launch_rviz")
+    use_sim_time = LaunchConfiguration("use_sim_time")
 
     robot_controllers = PathJoinSubstitution(
         [FindPackageShare(runtime_config_package), "config", controllers_file]
@@ -111,13 +119,17 @@ def generate_launch_description():
             ),
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=[robot_description],
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "robot_description": robot_description_content,
+            }
+        ],
     )
 
     rviz_node = Node(
@@ -132,6 +144,7 @@ def generate_launch_description():
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
+        parameters=[{"use_sim_time": use_sim_time}],
         arguments=[
             "joint_state_broadcaster",
             "--controller-manager",

@@ -28,8 +28,8 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "sim_ignition",
-            default_value="true",
-            description="Use Ignition for simulation",
+            default_value="True",
+            description="Use Ignition Gazebo for simulation",
         )
     )
     # General arguments
@@ -93,7 +93,14 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "launch_rviz", default_value="true", description="Launch RViz?"
+            "launch_rviz", default_value="True", description="Launch RViz?"
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "use_sim_time",
+            default_value="True",
+            description="Use simulation (Gazebo) clock if true",
         )
     )
 
@@ -110,6 +117,7 @@ def generate_launch_description():
     robot_pos_controller = LaunchConfiguration("robot_pos_controller")
     robot_hand_controller = LaunchConfiguration("robot_hand_controller")
     launch_rviz = LaunchConfiguration("launch_rviz")
+    use_sim_time = LaunchConfiguration("use_sim_time")
 
     rviz_config_file = PathJoinSubstitution(
         [FindPackageShare(runtime_config_package), "rviz", "bringup_config.rviz"]
@@ -124,13 +132,17 @@ def generate_launch_description():
             ),
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=[robot_description],
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "robot_description": robot_description_content,
+            }
+        ],
     )
 
     rviz_node = Node(
@@ -145,6 +157,7 @@ def generate_launch_description():
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
+        parameters=[{"use_sim_time": use_sim_time}],
         arguments=[
             "joint_state_broadcaster",
             "--controller-manager",

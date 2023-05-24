@@ -109,18 +109,6 @@ def generate_launch_description():
         description="Full path to the RVIZ config file to use",
     )
 
-    declare_use_simulator_cmd = DeclareLaunchArgument(
-        "use_simulator",
-        default_value="False",
-        description="Whether to start the simulator",
-    )
-
-    declare_use_robot_state_pub_cmd = DeclareLaunchArgument(
-        "use_robot_state_pub",
-        default_value="True",
-        description="Whether to start the robot state publisher",
-    )
-
     declare_use_rviz_cmd = DeclareLaunchArgument(
         "use_rviz", default_value="True", description="Whether to start RVIZ"
     )
@@ -164,8 +152,6 @@ def generate_launch_description():
     ld.add_action(declare_use_composition_cmd)
 
     ld.add_action(declare_rviz_config_file_cmd)
-    ld.add_action(declare_use_simulator_cmd)
-    ld.add_action(declare_use_robot_state_pub_cmd)
     ld.add_action(declare_use_rviz_cmd)
     ld.add_action(declare_use_respawn_cmd)
 

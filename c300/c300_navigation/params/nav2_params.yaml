@@ -130,7 +130,7 @@ controller_server:
       plugin: "nav2_controller::SimpleProgressChecker"
       required_movement_radius: 0.5
       movement_time_allowance: 10.0
-    
+
     general_goal_checker:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
