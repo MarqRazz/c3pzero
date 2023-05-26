@@ -199,16 +199,16 @@ def generate_launch_description():
         ),
         # TODO (marqrazz): fix the hardcoded path to the gazebo world
         launch_arguments={
-            "ign_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
+            "gz_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
         }.items(),
         condition=IfCondition(sim_ignition),
     )
 
     # Bridge
     gazebo_bridge = Node(
-        package="ros_ign_bridge",
+        package="ros_gz_bridge",
         executable="parameter_bridge",
-        # parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{'use_sim_time': use_sim_time}],
         arguments=[
             "/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
