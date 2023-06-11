@@ -26,7 +26,7 @@ ros2 topic pub -1 /initialpose geometry_msgs/PoseWithCovarianceStamped '{ header
 
 ```
 
-## Runnin SLAM
+## Running SLAM
 
 To create a new map with SLAM Toolbox start the robot and then run:
 ``` bash
