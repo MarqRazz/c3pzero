@@ -1,9 +1,19 @@
 <?xml version="1.0"?>
 <robot name="c300" xmlns:xacro="http://ros.org/wiki/xacro">
 
+    <!-- Arguments -->
+    <xacro:arg name="prefix" default="" />
+    <xacro:arg name="sim_ignition" default="false" />
+    <xacro:arg name="sim_isaac" default="false" />
+    <xacro:arg name="use_fake_hardware" default="false" />
+
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
 
-    <xacro:load_c300 prefix="" sim_ignition="true" use_fake_hardware="false"/>
+    <xacro:load_c300
+        prefix="$(arg prefix)"
+        use_fake_hardware="$(arg use_fake_hardware)"
+        sim_ignition="$(arg sim_ignition)"
+        sim_isaac="$(arg sim_isaac)"/>
 
 </robot>

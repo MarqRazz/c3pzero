@@ -64,12 +64,12 @@ def generate_launch_description():
     )
 
     declare_slam_cmd = DeclareLaunchArgument(
-        "slam", default_value="True", description="Whether run a SLAM"
+        "slam", default_value="False", description="Whether run a SLAM"
     )
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         "map",
-        default_value=os.path.join(c300_nav_dir, "map", "house.yaml"),
+        default_value=os.path.join(c300_nav_dir, "map", "depot.yaml"),
         description="Full path to map file to load",
     )
 

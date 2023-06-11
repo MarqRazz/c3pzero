@@ -240,7 +240,7 @@ def generate_launch_description():
     gazebo_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{"use_sim_time": use_sim_time}],
         arguments=[
             "/rgbd_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image",
             "/rgbd_camera/depth_image@sensor_msgs/msg/Image[ignition.msgs.Image",
