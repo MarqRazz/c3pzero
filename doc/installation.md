@@ -19,7 +19,7 @@ vcs import < c3pzero/c3pzero.repos
 
 # Build and run the Docker container
 
-1. Move into the `3cpzero` package where the `docker-compose.yaml` is located and build the docker container with:
+1. Move into the `c3pzero` package where the `docker-compose.yaml` is located and build the docker container with:
 ``` bash
 cd $COLCON_WS/src/c3pzero
 docker compose build gpu

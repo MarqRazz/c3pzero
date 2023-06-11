@@ -42,13 +42,6 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "controllers_file",
-            default_value="c300_controllers.yaml",
-            description="YAML file with the controllers configuration.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
             "description_package",
             default_value="c300_description",
             description="Description package with robot URDF/XACRO files. Usually the argument \
@@ -81,22 +74,25 @@ def generate_launch_description():
             "launch_rviz", default_value="true", description="Launch RViz?"
         )
     )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "use_sim_time",
+            default_value="True",
+            description="Use simulation (Gazebo) clock if true",
+        )
+    )
 
     # Initialize Arguments
     sim_ignition = LaunchConfiguration("sim_ignition")
     # General arguments
     runtime_config_package = LaunchConfiguration("runtime_config_package")
-    controllers_file = LaunchConfiguration("controllers_file")
     description_package = LaunchConfiguration("description_package")
     description_file = LaunchConfiguration("description_file")
     robot_name = LaunchConfiguration("robot_name")
     prefix = LaunchConfiguration("prefix")
     diff_drive_controller = LaunchConfiguration("diff_drive_controller")
     launch_rviz = LaunchConfiguration("launch_rviz")
-
-    robot_controllers = PathJoinSubstitution(
-        [FindPackageShare(runtime_config_package), "config", controllers_file]
-    )
+    use_sim_time = LaunchConfiguration("use_sim_time")
 
     rviz_config_file = PathJoinSubstitution(
         [FindPackageShare(runtime_config_package), "rviz", "bringup_config.rviz"]
@@ -109,15 +105,23 @@ def generate_launch_description():
             PathJoinSubstitution(
                 [FindPackageShare(description_package), "urdf", description_file]
             ),
+            " ",
+            "sim_ignition:=",
+            sim_ignition,
+            " ",
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=[robot_description],
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "robot_description": robot_description_content,
+            }
+        ],
     )
 
     rviz_node = Node(
@@ -132,6 +136,7 @@ def generate_launch_description():
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
+        parameters=[{"use_sim_time": use_sim_time}],
         arguments=[
             "joint_state_broadcaster",
             "--controller-manager",
@@ -186,18 +191,18 @@ def generate_launch_description():
         ),
         # TODO (marqrazz): fix the hardcoded path to the gazebo world
         launch_arguments={
-            "ign_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
+            "gz_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
         }.items(),
         condition=IfCondition(sim_ignition),
     )
 
     # Bridge
     gazebo_bridge = Node(
-        package="ros_ign_bridge",
+        package="ros_gz_bridge",
         executable="parameter_bridge",
-        # parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{"use_sim_time": use_sim_time}],
         arguments=[
-            "/base_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
         ],
         output="screen",
