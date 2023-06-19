@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
+import argparse
 import os
 import sys
 
@@ -9,16 +9,24 @@ import numpy as np
 from omni.isaac.kit import SimulationApp
 
 C300_STAGE_PATH = "/c300"
-if len(sys.argv) <= 1:
-    print(
-        "[ERROR] This script requires an argument with the absolute path to the robot's folder containing it's UDS file"
-    )
-    sys.exit()
-GEN3_USD_PATH = sys.argv[1] + "/c300.usd"
 BACKGROUND_STAGE_PATH = "/background"
-BACKGROUND_USD_PATH = (
-    "/Isaac/Environments/Simple_Warehouse/warehouse_multiple_shelves.usd"
-)
+BACKGROUND_USD_PATH = "/Isaac/Environments/Simple_Warehouse/warehouse_multiple_shelves.usd"
+
+# Initialize the parser
+parser = argparse.ArgumentParser(description="Process the path to the robot's folder containing its UDS file")
+
+# Add the arguments
+parser.add_argument('Path', metavar='path', type=str, help="the path to the robot's folder")
+
+# Parse the arguments
+args = parser.parse_args()
+
+# Check if the path argument was provided
+if args.Path:
+    GEN3_USD_PATH = args.Path + "/c300.usd"
+else:
+    print("[ERROR] This script requires an argument with the absolute path to the robot's folder containing it's UDS file")
+    sys.exit()
 
 CONFIG = {"renderer": "RayTracedLighting", "headless": False}
 
@@ -90,6 +98,9 @@ try:
                 ("PublishClock", "omni.isaac.ros2_bridge.ROS2PublishClock"),
                 ("IsaacReadLidarBeams", "omni.isaac.range_sensor.IsaacReadLidarBeams"),
                 ("PublishLidarScan", "omni.isaac.ros2_bridge.ROS2PublishLaserScan"),
+                # Nodes to subtract some time of the lidar message so it's timestamps match the tf tree in ROS
+                ("ConstantFloat", "omni.graph.nodes.ConstantFloat"),                
+                ("Subtract", "omni.graph.nodes.Subtract"),
             ],
             og.Controller.Keys.CONNECT: [
                 ("OnImpulseEvent.outputs:execOut", "PublishJointState.inputs:execIn"),
@@ -123,6 +134,9 @@ try:
                     "SubscribeJointState.outputs:effortCommand",
                     "ArticulationController.inputs:effortCommand",
                 ),
+                # Time offset for Lidar messages
+                ("ReadSimTime.outputs:simulationTime", "Subtract.inputs:a"),
+                ("ConstantFloat.inputs:value", "Subtract.inputs:b"),
                 # Lidar nodes
                 (
                     "OnImpulseEvent.outputs:execOut",
@@ -169,7 +183,7 @@ try:
                     "PublishLidarScan.inputs:rotationRate",
                 ),
                 (
-                    "ReadSimTime.outputs:simulationTime",
+                    "Subtract.outputs:difference",
                     "PublishLidarScan.inputs:timeStamp",
                 ),
                 ("Context.outputs:context", "PublishLidarScan.inputs:context"),
@@ -186,6 +200,7 @@ try:
                     "base_laser",
                 ),  # c300's laser frame_id
                 ("PublishLidarScan.inputs:topicName", "scan"),
+                ("ConstantFloat.inputs:value", 0.1),
             ],
         },
     )
