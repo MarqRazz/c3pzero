@@ -10,13 +10,19 @@ from omni.isaac.kit import SimulationApp
 
 C300_STAGE_PATH = "/c300"
 BACKGROUND_STAGE_PATH = "/background"
-BACKGROUND_USD_PATH = "/Isaac/Environments/Simple_Warehouse/warehouse_multiple_shelves.usd"
+BACKGROUND_USD_PATH = (
+    "/Isaac/Environments/Simple_Warehouse/warehouse_multiple_shelves.usd"
+)
 
 # Initialize the parser
-parser = argparse.ArgumentParser(description="Process the path to the robot's folder containing its UDS file")
+parser = argparse.ArgumentParser(
+    description="Process the path to the robot's folder containing its UDS file"
+)
 
 # Add the arguments
-parser.add_argument('Path', metavar='path', type=str, help="the path to the robot's folder")
+parser.add_argument(
+    "Path", metavar="path", type=str, help="the path to the robot's folder"
+)
 
 # Parse the arguments
 args = parser.parse_args()
@@ -25,7 +31,9 @@ args = parser.parse_args()
 if args.Path:
     GEN3_USD_PATH = args.Path + "/c300.usd"
 else:
-    print("[ERROR] This script requires an argument with the absolute path to the robot's folder containing it's UDS file")
+    print(
+        "[ERROR] This script requires an argument with the absolute path to the robot's folder containing it's UDS file"
+    )
     sys.exit()
 
 CONFIG = {"renderer": "RayTracedLighting", "headless": False}
@@ -99,7 +107,7 @@ try:
                 ("IsaacReadLidarBeams", "omni.isaac.range_sensor.IsaacReadLidarBeams"),
                 ("PublishLidarScan", "omni.isaac.ros2_bridge.ROS2PublishLaserScan"),
                 # Nodes to subtract some time of the lidar message so it's timestamps match the tf tree in ROS
-                ("ConstantFloat", "omni.graph.nodes.ConstantFloat"),                
+                ("ConstantFloat", "omni.graph.nodes.ConstantFloat"),
                 ("Subtract", "omni.graph.nodes.Subtract"),
             ],
             og.Controller.Keys.CONNECT: [
