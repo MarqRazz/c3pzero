@@ -3,6 +3,8 @@
 This package contains the Nav2 parameters to be used with the Permobile c300 mobile base.
 To test out this navigation package first start the robot in Gazebo and then run the included navigation launch file.
 
+https://github.com/MarqRazz/c3pzero/assets/25058794/35301ba1-e443-44ff-b6ba-0fabae138205
+
 # Nav2 with Gazebo simulated robot
 
 To start the `c300` mobile base in Gazebo run the following command:
