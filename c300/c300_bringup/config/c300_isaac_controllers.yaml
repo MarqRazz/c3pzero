@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 500  # Hz (this should match the gazebo rate)
+    update_rate: 60  # Hz (this should match the Isaac publish rate)
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
