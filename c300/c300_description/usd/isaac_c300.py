@@ -142,7 +142,7 @@ try:
                     "SubscribeJointState.outputs:effortCommand",
                     "ArticulationController.inputs:effortCommand",
                 ),
-                # Time offset for Lidar messages
+                # Hack time offset for lidar messages
                 ("ReadSimTime.outputs:simulationTime", "Subtract.inputs:a"),
                 ("ConstantFloat.inputs:value", "Subtract.inputs:b"),
                 # Lidar nodes
@@ -197,7 +197,7 @@ try:
                 ("Context.outputs:context", "PublishLidarScan.inputs:context"),
             ],
             og.Controller.Keys.SET_VALUES: [
-                ("Context.inputs:domain_id", 0),  # int(os.environ["ROS_DOMAIN_ID"])),
+                ("Context.inputs:domain_id", int(os.environ["ROS_DOMAIN_ID"])),
                 # Setting the /c300 target prim to Articulation Controller node
                 ("ArticulationController.inputs:usePath", True),
                 ("ArticulationController.inputs:robotPath", C300_STAGE_PATH),
@@ -208,6 +208,7 @@ try:
                     "base_laser",
                 ),  # c300's laser frame_id
                 ("PublishLidarScan.inputs:topicName", "scan"),
+                # Hack time offset for lidar messages
                 ("ConstantFloat.inputs:value", 0.1),
             ],
         },
