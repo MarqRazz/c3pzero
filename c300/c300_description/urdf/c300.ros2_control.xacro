@@ -16,6 +16,7 @@
           <plugin>topic_based_ros2_control/TopicBasedSystem</plugin>
           <param name="joint_commands_topic">/isaac_joint_commands</param>
           <param name="joint_states_topic">/isaac_joint_states</param>
+          <param name="sum_wrapped_joint_states">true</param>
         </xacro:if>
         <xacro:if value="${use_fake_hardware}">
           <plugin>fake_components/GenericSystem</plugin>

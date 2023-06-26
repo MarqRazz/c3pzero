@@ -6,6 +6,10 @@ Description: This is a ROS 2 package for the C3pzero robot which consists of a P
 
 <img src="doc/c3pzero.png"  width="50%" >
 
+<img src="doc/c300_isaac.png"  width="60%" >
+
+https://github.com/MarqRazz/c3pzero/assets/25058794/35301ba1-e443-44ff-b6ba-0fabae138205
+
 ## Documentation
 
 - [Installation](doc/installation.md)
