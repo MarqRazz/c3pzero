@@ -7,4 +7,3 @@ This is because the data's timestamp is ahead of all values available in the tf 
 
 Isaac (and Gazebo) require a `wheel radius multiplier` of less than 1.0 to get the odometry to report correctly.
 When navigating the odometry is still not perfect and the localization system needs to compensate more than expected when the base it rotating.
-

@@ -19,12 +19,18 @@ ros2 launch c300_navigation navigation.launch.py
 
 # Nav2 with Isaac simulated robot
 
-To start the `c300` mobile base in Isaac run the following command:
+To start Isaac with the `c300` mobile base in an industrial warehouse run the following command on the host PC where Isaac is installed:
+``` bash
+cd <path_to_workspace>/c3pzero_ws/src/c3pzero/c300/c300_description/usd
+./python.sh isaac_c300.py
+```
+
+In the Docker container start the `c300` controllers to command the base and report state:
 ``` bash
 ros2 launch c300_bringup isaac_c300.launch.py launch_rviz:=false
 ```
 
-To start Nav2 with the included Isaac Warehouse map run:
+In the Docker container start Nav2 with the included Isaac Warehouse map run:
 ``` bash
 ros2 launch c300_navigation navigation.launch.py map:=isaac_warehouse.yaml
 ```

@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Copyright 2023 PickNik Inc.
-# All rights reserved.
-
 # Script to call the isaac launch system (see python.sh in the ISAAC_SCRIPT_DIR)
 
 ISAAC_SCRIPT_DIR="$HOME/.local/share/ov/pkg/isaac_sim-2022.2.1"
 
-# Prepend the path to all arguments passed in
+# Prepend the path to all arguments passed in and also pass the current directory
+# to allow the launch script to find the USD files located here.
 CUR_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NEW_ARGS=""
 for arg in "$@"
