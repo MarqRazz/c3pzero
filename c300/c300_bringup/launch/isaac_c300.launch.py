@@ -26,7 +26,7 @@ def generate_launch_description():
     # Simulation specific arguments
     declared_arguments.append(
         DeclareLaunchArgument(
-            "sim_ignition",
+            "sim_isaac",
             default_value="true",
             description="Use Ignition for simulation",
         )
@@ -129,7 +129,7 @@ def generate_launch_description():
             prefix,
             " ",
             "sim_isaac:=",
-            use_sim_time,
+            sim_isaac,
             " ",
         ]
     )

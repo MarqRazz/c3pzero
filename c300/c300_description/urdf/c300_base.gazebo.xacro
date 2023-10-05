@@ -65,33 +65,4 @@
     <gravity>true</gravity>
   </gazebo>
 
-  <!-- <gazebo reference="lidar_link">
-    <sensor name="lidar" type="gpu_lidar">
-      <update_rate>5</update_rate>
-      <visualize>true</visualize>
-      <always_on>true</always_on>
-      <lidar>
-        <scan>
-          <horizontal>
-            <samples>360</samples>
-            <resolution>1</resolution>
-            <min_angle>0.0</min_angle>
-            <max_angle>6.280000</max_angle>
-          </horizontal>
-          <vertical>
-            <samples>1</samples>
-            <resolution>1</resolution>
-            <min_angle>0.0</min_angle>
-            <max_angle>0.0</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>0.120000</min>
-          <max>3.5</max>
-          <resolution>0.015000</resolution>
-        </range>
-      </lidar>
-    </sensor>
-  </gazebo> -->
-
 </robot>

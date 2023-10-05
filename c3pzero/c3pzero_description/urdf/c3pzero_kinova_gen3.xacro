@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+
+<robot name="c3pzero_kinova_gen3" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Arguments for Kinova -->
+    <xacro:arg name="arm" default="gen3" />
+    <xacro:arg name="dof" default="7" />
+    <xacro:arg name="vision" default="false" />
+    <xacro:arg name="robot_ip" default="yyy.yyy.yyy.yyy" />
+    <xacro:arg name="gripper" default="robotiq_2f_85" />
+    <xacro:arg name="username" default="admin" />
+    <xacro:arg name="password" default="admin" />
+    <xacro:arg name="port" default="10000" />
+    <xacro:arg name="port_realtime" default="10001" />
+    <xacro:arg name="session_inactivity_timeout_ms" default="60000" />
+    <xacro:arg name="connection_inactivity_timeout_ms" default="2000" />
+    <xacro:arg name="use_internal_bus_gripper_comm" default="false" />
+    <xacro:arg name="sim_ignition" default="false" />
+    <xacro:arg name="sim_isaac" default="false" />
+    <xacro:arg name="prefix" default="gen3_" />
+    <xacro:arg name="use_fake_hardware" default="false" />
+    <xacro:arg name="fake_sensor_commands" default="false" />
+
+    <!-- Import macros for main hardware components -->
+    <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
+    <xacro:include filename="$(find kortex_description)/robots/kortex_robot.xacro" />
+    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro"/>
+
+    <xacro:if value="$(arg sim_ignition)">
+      <xacro:include filename="$(find c3pzero_description)/urdf/c3pzero_kinova_gen3.gazebo.xacro" />
+      <xacro:arg name="simulation_controllers" default="$(find c3pzero_bringup)/config/c3pzero_gz_controllers.yaml" /> 
+    </xacro:if>
+
+    <xacro:load_c300 
+      prefix="" 
+      sim_ignition="$(arg sim_ignition)"
+      sim_isaac="$(arg sim_isaac)"
+      use_fake_hardware="false"/>
+
+    <!-- robot_mount_link is the location on the c300 base where the robot arm is mounted -->
+    <link name="robot_mount_link"/>
+    <joint name="robot_mount_joint" type="fixed">
+        <parent link="platform_link"/>
+        <child link="robot_mount_link"/>
+        <origin xyz="0.2 -0.2 0.04" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Load the robot -->
+    <xacro:load_robot
+      parent="robot_mount_link"
+      arm="$(arg arm)"
+      gripper="$(arg gripper)"
+      dof="$(arg dof)"
+      vision="$(arg vision)"
+      robot_ip="$(arg robot_ip)"
+      username="$(arg username)"
+      password="$(arg password)"
+      port="$(arg port)"
+      port_realtime="$(arg port_realtime)"
+      session_inactivity_timeout_ms="$(arg session_inactivity_timeout_ms)"
+      connection_inactivity_timeout_ms="$(arg connection_inactivity_timeout_ms)"
+      use_internal_bus_gripper_comm="$(arg use_internal_bus_gripper_comm)"
+      sim_ignition="$(arg sim_ignition)"
+      sim_isaac="$(arg sim_isaac)"
+      prefix="$(arg prefix)"
+      use_fake_hardware="$(arg use_fake_hardware)"
+      fake_sensor_commands="$(arg fake_sensor_commands)" >
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:load_robot>
+
+    <link name="wrist_camera_link"/>
+
+    <joint name="wrist_camera_joint" type="fixed">
+      <parent link="$(arg prefix)bracelet_link"/>
+      <child link = "wrist_camera_link"/>
+      <origin xyz="0 -0.06841 -0.05044" rpy="0 ${3.14 / 180.0 * 100} -1.5708"/>
+    </joint>
+
+    <xacro:sensor_d415 parent="wrist_camera_link" name="wrist_mounted_camera" use_nominal_extrinsics="true">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:sensor_d415>
+
+    <!-- Wrist Camera Bracket -->
+    <link name="wrist_camera_mount_link">
+      <inertial>
+        <origin xyz="0.000281 0.011402 -0.029798" rpy="0 0 0" />
+        <mass value="0.5" />
+        <inertia ixx="0.000587" ixy="3E-06" ixz="3E-06" iyy="0.000369" iyz="-0.000118" izz="0.000609" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/realsense_bracket_for_kinova.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/realsense_bracket_for_kinova.dae" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="wrist_camera_mount_joint" type="fixed">
+      <origin xyz="0 0 0.0" rpy="0 0 0" />
+      <parent link="$(arg prefix)bracelet_link" />
+      <child link="wrist_camera_mount_link" />
+    </joint>
+
+</robot>

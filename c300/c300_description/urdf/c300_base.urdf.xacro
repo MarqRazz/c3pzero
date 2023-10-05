@@ -13,7 +13,7 @@
     <xacro:if value="${use_fake_hardware or sim_ignition or sim_isaac}">
       <!-- ros2 control is only used for simulation -->
       <xacro:include filename="$(find c300_description)/urdf/c300.ros2_control.xacro" />
-      <xacro:property name="ros2_control_name" value="IgnitionSystem"/>
+      <xacro:property name="ros2_control_name" value="C300_Base"/>
       <xacro:c300_ros2_control
         name="${ros2_control_name}"
         use_fake_hardware="${use_fake_hardware}"

@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: kbot_description
+    relative_path: urdf/kbot.urdf.xacro
+  srdf:
+    relative_path: config/kbot.srdf
+  package_settings:
+    author_name: Marq Rasmussen
+    author_email: marq.razz@gmail.com
+    generated_timestamp: 1679847871
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
