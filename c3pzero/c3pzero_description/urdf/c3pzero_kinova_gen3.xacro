@@ -28,11 +28,11 @@
 
     <xacro:if value="$(arg sim_ignition)">
       <xacro:include filename="$(find c3pzero_description)/urdf/c3pzero_kinova_gen3.gazebo.xacro" />
-      <xacro:arg name="simulation_controllers" default="$(find c3pzero_bringup)/config/c3pzero_gz_controllers.yaml" /> 
+      <xacro:arg name="simulation_controllers" default="$(find c3pzero_bringup)/config/c3pzero_gz_controllers.yaml" />
     </xacro:if>
 
-    <xacro:load_c300 
-      prefix="" 
+    <xacro:load_c300
+      prefix=""
       sim_ignition="$(arg sim_ignition)"
       sim_isaac="$(arg sim_isaac)"
       use_fake_hardware="false"/>

@@ -46,7 +46,7 @@ ros2 action send_goal /robotiq_gripper_controller/gripper_cmd control_msgs/actio
 ``` bash
 ros2 topic pub /isaac_joint_commands sensor_msgs/JointState "{
   name: [gen3_joint_1, gen3_joint_2, gen3_joint_3, gen3_joint_4, gen3_joint_5, gen3_joint_6, gen3_joint_7],
-  position: [0.0, 0.26, 3.14, -2.27, 0.0, 0.96, 1.57] 
+  position: [0.0, 0.26, 3.14, -2.27, 0.0, 0.96, 1.57]
 }" -1
 ```
 
@@ -54,6 +54,6 @@ ros2 topic pub /isaac_joint_commands sensor_msgs/JointState "{
 ``` bash
 ros2 topic pub /isaac_joint_commands sensor_msgs/JointState "{
   name: [gen3_joint_1, gen3_joint_2, gen3_joint_3, gen3_joint_4, gen3_joint_5, gen3_joint_6, gen3_joint_7],
-  position: [0.0, -0.35, 3.14, -2.54, 0.0, -0.87, 1.57] 
+  position: [0.0, -0.35, 3.14, -2.54, 0.0, -0.87, 1.57]
 }" -1
 ```

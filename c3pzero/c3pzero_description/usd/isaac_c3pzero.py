@@ -225,7 +225,9 @@ set_target_prims(
 set_target_prims(
     primPath="/ActionGraph/IsaacReadLidarBeams",
     inputName="inputs:lidarPrim",
-    targetPrimPaths=[C3PZERO_STAGE_PATH + "/c300/Chassis/Laser/UAM_05LP/UAM_05LP/Scan/Lidar"],
+    targetPrimPaths=[
+        C3PZERO_STAGE_PATH + "/c300/Chassis/Laser/UAM_05LP/UAM_05LP/Scan/Lidar"
+    ],
 )
 
 simulation_app.update()
