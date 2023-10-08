@@ -4,9 +4,9 @@ SHELL ["/bin/bash", "-c", "-o", "pipefail"]
 
 # Add the latest binaries for MoveIt2
 RUN echo "deb [trusted=yes] https://raw.githubusercontent.com/moveit/moveit2_packages/jammy-humble/ ./" \
-    | tee /etc/apt/sources.list.d/moveit_moveit2_packages.list
+    | sudo tee /etc/apt/sources.list.d/moveit_moveit2_packages.list
 RUN echo "yaml https://raw.githubusercontent.com/moveit/moveit2_packages/jammy-humble/local.yaml humble" \
-    | tee /etc/ros/rosdep/sources.list.d/1-moveit_moveit2_packages.list
+    | sudo tee /etc/ros/rosdep/sources.list.d/1-moveit_moveit2_packages.list
 
 # Bring the container up to date to get the latest ROS2 humble sync
 # hadolint ignore=DL3008, DL3013
@@ -70,7 +70,7 @@ RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable jammy main"
     apt-key add gazebo.key && \
     apt-get update && apt-get install --no-install-recommends -y \
     libsdformat12 \
-    libignition-sensors6=6.7.0-1~jammy \
+    libignition-sensors6=6.7.1-1~jammy \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy over the source code to rosdep install other dependencies.
