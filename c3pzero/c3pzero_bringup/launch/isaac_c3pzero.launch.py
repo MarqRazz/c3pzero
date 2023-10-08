@@ -18,7 +18,8 @@ from launch.substitutions import (
     LaunchConfiguration,
     PathJoinSubstitution,
 )
-from launch_ros.actions import Node
+from launch_ros.actions import ComposableNodeContainer, Node
+import launch_ros.descriptions
 from launch_ros.substitutions import FindPackageShare
 
 
@@ -241,6 +242,33 @@ def generate_launch_description():
         arguments=[robot_hand_controller, "-c", "/controller_manager"],
     )
 
+    # launch point cloud plugin through rclcpp_components container
+    # see https://github.com/ros-perception/image_pipeline/blob/humble/depth_image_proc/launch/point_cloud_xyz.launch.py
+    point_cloud_node = ComposableNodeContainer(
+        name="container",
+        namespace="",
+        package="rclcpp_components",
+        executable="component_container",
+        composable_node_descriptions=[
+            # Driver itself
+            launch_ros.descriptions.ComposableNode(
+                package="depth_image_proc",
+                plugin="depth_image_proc::PointCloudXyzrgbNode",
+                name="point_cloud_xyz_node",
+                remappings=[
+                    ("rgb/image_rect_color", "/wrist_mounted_camera/color/image_raw"),
+                    ("rgb/camera_info", "/wrist_mounted_camera/color/camera_info"),
+                    (
+                        "depth_registered/image_rect",
+                        "/wrist_mounted_camera/depth/image_rect_raw",
+                    ),
+                    ("points", "/wrist_mounted_camera/depth/color/points"),
+                ],
+            ),
+        ],
+        output="screen",
+    )
+
     nodes_to_start = [
         control_node,
         robot_state_publisher_node,
@@ -250,6 +278,7 @@ def generate_launch_description():
         robot_traj_controller_spawner,
         # robot_pos_controller_spawner,
         robot_hand_controller_spawner,
+        point_cloud_node,
     ]
 
     return LaunchDescription(declared_arguments + nodes_to_start)

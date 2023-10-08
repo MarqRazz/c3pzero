@@ -8,18 +8,3 @@ moveit_setup_assistant_config:
     author_name: Marq Rasmussen
     author_email: marq.razz@gmail.com
     generated_timestamp: 1690059728
-  control_xacro:
-    command:
-      - position
-    state:
-      - position
-      - velocity
-  modified_urdf:
-    xacros:
-      - control_xacro
-  control_xacro:
-    command:
-      - position
-    state:
-      - position
-      - velocity

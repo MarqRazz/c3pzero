@@ -9,10 +9,14 @@ import numpy as np
 from omni.isaac.kit import SimulationApp
 
 C3PZERO_STAGE_PATH = "/c3pzero"
+CAMERA_PRIM_PATH = (
+    f"{C3PZERO_STAGE_PATH}/kbot/wrist_mounted_camera_color_frame/RealsenseCamera"
+)
 BACKGROUND_STAGE_PATH = "/background"
 BACKGROUND_USD_PATH = (
     "/Isaac/Environments/Simple_Warehouse/warehouse_multiple_shelves.usd"
 )
+REALSENSE_VIEWPORT_NAME = "realsense_viewport"
 
 # Initialize the parser
 parser = argparse.ArgumentParser(
@@ -41,6 +45,7 @@ CONFIG = {"renderer": "RayTracedLighting", "headless": False}
 # Example ROS2 bridge sample demonstrating the manual loading of stages
 # and creation of ROS components
 simulation_app = SimulationApp(CONFIG)
+
 import omni.graph.core as og  # noqa E402
 from omni.isaac.core import SimulationContext  # noqa E402
 from omni.isaac.core.utils import (  # noqa E402
@@ -51,8 +56,11 @@ from omni.isaac.core.utils import (  # noqa E402
     stage,
     viewports,
 )
+from omni.isaac.core.utils.prims import set_targets
 from omni.isaac.core_nodes.scripts.utils import set_target_prims  # noqa E402
+from pxr import Gf, UsdGeom  # noqa E402
 from pxr import Gf  # noqa E402
+import omni.ui  # to dock realsense viewport automatically
 
 # enable ROS2 bridge extension
 extensions.enable_extension("omni.isaac.ros2_bridge")
@@ -109,6 +117,17 @@ try:
                 # Nodes to subtract some time of the lidar message so it's timestamps match the tf tree in ROS
                 ("ConstantFloat", "omni.graph.nodes.ConstantFloat"),
                 ("Subtract", "omni.graph.nodes.Subtract"),
+                # Wrist camera
+                ("OnTick", "omni.graph.action.OnTick"),
+                ("createViewport", "omni.isaac.core_nodes.IsaacCreateViewport"),
+                (
+                    "getRenderProduct",
+                    "omni.isaac.core_nodes.IsaacGetViewportRenderProduct",
+                ),
+                ("setCamera", "omni.isaac.core_nodes.IsaacSetCameraOnRenderProduct"),
+                ("cameraHelperRgb", "omni.isaac.ros2_bridge.ROS2CameraHelper"),
+                ("cameraHelperInfo", "omni.isaac.ros2_bridge.ROS2CameraHelper"),
+                ("cameraHelperDepth", "omni.isaac.ros2_bridge.ROS2CameraHelper"),
             ],
             og.Controller.Keys.CONNECT: [
                 ("OnImpulseEvent.outputs:execOut", "PublishJointState.inputs:execIn"),
@@ -195,10 +214,37 @@ try:
                     "PublishLidarScan.inputs:timeStamp",
                 ),
                 ("Context.outputs:context", "PublishLidarScan.inputs:context"),
+                # wrist camera
+                ("OnTick.outputs:tick", "createViewport.inputs:execIn"),
+                ("createViewport.outputs:execOut", "getRenderProduct.inputs:execIn"),
+                ("createViewport.outputs:viewport", "getRenderProduct.inputs:viewport"),
+                ("getRenderProduct.outputs:execOut", "setCamera.inputs:execIn"),
+                (
+                    "getRenderProduct.outputs:renderProductPath",
+                    "setCamera.inputs:renderProductPath",
+                ),
+                ("setCamera.outputs:execOut", "cameraHelperRgb.inputs:execIn"),
+                ("setCamera.outputs:execOut", "cameraHelperInfo.inputs:execIn"),
+                ("setCamera.outputs:execOut", "cameraHelperDepth.inputs:execIn"),
+                ("Context.outputs:context", "cameraHelperRgb.inputs:context"),
+                ("Context.outputs:context", "cameraHelperInfo.inputs:context"),
+                ("Context.outputs:context", "cameraHelperDepth.inputs:context"),
+                (
+                    "getRenderProduct.outputs:renderProductPath",
+                    "cameraHelperRgb.inputs:renderProductPath",
+                ),
+                (
+                    "getRenderProduct.outputs:renderProductPath",
+                    "cameraHelperInfo.inputs:renderProductPath",
+                ),
+                (
+                    "getRenderProduct.outputs:renderProductPath",
+                    "cameraHelperDepth.inputs:renderProductPath",
+                ),
             ],
             og.Controller.Keys.SET_VALUES: [
                 ("Context.inputs:domain_id", int(os.environ["ROS_DOMAIN_ID"])),
-                # Setting the /c300 target prim to Articulation Controller node
+                # Setting the /c3pzero target prim to Articulation Controller node
                 ("ArticulationController.inputs:usePath", True),
                 ("ArticulationController.inputs:robotPath", C3PZERO_STAGE_PATH),
                 ("PublishJointState.inputs:topicName", "isaac_joint_states"),
@@ -210,6 +256,36 @@ try:
                 ("PublishLidarScan.inputs:topicName", "scan"),
                 # Hack time offset for lidar messages
                 ("ConstantFloat.inputs:value", 0.1),
+                # Wrist camera
+                ("createViewport.inputs:name", REALSENSE_VIEWPORT_NAME),
+                ("createViewport.inputs:viewportId", 1),
+                (
+                    "cameraHelperRgb.inputs:frameId",
+                    "wrist_mounted_camera_color_optical_frame",
+                ),
+                (
+                    "cameraHelperRgb.inputs:topicName",
+                    "/wrist_mounted_camera/color/image_raw",
+                ),
+                ("cameraHelperRgb.inputs:type", "rgb"),
+                (
+                    "cameraHelperInfo.inputs:frameId",
+                    "wrist_mounted_camera_color_optical_frame",
+                ),
+                (
+                    "cameraHelperInfo.inputs:topicName",
+                    "/wrist_mounted_camera/color/camera_info",
+                ),
+                ("cameraHelperInfo.inputs:type", "camera_info"),
+                (
+                    "cameraHelperDepth.inputs:frameId",
+                    "wrist_mounted_camera_color_optical_frame",
+                ),
+                (
+                    "cameraHelperDepth.inputs:topicName",
+                    "/wrist_mounted_camera/depth/image_rect_raw",
+                ),
+                ("cameraHelperDepth.inputs:type", "depth"),
             ],
         },
     )
@@ -230,12 +306,32 @@ set_target_prims(
     ],
 )
 
+# Fix camera settings since the defaults in the realsense model are inaccurate
+realsense_prim = UsdGeom.Camera(
+    stage.get_current_stage().GetPrimAtPath(CAMERA_PRIM_PATH)
+)
+realsense_prim.GetHorizontalApertureAttr().Set(20.955)
+realsense_prim.GetVerticalApertureAttr().Set(15.7)
+realsense_prim.GetFocalLengthAttr().Set(18.8)
+realsense_prim.GetFocusDistanceAttr().Set(400)
+
+set_targets(
+    prim=stage.get_current_stage().GetPrimAtPath("/ActionGraph/setCamera"),
+    attribute="inputs:cameraPrim",
+    target_prim_paths=[CAMERA_PRIM_PATH],
+)
+
 simulation_app.update()
 
 # need to initialize physics getting any articulation..etc
 simulation_context.initialize_physics()
 
 simulation_context.play()
+
+# Dock the second camera window
+viewport = omni.ui.Workspace.get_window("Viewport")
+rs_viewport = omni.ui.Workspace.get_window(REALSENSE_VIEWPORT_NAME)
+rs_viewport.dock_in(viewport, omni.ui.DockPosition.RIGHT)
 
 while simulation_app.is_running():
 

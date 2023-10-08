@@ -7,3 +7,9 @@ This is because the data's timestamp is ahead of all values available in the tf 
 
 Isaac (and Gazebo) require a `wheel radius multiplier` of less than 1.0 to get the odometry to report correctly.
 When navigating the odometry is still not perfect and the localization system needs to compensate more than expected when the base it rotating.
+
+Running each ros2_control hardware interface as if it were real hardware causes the joint commands to come in separately.
+This causes jerky execution and can cause the simulation to go unstable.
+
+I am keeping 3 usd files for the arm; as imported, manually tuned gains, and inverting joint angles to make rotation directions match values reported on ROS topic.
+Inverting the joint angles looks to be an Isaac bug because the values reported in the UI do not match.

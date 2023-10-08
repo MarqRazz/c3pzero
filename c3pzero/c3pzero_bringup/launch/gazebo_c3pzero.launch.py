@@ -246,15 +246,33 @@ def generate_launch_description():
         executable="parameter_bridge",
         parameters=[{"use_sim_time": use_sim_time}],
         arguments=[
-            # "/rgbd_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image",
-            # "/rgbd_camera/depth_image@sensor_msgs/msg/Image[ignition.msgs.Image",
-            # "/rgbd_camera/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked",
-            # "/rgbd_camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
+            "/rgbd_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image",
+            "/rgbd_camera/depth_image@sensor_msgs/msg/Image[ignition.msgs.Image",
+            "/rgbd_camera/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked",
+            "/rgbd_camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
             # "/segmentation/colored_map@sensor_msgs/msg/Image[ignition.msgs.Image",
             # '/segmentation/labels_map@sensor_msgs/msg/Image@ignition.msgs.Image',
             # "/segmentation/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
             "/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+        ],
+        remappings=[
+            (
+                "/rgbd_camera/image",
+                "/wrist_mounted_camera/color/image_raw",
+            ),
+            (
+                "/rgbd_camera/depth_image",
+                "/wrist_mounted_camera/depth/image_rect_raw",
+            ),
+            (
+                "/rgbd_camera/points",
+                "/wrist_mounted_camera/depth/color/points",
+            ),
+            (
+                "/rgbd_camera/camera_info",
+                "/wrist_mounted_camera/color/camera_info",
+            ),
         ],
         output="screen",
     )
