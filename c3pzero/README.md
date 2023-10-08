@@ -9,7 +9,22 @@ ros2 launch c3pzero_description view_robot_urdf.launch.py
 
 ## To start the `c3pzero` mobile robot in Gazebo run the following command:
 ``` bash
-ros2 launch c3pzero_bringup gazebo_c3pzero.launch.py
+ros2 launch c3pzero_bringup gazebo_c3pzero.launch.py launch _rviz:=false
+```
+
+## To start the `c3pzero` mobile robot in Isaac run the following commands:
+From the `c3pzero_description/usd` folder on the host start the robot in Isaac Sim
+``` bash
+./python.sh isaac_c3pzero.py
+```
+Inside the `c3pzero` Docker container start the robot controllers
+``` bash
+ros2 launch c3pzero_bringup gazebo_c3pzero.launch.py launch _rviz:=false
+```
+
+## To start MoveIt to control the simulated robot run the following command:
+``` bash
+ros2 launch c3pzero_moveit_config move_group.launch.py
 ```
 
 ## To test out the controllers in simulation you can run the following commands:
