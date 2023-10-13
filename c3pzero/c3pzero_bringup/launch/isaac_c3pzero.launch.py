@@ -5,12 +5,9 @@ import shlex
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
-    ExecuteProcess,
-    IncludeLaunchDescription,
     RegisterEventHandler,
 )
 from launch.event_handlers import OnProcessExit
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.conditions import IfCondition
 from launch.substitutions import (
     Command,
@@ -66,22 +63,6 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "robot_name",
-            default_value="c3pzero",
-            description="Robot name.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "prefix",
-            default_value='""',
-            description="Prefix of the joint names, useful for \
-        multi-robot setup. If changed than also joint names in the controllers' configuration \
-        have to be updated.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
             "diff_drive_controller",
             default_value="diff_drive_base_controller",
             description="Diff drive base controller to start.",
@@ -91,13 +72,6 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "jtc_controller",
             default_value="joint_trajectory_controller",
-            description="Robot controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "robot_pos_controller",
-            default_value="streaming_controller",
             description="Robot controller to start.",
         )
     )
@@ -128,11 +102,8 @@ def generate_launch_description():
     controllers_file = LaunchConfiguration("controllers_file")
     description_package = LaunchConfiguration("description_package")
     description_file = LaunchConfiguration("description_file")
-    robot_name = LaunchConfiguration("robot_name")
-    prefix = LaunchConfiguration("prefix")
     diff_drive_controller = LaunchConfiguration("diff_drive_controller")
     robot_traj_controller = LaunchConfiguration("jtc_controller")
-    robot_pos_controller = LaunchConfiguration("robot_pos_controller")
     robot_hand_controller = LaunchConfiguration("robot_hand_controller")
     launch_rviz = LaunchConfiguration("launch_rviz")
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -229,13 +200,6 @@ def generate_launch_description():
         arguments=[diff_drive_controller, "-c", "/controller_manager"],
     )
 
-    # streaming controller
-    # robot_pos_controller_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=[robot_pos_controller, "-c", "/controller_manager"],
-    # )
-
     robot_hand_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
@@ -276,7 +240,6 @@ def generate_launch_description():
         delay_rviz_after_joint_state_broadcaster_spawner,
         diff_drive_controller_spawner,
         robot_traj_controller_spawner,
-        # robot_pos_controller_spawner,
         robot_hand_controller_spawner,
         point_cloud_node,
     ]

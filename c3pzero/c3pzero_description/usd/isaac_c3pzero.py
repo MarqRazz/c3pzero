@@ -94,6 +94,8 @@ prims.create_prim(
 simulation_app.update()
 
 # Creating a action graph with ROS component nodes
+# TODO: Creating the omnigraph here is getting ridiculous!
+#       Move them into the USD files or refactor to use helper functions to build the graph.
 try:
     og.Controller.edit(
         {"graph_path": "/ActionGraph", "evaluator_name": "execution"},
@@ -104,11 +106,27 @@ try:
                 ("Context", "omni.isaac.ros2_bridge.ROS2Context"),
                 ("PublishJointState", "omni.isaac.ros2_bridge.ROS2PublishJointState"),
                 (
-                    "SubscribeJointState",
+                    "MobileBaseSubscribeJointState",
                     "omni.isaac.ros2_bridge.ROS2SubscribeJointState",
                 ),
                 (
-                    "ArticulationController",
+                    "MobileBaseArticulationController",
+                    "omni.isaac.core_nodes.IsaacArticulationController",
+                ),
+                (
+                    "ManipulatorSubscribeJointState",
+                    "omni.isaac.ros2_bridge.ROS2SubscribeJointState",
+                ),
+                (
+                    "ManipulatorArticulationController",
+                    "omni.isaac.core_nodes.IsaacArticulationController",
+                ),
+                (
+                    "GripperSubscribeJointState",
+                    "omni.isaac.ros2_bridge.ROS2SubscribeJointState",
+                ),
+                (
+                    "GripperArticulationController",
                     "omni.isaac.core_nodes.IsaacArticulationController",
                 ),
                 ("PublishClock", "omni.isaac.ros2_bridge.ROS2PublishClock"),
@@ -131,36 +149,98 @@ try:
             ],
             og.Controller.Keys.CONNECT: [
                 ("OnImpulseEvent.outputs:execOut", "PublishJointState.inputs:execIn"),
-                ("OnImpulseEvent.outputs:execOut", "SubscribeJointState.inputs:execIn"),
                 ("OnImpulseEvent.outputs:execOut", "PublishClock.inputs:execIn"),
                 (
                     "OnImpulseEvent.outputs:execOut",
-                    "ArticulationController.inputs:execIn",
+                    "MobileBaseSubscribeJointState.inputs:execIn",
+                ),
+                (
+                    "Context.outputs:context",
+                    "MobileBaseSubscribeJointState.inputs:context",
+                ),
+                (
+                    "OnImpulseEvent.outputs:execOut",
+                    "MobileBaseArticulationController.inputs:execIn",
+                ),
+                (
+                    "MobileBaseSubscribeJointState.outputs:jointNames",
+                    "MobileBaseArticulationController.inputs:jointNames",
+                ),
+                (
+                    "MobileBaseSubscribeJointState.outputs:positionCommand",
+                    "MobileBaseArticulationController.inputs:positionCommand",
+                ),
+                (
+                    "MobileBaseSubscribeJointState.outputs:velocityCommand",
+                    "MobileBaseArticulationController.inputs:velocityCommand",
+                ),
+                (
+                    "MobileBaseSubscribeJointState.outputs:effortCommand",
+                    "MobileBaseArticulationController.inputs:effortCommand",
+                ),
+                (
+                    "OnImpulseEvent.outputs:execOut",
+                    "ManipulatorSubscribeJointState.inputs:execIn",
+                ),
+                (
+                    "Context.outputs:context",
+                    "ManipulatorSubscribeJointState.inputs:context",
+                ),
+                (
+                    "OnImpulseEvent.outputs:execOut",
+                    "ManipulatorArticulationController.inputs:execIn",
+                ),
+                (
+                    "ManipulatorSubscribeJointState.outputs:jointNames",
+                    "ManipulatorArticulationController.inputs:jointNames",
+                ),
+                (
+                    "ManipulatorSubscribeJointState.outputs:positionCommand",
+                    "ManipulatorArticulationController.inputs:positionCommand",
+                ),
+                (
+                    "ManipulatorSubscribeJointState.outputs:velocityCommand",
+                    "ManipulatorArticulationController.inputs:velocityCommand",
+                ),
+                (
+                    "ManipulatorSubscribeJointState.outputs:effortCommand",
+                    "ManipulatorArticulationController.inputs:effortCommand",
+                ),
+                (
+                    "OnImpulseEvent.outputs:execOut",
+                    "GripperSubscribeJointState.inputs:execIn",
+                ),
+                (
+                    "Context.outputs:context",
+                    "GripperSubscribeJointState.inputs:context",
+                ),
+                (
+                    "OnImpulseEvent.outputs:execOut",
+                    "GripperArticulationController.inputs:execIn",
+                ),
+                (
+                    "GripperSubscribeJointState.outputs:jointNames",
+                    "GripperArticulationController.inputs:jointNames",
+                ),
+                (
+                    "GripperSubscribeJointState.outputs:positionCommand",
+                    "GripperArticulationController.inputs:positionCommand",
+                ),
+                (
+                    "GripperSubscribeJointState.outputs:velocityCommand",
+                    "GripperArticulationController.inputs:velocityCommand",
+                ),
+                (
+                    "GripperSubscribeJointState.outputs:effortCommand",
+                    "GripperArticulationController.inputs:effortCommand",
                 ),
                 ("Context.outputs:context", "PublishJointState.inputs:context"),
-                ("Context.outputs:context", "SubscribeJointState.inputs:context"),
                 ("Context.outputs:context", "PublishClock.inputs:context"),
                 (
                     "ReadSimTime.outputs:simulationTime",
                     "PublishJointState.inputs:timeStamp",
                 ),
                 ("ReadSimTime.outputs:simulationTime", "PublishClock.inputs:timeStamp"),
-                (
-                    "SubscribeJointState.outputs:jointNames",
-                    "ArticulationController.inputs:jointNames",
-                ),
-                (
-                    "SubscribeJointState.outputs:positionCommand",
-                    "ArticulationController.inputs:positionCommand",
-                ),
-                (
-                    "SubscribeJointState.outputs:velocityCommand",
-                    "ArticulationController.inputs:velocityCommand",
-                ),
-                (
-                    "SubscribeJointState.outputs:effortCommand",
-                    "ArticulationController.inputs:effortCommand",
-                ),
                 # Hack time offset for lidar messages
                 ("ReadSimTime.outputs:simulationTime", "Subtract.inputs:a"),
                 ("ConstantFloat.inputs:value", "Subtract.inputs:b"),
@@ -245,10 +325,31 @@ try:
             og.Controller.Keys.SET_VALUES: [
                 ("Context.inputs:domain_id", int(os.environ["ROS_DOMAIN_ID"])),
                 # Setting the /c3pzero target prim to Articulation Controller node
-                ("ArticulationController.inputs:usePath", True),
-                ("ArticulationController.inputs:robotPath", C3PZERO_STAGE_PATH),
+                ("MobileBaseArticulationController.inputs:usePath", True),
+                (
+                    "MobileBaseArticulationController.inputs:robotPath",
+                    C3PZERO_STAGE_PATH,
+                ),
+                (
+                    "MobileBaseSubscribeJointState.inputs:topicName",
+                    "mobile_base_joint_commands",
+                ),
+                ("ManipulatorArticulationController.inputs:usePath", True),
+                (
+                    "ManipulatorArticulationController.inputs:robotPath",
+                    C3PZERO_STAGE_PATH,
+                ),
+                (
+                    "ManipulatorSubscribeJointState.inputs:topicName",
+                    "manipulator_joint_commands",
+                ),
+                ("GripperArticulationController.inputs:usePath", True),
+                ("GripperArticulationController.inputs:robotPath", C3PZERO_STAGE_PATH),
+                (
+                    "GripperSubscribeJointState.inputs:topicName",
+                    "gripper_joint_commands",
+                ),
                 ("PublishJointState.inputs:topicName", "isaac_joint_states"),
-                ("SubscribeJointState.inputs:topicName", "isaac_joint_commands"),
                 (
                     "PublishLidarScan.inputs:frameId",
                     "base_laser",
@@ -311,9 +412,10 @@ realsense_prim = UsdGeom.Camera(
     stage.get_current_stage().GetPrimAtPath(CAMERA_PRIM_PATH)
 )
 realsense_prim.GetHorizontalApertureAttr().Set(20.955)
-realsense_prim.GetVerticalApertureAttr().Set(15.7)
+realsense_prim.GetVerticalApertureAttr().Set(11.7)
 realsense_prim.GetFocalLengthAttr().Set(18.8)
 realsense_prim.GetFocusDistanceAttr().Set(400)
+realsense_prim.GetClippingRangeAttr().Set(Gf.Vec2f(0.01, 1000000.0))
 
 set_targets(
     prim=stage.get_current_stage().GetPrimAtPath("/ActionGraph/setCamera"),

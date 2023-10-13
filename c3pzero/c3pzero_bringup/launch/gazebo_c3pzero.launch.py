@@ -5,7 +5,6 @@ import shlex
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
-    ExecuteProcess,
     IncludeLaunchDescription,
     RegisterEventHandler,
 )
@@ -79,13 +78,6 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "robot_pos_controller",
-            default_value="streaming_controller",
-            description="Robot controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
             "robot_hand_controller",
             default_value="robotiq_gripper_controller",
             description="Robot hand controller to start.",
@@ -111,10 +103,8 @@ def generate_launch_description():
     description_package = LaunchConfiguration("description_package")
     description_file = LaunchConfiguration("description_file")
     robot_name = LaunchConfiguration("robot_name")
-    prefix = LaunchConfiguration("prefix")
     diff_drive_controller = LaunchConfiguration("diff_drive_controller")
     robot_traj_controller = LaunchConfiguration("jtc_controller")
-    robot_pos_controller = LaunchConfiguration("robot_pos_controller")
     robot_hand_controller = LaunchConfiguration("robot_hand_controller")
     launch_rviz = LaunchConfiguration("launch_rviz")
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -188,13 +178,6 @@ def generate_launch_description():
         executable="spawner",
         arguments=[diff_drive_controller, "-c", "/controller_manager"],
     )
-
-    # streaming controller
-    # robot_pos_controller_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=[robot_pos_controller, "-c", "/controller_manager"],
-    # )
 
     robot_hand_controller_spawner = Node(
         package="controller_manager",
@@ -283,7 +266,6 @@ def generate_launch_description():
         delay_rviz_after_joint_state_broadcaster_spawner,
         diff_drive_controller_spawner,
         robot_traj_controller_spawner,
-        # robot_pos_controller_spawner,
         robot_hand_controller_spawner,
         ignition_launch_description,
         ignition_spawn_entity,
