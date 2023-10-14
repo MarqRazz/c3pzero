@@ -121,14 +121,6 @@ try:
                     "ManipulatorArticulationController",
                     "omni.isaac.core_nodes.IsaacArticulationController",
                 ),
-                (
-                    "GripperSubscribeJointState",
-                    "omni.isaac.ros2_bridge.ROS2SubscribeJointState",
-                ),
-                (
-                    "GripperArticulationController",
-                    "omni.isaac.core_nodes.IsaacArticulationController",
-                ),
                 ("PublishClock", "omni.isaac.ros2_bridge.ROS2PublishClock"),
                 ("IsaacReadLidarBeams", "omni.isaac.range_sensor.IsaacReadLidarBeams"),
                 ("PublishLidarScan", "omni.isaac.ros2_bridge.ROS2PublishLaserScan"),
@@ -205,34 +197,6 @@ try:
                 (
                     "ManipulatorSubscribeJointState.outputs:effortCommand",
                     "ManipulatorArticulationController.inputs:effortCommand",
-                ),
-                (
-                    "OnImpulseEvent.outputs:execOut",
-                    "GripperSubscribeJointState.inputs:execIn",
-                ),
-                (
-                    "Context.outputs:context",
-                    "GripperSubscribeJointState.inputs:context",
-                ),
-                (
-                    "OnImpulseEvent.outputs:execOut",
-                    "GripperArticulationController.inputs:execIn",
-                ),
-                (
-                    "GripperSubscribeJointState.outputs:jointNames",
-                    "GripperArticulationController.inputs:jointNames",
-                ),
-                (
-                    "GripperSubscribeJointState.outputs:positionCommand",
-                    "GripperArticulationController.inputs:positionCommand",
-                ),
-                (
-                    "GripperSubscribeJointState.outputs:velocityCommand",
-                    "GripperArticulationController.inputs:velocityCommand",
-                ),
-                (
-                    "GripperSubscribeJointState.outputs:effortCommand",
-                    "GripperArticulationController.inputs:effortCommand",
                 ),
                 ("Context.outputs:context", "PublishJointState.inputs:context"),
                 ("Context.outputs:context", "PublishClock.inputs:context"),
@@ -342,12 +306,6 @@ try:
                 (
                     "ManipulatorSubscribeJointState.inputs:topicName",
                     "manipulator_joint_commands",
-                ),
-                ("GripperArticulationController.inputs:usePath", True),
-                ("GripperArticulationController.inputs:robotPath", C3PZERO_STAGE_PATH),
-                (
-                    "GripperSubscribeJointState.inputs:topicName",
-                    "gripper_joint_commands",
                 ),
                 ("PublishJointState.inputs:topicName", "isaac_joint_states"),
                 (
