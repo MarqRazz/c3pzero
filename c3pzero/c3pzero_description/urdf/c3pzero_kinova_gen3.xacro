@@ -36,6 +36,8 @@
       prefix=""
       sim_ignition="$(arg sim_ignition)"
       sim_isaac="$(arg sim_isaac)"
+      isaac_joint_commands="/mobile_base_joint_commands"
+      isaac_joint_states="/isaac_joint_states"
       use_fake_hardware="false"/>
 
     <!-- robot_mount_link is the location on the c300 base where the robot arm is mounted -->
@@ -64,6 +66,8 @@
       use_internal_bus_gripper_comm="$(arg use_internal_bus_gripper_comm)"
       sim_ignition="$(arg sim_ignition)"
       sim_isaac="$(arg sim_isaac)"
+      isaac_joint_commands="/manipulator_joint_commands"
+      isaac_joint_states="/isaac_joint_states"
       prefix="$(arg prefix)"
       use_fake_hardware="$(arg use_fake_hardware)"
       fake_sensor_commands="$(arg fake_sensor_commands)" >
