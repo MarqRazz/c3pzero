@@ -107,6 +107,7 @@ def generate_launch_description():
     prefix = LaunchConfiguration("prefix")
     diff_drive_controller = LaunchConfiguration("diff_drive_controller")
     launch_rviz = LaunchConfiguration("launch_rviz")
+    sim_isaac = LaunchConfiguration("sim_isaac")
     use_sim_time = LaunchConfiguration("use_sim_time")
 
     robot_controllers = PathJoinSubstitution(

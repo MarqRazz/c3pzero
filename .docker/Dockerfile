@@ -78,14 +78,13 @@ RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable jammy main"
 RUN mkdir -p /root/c3pzero_ws/src
 WORKDIR /root/c3pzero_ws/src
 COPY ./ ./c3pzero/
-# RUN vcs import < ./c3pzero/c3pzero.repos # I prefer to manage my repos on the host
+RUN vcs import < ./c3pzero/c3pzero.repos
 WORKDIR /root/c3pzero_ws
 # hadolint ignore=SC1091
 RUN source /opt/ros/humble/setup.bash \
     && apt-get update -y \
     && apt-get upgrade -y \
-    # TODO correct rosdep command from requiring -r command (its still looking for robotiq_description)
-    && rosdep install --from-paths src --ignore-src --rosdistro "$ROS_DISTRO" -y -r \
+    && rosdep install --from-paths src --ignore-src --rosdistro "$ROS_DISTRO" -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Use CycloneDDS as the default but also setup Fast DDS to support NVIDIA Isaac Sim.
@@ -97,7 +96,7 @@ COPY ./.docker/cyclonedds_localhost.xml /root/.ros/cyclonedds_localhost.xml
 ENV FASTRTPS_DEFAULT_PROFILES_FILE=/root/.ros/fastdds.xml
 
 # Pre-download the gazebo world so it doesn't have to on the first sim launch
-RUN ign fuel download -v 4 -u https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Depot
+RUN ign fuel download -v 4 -u https://fuel.gazebosim.org/1.0/OpenRobotics/models/Depot
 
 # Set up the entrypoint for both container start and interactive terminals.
 COPY ./.docker/ros_entrypoint.sh /root/.ros/

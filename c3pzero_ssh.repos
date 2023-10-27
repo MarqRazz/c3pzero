@@ -1,23 +1,23 @@
 repositories:
   topic_based_ros2_control:
     type: git
-    url: https://github.com/PickNikRobotics/topic_based_ros2_control.git
+    url: git@github.com:PickNikRobotics/topic_based_ros2_control.git
     version: main
   ros2_kortex:
     type: git
-    url: https://github.com/Kinovarobotics/ros2_kortex.git
+    url: git@github.com:Kinovarobotics/ros2_kortex.git
     version: main
   ros2_controllers:
     type: git
-    url: https://github.com/MarqRazz/ros2_controllers.git
+    url: git@github.com:MarqRazz/ros2_controllers.git
     version: fix_diff_drive_odom
   realsense-ros:
     type: git
-    url: https://github.com/MarqRazz/realsense-ros.git
+    url: git@github.com:MarqRazz/realsense-ros.git
     version: ros2-development
   ros2_robotiq_gripper:
     type: git
-    url: https://github.com/PickNikRobotics/ros2_robotiq_gripper.git
+    url: git@github.com:PickNikRobotics/ros2_robotiq_gripper.git
     version: main
   serial:
     type: git
