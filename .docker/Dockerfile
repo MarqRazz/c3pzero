@@ -70,7 +70,7 @@ RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable jammy main"
     apt-key add gazebo.key && \
     apt-get update && apt-get install --no-install-recommends -y \
     libsdformat12 \
-    libignition-sensors6=6.7.0-1~jammy \
+    libignition-sensors6=6.7.1-1~jammy \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy over the source code to rosdep install other dependencies.

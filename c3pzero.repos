@@ -5,8 +5,8 @@ repositories:
     version: main
   ros2_kortex:
     type: git
-    url: git@github.com:PickNikRobotics/ros2_kortex.git
-    version: master
+    url: git@github.com:Kinovarobotics/ros2_kortex.git
+    version: main
   realsense-ros:
     type: git
     url: git@github.com:MarqRazz/realsense-ros.git
