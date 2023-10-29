@@ -1,6 +1,6 @@
 Panels:
   - Class: rviz_common/Displays
-    Help Height: 78
+    Help Height: 138
     Name: Displays
     Property Tree Widget:
       Expanded:
@@ -8,7 +8,7 @@ Panels:
         - /Status1
         - /LaserScan1/Topic1
       Splitter Ratio: 0.5
-    Tree Height: 820
+    Tree Height: 659
 Visualization Manager:
   Class: ""
   Displays:
@@ -150,7 +150,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base_footprint
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -168,7 +168,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.4849162101745605
+      Distance: 3.4911282062530518
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -183,10 +183,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3647971749305725
+      Pitch: 1.5497963428497314
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.1853978633880615
+      Yaw: 3.13539719581604
     Saved: ~
 Window Geometry:
   Displays:
@@ -194,7 +194,7 @@ Window Geometry:
   Height: 1043
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd000000010000000000000156000003bdfc0200000001fb000000100044006900730070006c006100790073010000003b000003bd000000c700ffffff00000624000003bd00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000001da00000381fc0200000001fb000000100044006900730070006c0061007900730100000069000003810000017800ffffff0000059a0000038100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1920
-  X: 0
-  Y: 0
+  X: 151
+  Y: 1223
