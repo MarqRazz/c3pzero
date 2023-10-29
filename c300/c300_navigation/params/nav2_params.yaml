@@ -14,7 +14,7 @@ amcl:
     global_frame_id: "map"
     lambda_short: 0.1
     laser_likelihood_max_dist: 2.0
-    laser_max_range: 100.0
+    laser_max_range: 30.0
     laser_min_range: -1.0
     laser_model_type: "likelihood_field"
     max_beams: 60
@@ -123,8 +123,8 @@ controller_server:
     general_goal_checker:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.25
-      yaw_goal_tolerance: 0.25
+      xy_goal_tolerance: 0.15
+      yaw_goal_tolerance: 0.15
 
     # DWB parameters
     FollowPath:
@@ -134,16 +134,16 @@ controller_server:
       min_vel_y: 0.0
       max_vel_x: 1.0
       max_vel_y: 0.0
-      max_vel_theta: 1.0
+      max_vel_theta: 0.8
       min_speed_xy: 0.0
       max_speed_xy: 1.0
       min_speed_theta: 0.0
-      acc_lim_x: 2.5
+      acc_lim_x: 1.0
       acc_lim_y: 0.0
-      acc_lim_theta: 3.2
-      decel_lim_x: -3.5
+      acc_lim_theta: 1.0
+      decel_lim_x: -1.0
       decel_lim_y: 0.0
-      decel_lim_theta: -3.2
+      decel_lim_theta: -1.0
       vx_samples: 20
       vy_samples: 5
       vtheta_samples: 20
@@ -151,7 +151,7 @@ controller_server:
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
-      xy_goal_tolerance: 0.25
+      xy_goal_tolerance: 0.15
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: True
       stateful: True
@@ -184,8 +184,8 @@ local_costmap:
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.65 # Adjust inflation_radius to change how close robot comes to obstacles
-        cost_scaling_factor: 3.0
+        inflation_radius: 0.75 # Adjust inflation_radius to change how close robot comes to obstacles
+        cost_scaling_factor: 5.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -255,8 +255,8 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.55 # Can change how much to inflate costmap around obstacles
+        cost_scaling_factor: 5.0
+        inflation_radius: 0.75 # Can change how much to inflate costmap around obstacles
       always_send_full_costmap: True
 
 map_server:
@@ -336,11 +336,11 @@ velocity_smoother:
     use_sim_time: True
     smoothing_frequency: 20.0
     scale_velocities: False
-    feedback: "OPEN_LOOP"
-    max_velocity: [1.0, 0.0, 1.0] # [x, y, theta]
-    min_velocity: [-1.0, 0.0, -1.0] # [x, y, theta]
-    max_accel: [0.6, 0.0, 2.0]
-    max_decel: [-0.6, 0.0, -2.0]
+    feedback: "CLOSED_LOOP"
+    max_velocity: [1.0, 0.0, 0.8] # [x, y, theta]
+    min_velocity: [-1.0, 0.0, -0.8] # [x, y, theta]
+    max_accel: [1.0, 0.0, 1.0]
+    max_decel: [-1.0, 0.0, -1.0]
     odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]

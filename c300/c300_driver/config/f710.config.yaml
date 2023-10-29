@@ -6,12 +6,14 @@ teleop_twist_joy_node:
     scale_linear:
       x: 1.0
     scale_linear_turbo:
-      x: 1.5
+      x: 2.0
 
     axis_angular:  # Twist
-      yaw: 2
+      yaw: 3
     scale_angular:
-      yaw: 0.5
+      yaw: 0.8
+    scale_angular_turbo:
+      yaw: 2.0
 
     enable_button: 5  # Trigger
     enable_turbo_button: 4  # Button 2 aka thumb button

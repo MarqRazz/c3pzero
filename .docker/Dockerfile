@@ -100,12 +100,12 @@ RUN ign fuel download -v 4 -u https://fuel.gazebosim.org/1.0/OpenRobotics/models
 
 # Set up the entrypoint for both container start and interactive terminals.
 COPY ./.docker/ros_entrypoint.sh /root/.ros/
-RUN echo "source /root/.ros/ros_entrypoint.sh" >> ~/.bashrc && \
-    echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc && \
-    echo 'export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{name} {time}]: {message}"' >> /root/.bashrc && \
+RUN echo 'export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{name} {time}]: {message}"' >> /root/.bashrc && \
     echo "export RCUTILS_COLORIZED_OUTPUT=1" >> /root/.bashrc && \
+    echo "alias cyclone='export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp'" >> /root/.bashrc && \
     echo "alias fastdds='export RMW_IMPLEMENTATION=rmw_fastrtps_cpp'" >> /root/.bashrc && \
     echo "alias sws='source ./install/setup.bash'" >> /root/.bashrc && \
     echo "alias symlink_build='colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --symlink-install --event-handlers log-'" >> /root/.bashrc && \
-    echo "export PATH=/usr/lib/ccache:$PATH" >> /root/.bashrc
+    echo "export PATH=/usr/lib/ccache:$PATH" >> /root/.bashrc && \
+    echo "source /root/.ros/ros_entrypoint.sh" >> ~/.bashrc
 WORKDIR /root/c3pzero_ws/
