@@ -4,12 +4,12 @@
 
     <xacro:include filename="$(find c300_description)/urdf/hokuyo.gazebo.xacro" />
 
-    <xacro:hokuyo_gazebo 
-      frame="${prefix}_laser" 
+    <xacro:hokuyo_gazebo
+      frame="${prefix}_laser"
       topic="${topic}"
       min_angle="${min_angle}"
       max_angle="${max_angle}"
-      sim_gazebo="false" 
+      sim_gazebo="false"
       sim_ignition="true"/>
 
     <joint name="${prefix}_laser_mount_joint" type="fixed">

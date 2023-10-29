@@ -20,7 +20,7 @@ diff_drive_base_controller:
     right_wheel_names: ["drivewhl_r_joint"]
     wheels_per_side: 1
 
-    wheel_separation: 0.6 # outside diatance between the wheels
+    wheel_separation: 0.6 # outside distance between the wheels
     wheel_radius: 0.1715
 
     wheel_separation_multiplier: 1.0
