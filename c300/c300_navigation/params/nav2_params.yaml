@@ -128,18 +128,18 @@ controller_server:
 
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
-      time_steps: 56
+      time_steps: 65
       model_dt: 0.05
-      batch_size: 2000
-      vx_std: 0.2
+      batch_size: 1500
+      vx_std: 0.4
       vy_std: 0.2
       wz_std: 0.4
-      vx_max: 0.5
-      vx_min: -0.35
+      vx_max: 1.0
+      vx_min: -0.5
       vy_max: 0.5
       wz_max: 1.9
       iteration_count: 1
-      prune_distance: 1.7
+      prune_distance: 2.5
       transform_tolerance: 0.1
       temperature: 0.3
       gamma: 0.015
@@ -169,9 +169,9 @@ controller_server:
         threshold_to_consider: 0.5
       PreferForwardCritic:
         enabled: true
-        cost_power: 1
-        cost_weight: 5.0
-        threshold_to_consider: 0.5
+        cost_power: 2
+        cost_weight: 4.0
+        threshold_to_consider: 2.0
       ObstaclesCritic:
         enabled: true
         cost_power: 1
@@ -202,7 +202,7 @@ controller_server:
         enabled: true
         cost_power: 1
         cost_weight: 2.0
-        offset_from_furthest: 4
+        offset_from_furthest: 20
         threshold_to_consider: 0.5
         max_angle_to_furthest: 1.0
         mode: 0
