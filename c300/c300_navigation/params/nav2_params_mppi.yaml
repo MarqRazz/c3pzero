@@ -128,12 +128,16 @@ controller_server:
 
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
+      # inceased time_steps, prune_distance and reduced batch_size to attempt to drive vehicle at 1m/s
+      # vx_std increase was required to make the vehicle actually drive faster
+      # as you decrease wz_std it makes the vehile drive better in a straight line but makes it not want to turn around when given goals behind its current pose
+      # unknown why vy_max and vy_std are set for a diff drive vehicle
       time_steps: 65
       model_dt: 0.05
       batch_size: 1500
       vx_std: 0.4
       vy_std: 0.2
-      wz_std: 0.4
+      wz_std: 0.3
       vx_max: 1.0
       vx_min: -0.5
       vy_max: 0.5
@@ -168,6 +172,9 @@ controller_server:
         cost_weight: 3.0
         threshold_to_consider: 0.5
       PreferForwardCritic:
+        # increased cost_power to 2 to force vehicle to drive forwards along long paths after increasing max speed
+        #  - this causes failures when operating in a narrow workspace and would crash the vehicle by forcing it to turn around when it can't!
+        # increased threshold_to_consider to allow vehicle to back up over short distances
         enabled: true
         cost_power: 2
         cost_weight: 4.0
@@ -199,6 +206,7 @@ controller_server:
         offset_from_furthest: 5
         threshold_to_consider: 1.4
       PathAngleCritic:
+        # increased offset_from_furthest to default value to help reduce the vehicle oscillating along the path
         enabled: true
         cost_power: 1
         cost_weight: 2.0
