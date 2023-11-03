@@ -190,8 +190,11 @@ def generate_launch_description():
             [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
         ),
         # TODO (marqrazz): fix the hardcoded path to the gazebo world
+        # -v is the verbose level
+        #  0: No output, 1: Error, 2: Error and warning, 3: Error, warning, and info, 4: Error, warning, info, and debug.
+        # -s launches Gazebo headless
         launch_arguments={
-            "gz_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
+            "gz_args": " -r -v 3 -s /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
         }.items(),
         condition=IfCondition(sim_ignition),
     )
