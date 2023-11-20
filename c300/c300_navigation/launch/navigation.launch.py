@@ -69,14 +69,14 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         "map",
-        default_value=os.path.join(c300_nav_dir, "map", "depot.yaml"),
+        default_value=os.path.join(c300_nav_dir, "map", "isaac_warehouse.yaml"),
         description="Full path to map file to load",
     )
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
         "use_sim_time",
         default_value="True",
-        description="Use simulation (Gazebo) clock if True",
+        description="Use simulation clock if True",
     )
 
     declare_params_file_cmd = DeclareLaunchArgument(
