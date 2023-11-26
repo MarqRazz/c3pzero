@@ -64,7 +64,7 @@ def generate_launch_description():
     )
 
     declare_slam_cmd = DeclareLaunchArgument(
-        "slam", default_value="False", description="Whether run a SLAM"
+        "slam", default_value="True", description="Whether run a SLAM"
     )
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
@@ -75,7 +75,7 @@ def generate_launch_description():
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
         "use_sim_time",
-        default_value="True",
+        default_value="False",
         description="Use simulation (Gazebo) clock if True",
     )
 
