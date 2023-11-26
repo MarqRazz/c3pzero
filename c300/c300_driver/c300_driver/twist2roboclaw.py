@@ -104,8 +104,12 @@ class RoboclawTwistSubscriber(Node):
     def twist_listener_callback(self, msg):
         # self.get_logger().info('X_vel: %f, Z_rot: %f' % (0.4*msg.linear.x, msg.angular.z))
 
-        right_wheel = msg.linear.x + (msg.angular.z * self.wheel_track) / 2  # meters / sec
-        left_wheel = msg.linear.x - (msg.angular.z * self.wheel_track) / 2 # meters / sec
+        right_wheel = (
+            msg.linear.x + (msg.angular.z * self.wheel_track) / 2
+        )  # meters / sec
+        left_wheel = (
+            msg.linear.x - (msg.angular.z * self.wheel_track) / 2
+        )  # meters / sec
 
         wheel_cmds = self.mps_to_pps((right_wheel, left_wheel))
         self.rc.SpeedM1(self.rc_address, wheel_cmds[0])
@@ -168,7 +172,7 @@ class RoboclawTwistSubscriber(Node):
 
         wheel_state = JointState()
         wheel_state.header.stamp = self.get_clock().now().to_msg()
-        wheel_state.name = ['drivewhl_r_joint', 'drivewhl_l_joint']
+        wheel_state.name = ["drivewhl_r_joint", "drivewhl_l_joint"]
         wheel_state.position = wheel_pos
         wheel_state.velocity = wheel_speed
         wheel_state.effort = []

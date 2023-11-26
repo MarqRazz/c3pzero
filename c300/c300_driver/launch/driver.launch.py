@@ -16,7 +16,7 @@ def generate_launch_description():
                 name="driver",
                 remappings={
                     ("c3pzero/cmd_vel", "/cmd_vel"),
-                    ("/c3pzero/odometry", "/odom")
+                    ("/c3pzero/odometry", "/odom"),
                 },
             ),
         ]
