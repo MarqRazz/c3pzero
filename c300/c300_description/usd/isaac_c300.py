@@ -29,7 +29,7 @@ args = parser.parse_args()
 
 # Check if the path argument was provided
 if args.Path:
-    C300_USD_PATH = args.Path + "/c300.usd"
+    C300_USD_PATH = args.Path + "/c300_ros.usd"
     # BACKGROUND_USD_PATH = args.Path + "/simple_room.usd"
 else:
     print(

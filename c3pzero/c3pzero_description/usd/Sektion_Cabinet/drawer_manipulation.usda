@@ -1,0 +1,44 @@
+#usda 1.0
+# This Layer should be c3pzero_2f_85_manipulation.usd (really its "taught/known" properties between the two)
+(
+    upAxis = "Z"
+)
+
+over "cabinet"
+{
+    over "drawer_top"
+    {
+        over "drawer_handle_top"
+        {
+            def Xform "Xform" (
+                kind = "component"
+            )
+            {
+                rel proxyPrim = </Xform/c3pzero_composite/_2f85_ros/mid_figer_grasp_link>
+                quatd xformOp:orient = (0.5000000000000001, 0.5, -0.5, -0.49999999999999994)
+                double3 xformOp:scale = (1, 1, 1)
+                double3 xformOp:translate = (0.29848496847313166, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+    }
+}
+
+def Xform "Xform"
+{
+    quatd xformOp:orient = (1, 0, 0, 0)
+    double3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def "c3pzero_composite" (
+        prepend payload = @../c3pzero_composite.usd@
+    )
+    {
+        quatd xformOp:orient = (0.7071067811865476, 0, 0, -0.7071067811865475)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0.6280264823668753, 0.5938086053482494, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

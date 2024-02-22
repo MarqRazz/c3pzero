@@ -1,0 +1,670 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (50000.36282900722, -1.1102310810475126e-11, 0)
+                double radius = 500
+            }
+            dictionary Perspective = {
+                double3 position = (1.2419811481925263, 1.2562594106944303, 0.9524477791590945)
+                double3 target = (-3.430184731659794, -4.003589551216523, -1.3712652240767245)
+            }
+            dictionary Right = {
+                double3 position = (0, -50000.38188499212, -1.1102315041753768e-11)
+                double radius = 500
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 50000.40200001001)
+                double radius = 500
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary navmeshSettings = {
+            double agentHeight = 180
+            double agentRadius = 20
+            bool excludeRigidBodies = 1
+            uint64 ver = 1
+            double voxelCeiling = 460
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./sektion_cabinet_g54usd.usd"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+            float3 "rtx:debugView:pixelDebug:textColor" = (0, 1e18, 0)
+            float3 "rtx:fog:fogColor" = (0.75, 0.75, 0.75)
+            float3 "rtx:index:regionOfInterestMax" = (0, 0, 0)
+            float3 "rtx:index:regionOfInterestMin" = (0, 0, 0)
+            float3 "rtx:iray:environment_dome_ground_position" = (0, 0, 0)
+            float3 "rtx:iray:environment_dome_ground_reflectivity" = (0, 0, 0)
+            float3 "rtx:iray:environment_dome_rotation_axis" = (3.4028235e38, 3.4028235e38, 3.4028235e38)
+            float3 "rtx:post:backgroundZeroAlpha:backgroundDefaultColor" = (0, 0, 0)
+            float3 "rtx:post:colorcorr:contrast" = (1, 1, 1)
+            float3 "rtx:post:colorcorr:gain" = (1, 1, 1)
+            float3 "rtx:post:colorcorr:gamma" = (1, 1, 1)
+            float3 "rtx:post:colorcorr:offset" = (0, 0, 0)
+            float3 "rtx:post:colorcorr:saturation" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:blackpoint" = (0, 0, 0)
+            float3 "rtx:post:colorgrad:contrast" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:gain" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:gamma" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:lift" = (0, 0, 0)
+            float3 "rtx:post:colorgrad:multiply" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:offset" = (0, 0, 0)
+            float3 "rtx:post:colorgrad:whitepoint" = (1, 1, 1)
+            float3 "rtx:post:lensDistortion:lensFocalLengthArray" = (10, 30, 50)
+            float3 "rtx:post:lensFlares:anisoFlareFalloffX" = (450, 475, 500)
+            float3 "rtx:post:lensFlares:anisoFlareFalloffY" = (10, 10, 10)
+            float3 "rtx:post:lensFlares:cutoffPoint" = (2, 2, 2)
+            float3 "rtx:post:lensFlares:haloFlareFalloff" = (10, 10, 10)
+            float3 "rtx:post:lensFlares:haloFlareRadius" = (75, 75, 75)
+            float3 "rtx:post:lensFlares:isotropicFlareFalloff" = (50, 50, 50)
+            float3 "rtx:post:tonemap:whitepoint" = (1, 1, 1)
+            float3 "rtx:raytracing:inscattering:singleScatteringAlbedo" = (0.9, 0.9, 0.9)
+            float3 "rtx:raytracing:inscattering:transmittanceColor" = (0.5, 0.5, 0.5)
+            float3 "rtx:sceneDb:ambientLightColor" = (0.1, 0.1, 0.1)
+        }
+    }
+    defaultPrim = "cabinet"
+    metersPerUnit = 1
+    timeCodesPerSecond = 60
+    upAxis = "Z"
+)
+
+def Xform "cabinet" (
+    prepend apiSchemas = ["PhysicsArticulationRootAPI", "PhysxArticulationAPI"]
+    kind = "g54Container"
+)
+{
+    bool physxArticulation:enabledSelfCollisions = 0
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 0.4)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def Xform "drawer_bottom" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        kind = "g54Container"
+    )
+    {
+        vector3f physics:angularVelocity = (0, 0, 0)
+        float physics:density = 1000
+        vector3f physics:velocity = (-9.768675e-34, 3.7692413e-27, -2.17863e-25)
+        quatf xformOp:orient = (1, 3.9758624e-10, 1.4891366e-8, 3.657097e-10)
+        double3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.05150043, 7.366907e-11, 0.18795003)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            references = @./sektion_cabinet_visuals.usd@</drawer_bottom_visuals>
+        )
+        {
+        }
+
+        def "collisions" (
+            instanceable = true
+            references = @./sektion_cabinet_collisions.usd@</drawer_bottom_collisions>
+        )
+        {
+        }
+
+        def Xform "drawer_handle_bottom" (
+            delete apiSchemas = ["PhysicsRigidBodyAPI"]
+            prepend apiSchemas = ["PhysicsMassAPI"]
+        )
+        {
+            float physics:density = 1000
+            quatf xformOp:orient = (1, -7.275956e-12, 1.4901158e-8, -7.275956e-12)
+            double3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "visuals" (
+                instanceable = true
+                references = @./sektion_cabinet_visuals.usd@</drawer_handle_bottom_visuals>
+            )
+            {
+            }
+
+            def "collisions" (
+                instanceable = true
+                references = @./sektion_cabinet_collisions.usd@</drawer_handle_bottom_collisions>
+            )
+            {
+            }
+        }
+
+        def PhysicsPrismaticJoint "drawer_bottom_joint" (
+            prepend apiSchemas = ["PhysxJointAPI"]
+        )
+        {
+            uniform token physics:axis = "X"
+            rel physics:body0 = </cabinet/structure>
+            rel physics:body1 = </cabinet/drawer_bottom>
+            point3f physics:localPos0 = (0.0515, 0, 0.18795)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = 0
+            float physics:upperLimit = 0.4
+            float physxJoint:jointFriction = 0.1
+        }
+
+        def Xform "Storage" (
+            kind = "g54Slot"
+        )
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0.003976026374396757)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Mesh "Slot" (
+                delete apiSchemas = ["OmniSceneVisualizationAPI"]
+                prepend apiSchemas = ["OmniSceneVisualizationAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 6, 2, 3, 7, 4, 5, 1, 0, 4, 0, 2, 6, 5, 7, 3, 1]
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)] (
+                    interpolation = "faceVarying"
+                )
+                bool omni:scene:visualization:drawWireframe = 1
+                point3f[] points = [(-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, 0.5, 0.5), (-0.5, -0.5, -0.5), (0.5, -0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, -0.5)]
+                bool primvars:doNotCastShadows = 1
+                bool primvars:enableShadowTerminatorFix = 0
+                bool primvars:isVolume = 1
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0), (0, 1), (0, 0), (1, 0), (1, 1), (0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0)] (
+                    interpolation = "faceVarying"
+                )
+                uniform token subdivisionScheme = "none"
+                token visibility = "inherited"
+                quatd xformOp:orient = (1, 0, 0, 0)
+                double3 xformOp:scale = (0.5042703957705906, 0.6840131082098337, 0.09136385056060892)
+                double3 xformOp:translate = (0, -2.5849394142282115e-26, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "drawer_top" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        kind = "g54Container"
+    )
+    {
+        vector3f physics:angularVelocity = (0, 0, 0)
+        float physics:density = 1000
+        vector3f physics:velocity = (-2.1650854e-34, 2.0620232e-29, 5.1376348e-26)
+        token visibility = "inherited"
+        quatf xformOp:orient = (1, -3.5403422e-10, -1.4896954e-8, -4.8303223e-12)
+        double3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.051500447, 1.70985e-10, 0.3172001)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            references = @./sektion_cabinet_visuals.usd@</drawer_top_visuals>
+        )
+        {
+        }
+
+        def "collisions" (
+            instanceable = true
+            references = @./sektion_cabinet_collisions.usd@</drawer_top_collisions>
+        )
+        {
+        }
+
+        def Xform "drawer_handle_top" (
+            delete apiSchemas = ["PhysicsRigidBodyAPI"]
+            prepend apiSchemas = ["PhysicsMassAPI"]
+        )
+        {
+            float physics:density = 1000
+            quatf xformOp:orient = (1, -3.835706e-10, 1.4878071e-8, 7.35177e-10)
+            double3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "visuals" (
+                instanceable = true
+                references = @./sektion_cabinet_visuals.usd@</drawer_handle_top_visuals>
+            )
+            {
+            }
+
+            def "collisions" (
+                instanceable = true
+                references = @./sektion_cabinet_collisions.usd@</drawer_handle_top_collisions>
+            )
+            {
+                over "collisions"
+                {
+                    rel material:binding:physics = </cabinet/drawer_top/drawer_handle_top/collisions/PhysicsMaterial> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+        }
+
+        def PhysicsPrismaticJoint "drawer_top_joint" (
+            prepend apiSchemas = ["PhysxJointAPI"]
+        )
+        {
+            uniform token physics:axis = "X"
+            rel physics:body0 = </cabinet/structure>
+            rel physics:body1 = </cabinet/drawer_top>
+            point3f physics:localPos0 = (0.0515, 0, 0.3172)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = 0
+            float physics:upperLimit = 0.4
+            float physxJoint:jointFriction = 0.1
+        }
+
+        def Xform "Storage" (
+            kind = "g54Slot"
+        )
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0.0051739802656276535)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Mesh "Slot" (
+                delete apiSchemas = ["OmniSceneVisualizationAPI"]
+                prepend apiSchemas = ["OmniSceneVisualizationAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 6, 2, 3, 7, 4, 5, 1, 0, 4, 0, 2, 6, 5, 7, 3, 1]
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)] (
+                    interpolation = "faceVarying"
+                )
+                bool omni:scene:visualization:drawWireframe = 1
+                point3f[] points = [(-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, 0.5, 0.5), (-0.5, -0.5, -0.5), (0.5, -0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, -0.5)]
+                bool primvars:doNotCastShadows = 1
+                bool primvars:enableShadowTerminatorFix = 0
+                bool primvars:isVolume = 1
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0), (0, 1), (0, 0), (1, 0), (1, 1), (0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0)] (
+                    interpolation = "faceVarying"
+                )
+                uniform token subdivisionScheme = "none"
+                token visibility = "inherited"
+                quatd xformOp:orient = (1, 0, 0, 0)
+                double3 xformOp:scale = (0.5042703957705906, 0.6840131082098337, 0.09136385056060892)
+                double3 xformOp:translate = (0, -2.5849394142282115e-26, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "structure" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        kind = "g54Container"
+    )
+    {
+        vector3f physics:angularVelocity = (0, 0, 0)
+        float physics:density = 1000
+        vector3f physics:velocity = (0, 0, 0)
+        token visibility = "inherited"
+        quatf xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (4.0233135e-7, 0, -7.243558e-8)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "visuals" (
+            instanceable = true
+            references = @./sektion_cabinet_visuals.usd@</sektion_visuals>
+        )
+        {
+        }
+
+        def "collisions" (
+            instanceable = true
+            references = @./sektion_cabinet_collisions.usd@</sektion_collisions>
+        )
+        {
+        }
+
+        def PhysicsFixedJoint "rootJoint"
+        {
+            rel physics:body1 = </cabinet/structure>
+        }
+
+        def Xform "Storage" (
+            kind = "g54Slot"
+        )
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Mesh "Slot" (
+                prepend apiSchemas = ["OmniSceneVisualizationAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, 0), (0.5, 0.5, 0)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 3, 2]
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "faceVarying"
+                )
+                bool omni:scene:visualization:drawWireframe = 1
+                point3f[] points = [(-0.5, -0.5, 0), (0.5, -0.5, 0), (-0.5, 0.5, 0), (0.5, 0.5, 0)]
+                bool primvars:disableRtSssTransmission = 1
+                bool primvars:doNotCastShadows = 1
+                bool primvars:enableShadowTerminatorFix = 0
+                bool primvars:isVolume = 1
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "faceVarying"
+                )
+                uniform token subdivisionScheme = "none"
+                quatd xformOp:orient = (1, 0, 0, 0)
+                double3 xformOp:scale = (0.6002772838531348, 0.735352928637162, 0.9999999999999997)
+                double3 xformOp:translate = (0.015304606643220696, 0, 0.40180569477418443)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "base_cabinet" (
+        kind = "g54Container"
+    )
+    {
+        quatd xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Xform "door_left_link" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            vector3f physics:angularVelocity = (-1.1662091e-20, -1.5627068e-21, 1.5080275e-27)
+            float physics:density = 1000
+            vector3f physics:velocity = (-1.754583e-16, -1.045473e-20, 1.8159453e-22)
+            token visibility = "inherited"
+            quatf xformOp:orient = (1, 9.0694424e-10, 2.1050944e-8, -3.5273234e-10)
+            double3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.31620038, -0.37570012, -0.12973012)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "visuals" (
+                instanceable = true
+                references = @./sektion_cabinet_visuals.usd@</door_left_visuals>
+            )
+            {
+            }
+
+            def "collisions" (
+                instanceable = true
+                references = @./sektion_cabinet_collisions.usd@</door_left_collisions>
+            )
+            {
+            }
+
+            def Xform "door_left_nob_link" (
+                delete apiSchemas = ["PhysicsRigidBodyAPI"]
+                prepend apiSchemas = ["PhysicsMassAPI"]
+            )
+            {
+                float physics:density = 1000
+                quatf xformOp:orient = (1, 4.5915535e-10, -1.02098795e-7, -4.2285677e-8)
+                double3 xformOp:scale = (1, 1, 1)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def "visuals" (
+                    instanceable = true
+                    references = @./sektion_cabinet_visuals.usd@</door_left_knob_visuals>
+                )
+                {
+                }
+
+                def "collisions" (
+                    instanceable = true
+                    references = @./sektion_cabinet_collisions.usd@</door_left_knob_collisions>
+                )
+                {
+                }
+            }
+
+            def PhysicsRevoluteJoint "door_left_joint" (
+                prepend apiSchemas = ["PhysxJointAPI"]
+            )
+            {
+                uniform token physics:axis = "X"
+                rel physics:body0 = </cabinet/structure>
+                rel physics:body1 = </cabinet/base_cabinet/door_left_link>
+                point3f physics:localPos0 = (0.3162, -0.3757, -0.12973)
+                point3f physics:localPos1 = (0, 0, 0)
+                quatf physics:localRot0 = (0.70710677, 0, -0.70710677, 0)
+                quatf physics:localRot1 = (0.70710677, 0, -0.70710677, 0)
+                float physics:lowerLimit = -89.95438
+                float physics:upperLimit = 0
+                float physxJoint:jointFriction = 0.01
+            }
+        }
+
+        def Xform "door_right_link" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            vector3f physics:angularVelocity = (6.0297715e-22, 2.5629436e-24, 2.1565489e-29)
+            float physics:density = 1000
+            vector3f physics:velocity = (-1.5194277e-16, -4.3393242e-20, -1.7306936e-25)
+            token visibility = "inherited"
+            quatf xformOp:orient = (1, 5.1122073e-10, -1.4892362e-8, -2.8657998e-11)
+            double3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.31620055, 0.37570015, -0.12973015)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "visuals" (
+                instanceable = true
+                references = @./sektion_cabinet_visuals.usd@</door_right_visuals>
+            )
+            {
+            }
+
+            def "collisions" (
+                instanceable = true
+                references = @./sektion_cabinet_collisions.usd@</door_right_collisions>
+            )
+            {
+            }
+
+            def Xform "door_right_nob_link" (
+                delete apiSchemas = ["PhysicsRigidBodyAPI"]
+                prepend apiSchemas = ["PhysicsMassAPI"]
+            )
+            {
+                float physics:density = 1000
+                quatf xformOp:orient = (1, 1.2634921e-9, -5.5045632e-8, 1.7293097e-8)
+                double3 xformOp:scale = (1, 1, 1)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def "visuals" (
+                    instanceable = true
+                    references = @./sektion_cabinet_visuals.usd@</door_right_knob_visuals>
+                )
+                {
+                }
+
+                def "collisions" (
+                    instanceable = true
+                    references = @./sektion_cabinet_collisions.usd@</door_right_knob_collisions>
+                )
+                {
+                }
+            }
+
+            def PhysicsRevoluteJoint "door_right_joint" (
+                prepend apiSchemas = ["PhysxJointAPI"]
+            )
+            {
+                uniform token physics:axis = "X"
+                rel physics:body0 = </cabinet/structure>
+                rel physics:body1 = </cabinet/base_cabinet/door_right_link>
+                point3f physics:localPos0 = (0.3162, 0.3757, -0.12973)
+                point3f physics:localPos1 = (0, 0, 0)
+                quatf physics:localRot0 = (0.70710677, 0, -0.70710677, 0)
+                quatf physics:localRot1 = (0.70710677, 0, -0.70710677, 0)
+                float physics:lowerLimit = 0
+                float physics:upperLimit = 89.95438
+                float physxJoint:jointFriction = 0.01
+            }
+        }
+
+        def Xform "Storage" (
+            kind = "g54Slot"
+        )
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0.011722752765358125, 0, -0.12728171754357315)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Mesh "Slot" (
+                delete apiSchemas = ["OmniSceneVisualizationAPI"]
+                prepend apiSchemas = ["OmniSceneVisualizationAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 6, 2, 3, 7, 4, 5, 1, 0, 4, 0, 2, 6, 5, 7, 3, 1]
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)] (
+                    interpolation = "faceVarying"
+                )
+                bool omni:scene:visualization:drawWireframe = 1
+                point3f[] points = [(-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, 0.5, 0.5), (-0.5, -0.5, -0.5), (0.5, -0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, -0.5)]
+                bool primvars:doNotCastShadows = 1
+                bool primvars:enableShadowTerminatorFix = 0
+                bool primvars:isVolume = 1
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0), (0, 1), (0, 0), (1, 0), (1, 1), (0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0)] (
+                    interpolation = "faceVarying"
+                )
+                uniform token subdivisionScheme = "none"
+                token visibility = "inherited"
+                quatd xformOp:orient = (1, 0, 0, 0)
+                double3 xformOp:scale = (0.5756484649117712, 0.7145740256463156, 0.4699850182238036)
+                double3 xformOp:translate = (-1.734723475976807e-18, 0, -1.1102230246251565e-16)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+    }
+}
+
+over "Render" (
+    hide_in_stage_window = true
+)
+{
+}
+
+def Xform "World"
+{
+    quatd xformOp:orient = (1, 0, 0, 0)
+    double3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def PhysicsScene "physicsScene" (
+        prepend apiSchemas = ["PhysxSceneAPI"]
+    )
+    {
+        vector3f physics:gravityDirection = (0, 0, -1)
+        float physics:gravityMagnitude = 9.81
+        uniform token physxScene:broadphaseType = "MBP"
+        bool physxScene:enableCCD = 1
+        bool physxScene:enableGPUDynamics = 0
+        bool physxScene:enableStabilization = 1
+        uniform token physxScene:solverType = "TGS"
+    }
+
+    def Xform "GroundPlane"
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Mesh "CollisionMesh"
+        {
+            uniform bool doubleSided = 0
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)]
+            point3f[] points = [(-25, -25, 0), (25, -25, 0), (25, 25, 0), (-25, 25, 0)]
+            color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                interpolation = "varying"
+            )
+        }
+
+        def Plane "CollisionPlane" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            uniform token axis = "Z"
+            uniform token purpose = "guide"
+        }
+    }
+}
+
+def "Viewport_Waypoints" (
+    hide_in_stage_window = true
+)
+{
+    custom bool omni:ignorePrim = 1
+
+    def "Waypoint_00"
+    {
+        custom string camera:path = "/OmniverseKit_Persp"
+        custom string comment = ""
+        custom string created = "2024-01-24 07:08:15"
+        custom string created_by = "mimic"
+        custom float frame = 0
+        custom float3 icon_position = (2.4072087, 0.9747295, 1.0026462)
+        custom string omni:baked_preview = "zTE\"rl=o\\O&Gb\"/lB9sUYQ)=T5T&$`\"Ap/@AlHG3_TqiDlC.=p2.68>EUdPb>6%T(bJtR\\(NGbE&.IV,?pYL'P4@tsgc7aG:hT1Z\"aJu?,L68E;iPRf]eWlCHiedDuLo`4@ZRA#EL\\<taZ\\t7KQ1I\"P`hF\"=gjAkO^$Kf!qe,W,n(jT,5GRVB*C`9N97)Zd],Phb<mL*Phu+SqU&>-u`l>;/YP%Y=q>2tXQ\\Y:,a6^;TAT21pao\"jmra*nAa0;c4]`6Z$>$kj=]\\Y/GpY-4*ipQo>n\"DnO.44hJ7dY?ecf\"X@gAg&BbMSr.FZm+H%(#MkH-\"l1qidJj?fiMY&+*/1(B4:AY32MWA_BHM*nj\\0&,CQc?_opHn\"G/pp5m%Ep/Tg6rZ9cpBb1#dBO@T!jR8djQ\"KO[B5fF5m4Zd,o(UMF9%t;7Bb]\"E/7l5RqVGiaN+U*\"anM.-=j:uul0ihcQ^5[\\IXO-+BP4<lCS,3c3Tjp'ZDh^1(M],JK#0k%?m-nVpF5:sW\"]TUWl6/sV38'/\\Vs\"SJk!-tXBDTt<NDm#DkPp\"U=3qPgM.,^[6*Sr\\n!tr]0-S6I11H)%/U-CYmlFu>Ir5Jr_WN`58X2'lXR`]A^cYaN/oEJh50^b`OXX^\\V8G=F;3d$CH!0c[?@rMkh;NCC1pX`FDo\\AWsGbma\\$->*=OHa7/I8=gIkY?/ME(;ZCK*rFtK\\Zc!\"qm^>&P;)]a_.0K($\"\\?h2[NPB!L,5RK\"<VEc_H_#q/[NXB`G1a6H/9Yn-g-j[m[\\M`dfPj>#?eWfX\\[G#:pLr=X2/cbV[c4]@SZ9eY'\\cp]@Ecsm0^_ZDjleZC%#rk+BmO+pKW4!,++#$Y7`O9*f^#c$NBM.V[H,u@f/;$t?\\?CkXt+PZeb-1K/+_E\"Nk]>N*.&EClkN\"0?=\"RtD#Dsu/2l(&.LT9UH.61O[Pd$Oh0rQQqq6CAlTT/=a-^sCG5LXfhBq(Ie:$uZ4iqk:m68PJ[4-9+A)#@nanK3aHWst:(6&Eu%EpPQ^\\p@Mh@JUjIsR<iUrN`=^=[=]^MT1^3#ui$VX,tr$0+*J)qt3arJhbV%$YNE[JLnaInZ=khJC1Kqj^E^o4N(!di$erD.+uM*;c4Nbb<gL5.@hj[F[9PDr&@_efARDIu1:uhdEsB#6XP7_g[BBKgD>?c9D'=+WZ>IL`q1)fXah$K3mFZ]1p<&\\O5,tl2.+%Z+cm_?\\nISHAhee]Hd.1F);HP42Y:T)Vu1kh]CXIf@S-IC\"G2O-J7L.)(PCNi7crRrGLujIXXB7B>*XggUm+V?ESF8!RjFf1Jm'L_Zn8,MTOYK04Q0+%@+&1C>@>-C,XGJ]aj3i]H8lW^Oa5Z2DK:Y4mMbOokgb]6*\":a3%0G\\Ba(W_=Ypd^d\"q$Y/,1$;_0ssr*'ua^0'^9^d>besmH@uc_sa9?5(Hu;I;HlPNE5ZWC9]#IV2euO3f[831Xp-nc^r)uHO7s@,rBY/d4[)E?X,t)\\;k1?JUZF1?7ejU=G1.h(j`;@=WVFkVKTG%?GB8%pMcmS*S5Yi\"coAeVRGr46@7JcI3];&hJYt).'NMkHE[XV-4Oc)J)b?IY@l3(mF0Ism3u8a\\<!Ih@cd%!<jCLE=I8#bMmYTUIhV\\tml<iZT\\?QC;N%;TFJ+f.LjJDd[).UFotQ3PB-4QEqm#O:+$7=!`7>Y3P:g;kKgDtp?=aM8l41DU/UBQF\\(jEM9X0#&Edrti>K%Rb)U1SMbrd_F$_ipZUR?:gXeVFn5s)K-Aoa4('\"Z0mBZJGn&Nu.dlkB$4g6#mDLPYcqqrgN\\TbBUV]H9U-F;WWoFY3ALY&&Ol7se%JdpKq7B*Z+ff.tW>Y+kZ[2X[r\\kUV.TB)Qo!Ef=;u=8%oJ@3#S\"?b?n*fP7d0qR*Bu=3!#ge!b\"H'Q_IKOk/gaC2N'Z`qS#3ka[t;l15Z0?\":4tZo.i!oU+qCNEQGWC.$`RDV)'$&EnEpf7\"[!`eRZp^5A2mMqFsK^e4J[XS+;WH#!N*4+8_eMdZ?aS6j7@\\fJW,+9H1?#ZoUgIj]n74+^9jL0/4)M,ju*Aet23)<H/Pom2\\kM`@j+TO\"HTVgb3'#!.__P]tt0,HYh<7^mAmluTHccu4AiIcF)k]#WD\">hdgo8$10-WgSUNj2?YRds1?D><$g'35\"'M,ZF0\\I;dS_<lsXd?H)ll[T9B$;Q:#_ccih5)\"\"5iCr9kq9%r#>lU0F3XW)aBI>qub$qh)NYGkr:^X:([rS2-l30F/'ak@3qF\"82Pd7-\")?actP[;q8tIBET-6p$:lW9_L)CWGAZjS,_OpXpI4:GqMZD0arbh?I[11#]:\\@CG\\U9$J(R#?R&TY/&M-+Q(p=]X*9=G6,821('RpUjGktqei27!Mm1%f\\?r[\\J7PD-U\\_=O;RXs%q>P#3^1/s(@QbC0b/SV(iPQXr8L'`rqnR\"I-V29hOMEY)tTH/[YgoP%BOBVYVpT5D;`9#T?W483r]CiLTB_dEtdR7\"C!L[FtV/)=6M_Ikr:&1pso]Fi5SWAHK,_5hg$54)c'q@Gn\\G7_rqbOQZB>^\\Dqa5qa.`>;`ASIdFQfZ]Ig$:W9N4\"pY<K*@<KsNi]Vc]DgT%VoC7#o9ld)9`*9t$@_Oh!I?JHh<jSLm-0p?&MfDHKSY)A4=s[+1V^dbD@RY,/]uHAX$+%Gd.XWVQTB)j\"'`7B>pq,Ws$)Ks[)p`ibb56*,m9)B^;\\j5epK5KO:h2*'q$SX]!f(`LI,$g:=)]M_(A=YTJJ3mlEH(Ls31>+*+(nouZ1LsSP'mPt;pXE!k(gI6H^=\"g3*CJ5X8/+GougI]]n27'5'W\"#K\"lUCai\\s4XLsTjm=!3f%M1^?@W(Z^Ad<84o[\\K8Cqk\\1gP7J,S[A.F$*7F%Ja:<*,1laK?V;NJP=GCP%]O5X\"E24to(Es\\I1sZh*60jB5)6&Nr\"7eso+!D/]StRK\"3:*t5&EK;mH,uW)KjFSI';=#.X/o-Q(\"G[B5:GX2gHAVHS,)ce.[!&[WNT.HVL.(\\bOs'3[=GT=_nupa*f30[B,jB:&QCq7;@qVFUcg_[WRV,en_qMF__igBkXAa?-EQr?h0?*k)mjLZu&:eo%ta':&R&K0A\"7!E\\-Hf[-Ok5mE\\sQp^5/*H4B//NUp6[7c=dP&9jJ&nDk/Sjq&gH$Hp6J9>Tpe_!-ni,7q_lhhT1$#I?]TB)PJp$dRd+kTWb,cf<Kq8,+?U'VA7(Fs+%3V]uFc3:R35-[pVBPJ=u>c0+W_jA0_WoaG0M4Go1Thnq+*s+o:MIuF95YN(?55N()WGB(.a'L(fsJAp5(E7^01oiqHN8,hOqGk1T)ikir5-u>/gUN[Zd\\tA\"ASc=V+Uk'V1?:(j\"Kj65\\m[q$&mF:LdN0sUDh5!5JNqasP9CD8nZo3ZZiZ5^NlQ`uA1OURY3HNY-=>tZ?IE\\P\\8[VMTnf/N7o%umnb4pOjXe]_<F!7oDhQod:P,q8]<cq;O6f\"*4S_JnF-h>[!OtZL;`8C>G^'E5<f\"b1t,gKc<Rb,>bL-H=iXD=j.dJV_V;eRSe;e?\\ga)U+bO1!==!abGkrXf\"A&2C(#^\\3$-_Xr*j5n@fq0n^NaK[r@TE:$U!eh/2Sl@ON'Jach[Ojt<.AGMKQ6EVMASh.aM4BWFC?]H[)a3>af:W)?C^AXPjp_.18XOB.2#s*#_[\"=>t5J_/H#u:4WhQ6`768qj<D<LZg]_`Z7oPRM)4%+kphcp':@;5$ANYe;+TQZO/C'sta=Hi]eE+JKsH;)Pa<N/d;acsnObo0qbi^i0fgR.k=NQ5#SOa9$6]TTFAL?<KGb'I!%$B5_,$9_JDena`ejnJ[sr`is@8PIY<cWWQ\"FamUQ@KnEM1[e2!0=:24$YA9=RB'0ojC:ajjSRtY%[ChXlK6iQ?QMGE:J9;.&He8t$M/AseIlWb;cjKSYn1%b52sLL\"9I?VWd,h@6(]ffJD6&Mk]m<3T4,9*4uW9Z@`bBaUu-\\]qB#Rn[kO:t(8'a(JZ//G4Pg3hc`cp['MJab&^UF^Jj*mGKRIk\"1QJt(NQ'O\"r1Or_N[Toh*^tL4ojLL4fB7/,hko!-I,=``No)gJoBj#k;^_TLY8Q+u[&0td%AFW2=eE]XPM2A*VsB?\\\"6jf%;q\"Oe=.<]'MiAWET1Xi;[Mq)>/hqZhHlh^F[X+O\"R28iG'heJCC^;Z7pbciLbcCNm\\ui-VF]c7$X)`*%94pWWR3hU+Qnb^SbV`Uj]LIoiRFC^)18ENE<`k)c(Z+_j>+&CgDhkL!9E!j3NTHfH1\\&YEOKL;[b_7l(KCn\"BK58^4n'$td\\N`O1I0PDp\"]T!<W219WaK2+5F<Fe3iN:+,@<;BIGWfb86Nu(=KC8g)SXoTT@DUpubtE#06:a(!pn7-d_;A:3>AtsLq7G,U\"&9Ba_L-DhDNHc\"3\\=\"[5+:eOH%tRQMX_rae6Y\"M;gj&EW\\lqp<amI_^U1MOUGLU]3+bCobV94:LJf'a)m,='3@f$YT=B@R'6UEXU&%SANb]MPKO(^t2P)-gfpE*&NcEJ5)\"jh9D^`-GC?:nUM&JVWSaSqp[$JO8:!^kKHAnc0937M.rq2T*p@>r]q^&f`(\\&<%j)W@8EF4QM+gL$:gE]6$A20&]dQa?OLi=Jo:QHO:O.U_:cThA64SQc=Gi@n*i29A#'0h!Gle(s[\\+&P+^553As#/HS*/*2iL=[AFF>[ge.!s+o6PO;g`0T?iOtV#>E4#FX['m/:44s)tHcfn0A$1!Bo&!YTrnB9_&.FBkLJmlnrDnh6O4nGAm4:Hi%ZK+(Is6k3L:(W%a[:p<4N6aDmr_dVd/-<eV\"d)Q=83d%)^UF)]R\\9oh`<D<l\\;^r,Hbg6NeuE'Y3&;V*pRbslFF7ngI?RW.iA2ElWM8a$RV:CeZ1m%^T5>KA<(krg3Ar@l4*<bLFHR,N8hIU#eI4&Ah=ZTDXs7t@OOkG,Uj8G?uaST;l:CMr:hIr*hC.+6g&FH^^7Zampl:docn_SBCF8]F)\\`in@2\"b]pc\\F)Lg<1^B))e.\\D=-R,H:49Fu^>pn[^&g=nQ>ruL4i(?s^HgFpED5DEV,VP./Drh.o=U;n>qUQNkN7,t4B4,^ABa37\"8W+\\mqd5dtfB?W(ZF!AO,Iuel<N:`CG-G_KR6W;<fN81urR'kGpe2gI%C%!E\"FX&87fsRkDg==nIr@k\\kqpTSbCuct,@F_`0:1mSh18V\")H)Zj&Me-/1E@kNR?SBG_%I](.;]`43I?\"0oF0p?6/,mSniHZ.'^41^_o*E\"3n%e&\\(As35iGsDY@Fqj(a:!fK?`3hs/VLcl&11cNo:@5@Rt9>3loO*I3Jg&M59Fs9VVELkqO1J:7snr</eXfs4%T7Rjp\"ES_Sk>:S;n8A,O/IJdIs@!D;Ve`n+PZMpgEE!\\D(Y9Hh^gnZ@PFp[(LFXko4>.QcD:LBAl)J\\D?/BQ$-b6'CAn!CM6_]c*__]EAd423l18bSQ\"jm1B'!G*XWu:la_/OIOKSV`f0rn[AYI0>\"I>`L3and%TW*Hs*P9UO#Cd(ZMrH6^8q)3@7D5F^6X9;[JODqnM0gqjgDE0F*`4;X;LVH/J#%B\\@1fgL%R\\>=(5Kn]*`K\\dr5FKYsJ?&7^3cm-EFrl/;<5k'YK*Qi!Ct05K$S%Ia%\\<JORo.=R\\M.<S%bcjS]QHLt+B/2rJ_*'5fRdlOi.M;0^lW,2dj3[a-)Wr&JVN?.VBje.9X('=Zg9icBZQFAa1H'm\\*(e7ElW-\";0(+*J_>lP0WJOhtItpq&8Rr1j9)4JfCJf!Y`<%CQ6/Gc=@'e`-*hIG,A%3j@-<TkV36p$ZX&FKP(<8!t0W\\VDKWY)`DER_gj:a16l)P6i8Yj%4MZk1lY)9Mi4\\Ya0YZV<7rfjhGeaC[n#dHnmC$l<*'W&`8Vmou^I9bX'B4b72-sC73uG>-D4<^Xr`c_;TIoI,^=156B[akujB)6:UdL2b%#o8NikB*f:9GI-s_W_ZDr\\'&8KK2OkMf,1^%FXO:b)Sd;LqI)P4Q('7RAkeDqm^e(gBZ/gCq[_Kbdn#':Z4\\r0YOL4_$38EC7q\\S8bRrGn:#sRA\"j89ZB/$GYZn2NW!5#2%SQC&WQDi!`X0<suc;i!>50kfo%of8kpl$Y:S68>`:>%Z@&<;k8-%^akj`bL5=epXEXDfeJ.8j-M@o1bcWmZ-n_YF.\\!+44.1leL?q(@eg%[>EU@V/BtQ<o]:q3'Q4uX-e%hZ9C2jkD7WVTNW]`XY3?GeadRrmrtjC`%ku)c<H1po[30#L!/YqjnQLHbjSJ?0j0:j\\dKD-?\\hL=-]I9c).N)\\@cmnG\\t@$%B-68@#B84='Pm>DFQijiMj-Fc.&V59\"Lihu>528Cq-j!9mQf@Mg\\\"AOlbP9@6Z/uehCaQGYo(,EA&=)TqEZ+i4cQT&DZjt\\?KWO-gX5d8rXMH05<tsJNh,$$A,S]#f/V>Tc842(2gp!(a0d3`PPnEu=CNk];&'u7'G[r_2j_gXoo\".>>T9@2hVLde`;'T*0Dj%pZR0=E>19\"^/ljMC83Io_Mk4[#FZi@KaCRaKPE*t8akE0>9I$mCBrK*=$>\"j01M.[GX0&P(SVhQ4j7DsnQ>-QJ_G*440\"*2#:92X!nE2ZEJ3M[7kk:_fq>jKbFng<!Lc3Pq=8rD`gA>!T]SZI4.l^W-\"nm0>3tgjt;EU>@mfmpC_aZ6koS%Fi%?o(0]oD>8^]\\6_M\\HPbM>+@OGjlq_,L6-p*KmRTJjYFeL3N.dcAte8LU#[K:AgMDL\"j.(ECcSQWo\"bSY7jgc&BK%K_`B$cg(:*p_tgLUXraA(nW)[0`/`r:)+t<c)PUU#\\?OJF8*[OK>bc.IaW+5bUBY1?(*6YLJ$]AHI'&Rt>$6mm=nCB2_^CAI^p.4Z2)\\3\"oi0MjXgsBn4\"Q`^r]FgA2i(p,lD;5@&fXF%KQSuKf:,.G>Y+(McP%EB_O.lY\"WtGLY?:Sp3NO6N);Ya>+?'6`dd&!MkWOi9A.c*=73#,&*Kk3YLqf``s,1!#?)&GhCOZpW7hi[&#T&Yj-kFGKpHQN-_riJoqfhZ;MZ2\"hlS6)T)gGl^#Z=)UlK,HtYM;#u(D]f(XdH$9A#lan2ESUW0rjrl<#]7IbbGbSApi5ib_W=R-7bka5Lp`U]?P!]=pOpaH/6IY3h'p8YI>aYfhq1fgdbkPWV8X/Nlu$/V:IKg6/Au_%lJe\"KQ4*j'H+*qH4TlWc9qB`;G#Hg'QR=p;r76tSpQOhM^.;<cbSSQ6Hnt)*3nWL*?q*no&Rm_#e50ZXFQ4A(@eHW%c`hHmDnf_rX#0Ejr$;YoY9@qV]Wm9c[6*R4oN]OpU/'\"Sst;S'r)`nW7A%n*?F=h>5J\\*mcu1u/gocmnJC0S*lZ7'TAep/iGYB)+QpY[RlK(!4pprc]$6gKX&e9N(JCE%dendjRG-:m[q>T3C92,`.'Z]ToNB5OS36rpI3(c@KXq-HH7`'.qe[ocAGsp.;W`DnAm?^dQ!#Qga(eKg<?JF+p)U9D@am]fod[9@XBqC4=EEr^QLjE747SWI@iliJS(kD$k2^geWIq>H2>H48i*uJJ\\/]o;kMjhID!VBd)h/jj@ZSt7n)71:hf(UH%-GD[;EXY'/-k%,I/,QX^$\"?nb[Gp2)9_X;R%N'IV/m-:3PL)@O']fR6B\\k%_s9q1:\\kmslC+aM?V:i)e,`8r-%@EWo'OAfbBjAi[pLN^rh/bYfiJ+kl<?Ck(k.sa/!H%M7Z6\\uI;VjT)s2C2@sUK@B^mB,ra[9TYEZ/o5&\\\"*+T'+:n&BacR:ig312$1SeE^--;N9)DY$%;#drXA&l&:SSA5,V=F\\L/,>HXila]ta?NL@Alr^X,Ji:`;'X(t\"GI^.cI_AdtD%\\D;APf.kaT-m?Z'8P$Y,gMo^%aJQ-I$XOhMG')@EBa('cGZ;!HNL)XhntibELQYTc6^5dQ10u>NkC20)!/5X\\$>!UJdpUOda^A+eI>t@5^_gblK*.H\"jMF?KI@oKqU2)B(o5g1'+!Sir$nGT,$+Y\\iQTTN7%LM7T(Of5g[8E=Fh<Vl3aX*R90,nJTMBp^Odn;`e&UnuI&lO2jOsVpmjlrjl>m28S)\\s1G#`G12#pWfh-`U2)7^:R44a\"G/aJmbq*+'/78BT-ghM/jVJ2fK*a+sJ[<:&MI;OP6\"6W>:[BV@#Ot0b)lDW=_1ueaRd[0QF[5BY,0,JDbR``3Dd;J*4C[/UQ2?LhSRW\"VbdjVliF#h5RlWcu][(=F-Z'j1oY./P;HfP`W;?#iQ_<m*fG1SjPJ%deaKYNRJcU#bZO((#ST6U;p/k2GQ`RpBa&GoP7a+[fZrXcDuB5o6g17#fSLtb;L#TfmKpbHiu6B(d\"#mSKN/n39c+TC6:fkYM/p_t^\\eVLt-m71%\"A;J!`n2kt=_rKe1cE,gTa7Rg;8H1c_-<\\g!VDbnfOh.Bk($<$)44<$+37,')ZGqh<oD0BP@R[=>Md5$7c8\\$dUH2TYX(r!j3Jr2U41<!ST2V<$1TmLGq/a9*L7YHEkHHgRr<C4[c#\"^ahnt1mQ2$8IA][5eEuiG^)t\\FYX32!SYIWTDnA+;X_WCF+m3X_RIe'TAGhj(cGs_!3LMg`*o>+K?E4FhK;BFl@^e^KsB^;Gkf1X/.q1<S\\SQH7NOKP1qI/%2\\n6O8\"n%T]d&JsG&PKtUOao@tZ9q@:CJF]96=S7(OQaYeh/Ns+fq:ip^rbZIXcf(GWf?qlaT$asq!:7_13gT6k7X:9bCV&6R37]gt%od/Q,;Hgq\"0MQ(C7CNQ<^]*]/==fL*a3EoeW;iAh:qlb'N:V=1&QPZ?XTIpqH2]li-^@PL1G[1=F)bjI_BFa=d+!WR_#pt\\Lp8H2#b#1eSR!i#I3]&')]:GXFDCUIsPhPmiC_#XKT4>67a`@Xp[E0(Y5fE^IGEYLfHA8.q]Dq?,i`!:Cphm$hm+qj4(2Nl8.!%;JtHQ;-q/JlkJ\\u`lN\"KSDSR:/rj&1o=Ooa3!--_%56a,mXN.'4,t8th\\1'3riQi_l(&7V2]b8ucpG!6['$7Sj)o4A8XVB:WG>'pIBm=*rArAndO3.?Mi<@eCT-o/&m:h<F8lDBgM3#MfU?=#VbOQJql%65V>FQ_HY%Uo5\"hR!;(@/N\\W<+6f&t;Smha\\L9X6CB=q\"NaF1eNpW2R&R8cNrF9\"[srEg?Dm#i6?\"XrtZ(Y2LX8O\\Nc(.3rA:`1nbir:b.Y0%TF#kW?&g1C0g``mNf'+M7J0*6Dj7-bffI8q\\$e_4ok0?\"iOBEP/R%>\"Uj@@QjmgXs<KKI2tXNYJ13g0u7VKgV=c)YJW.U-0ElMq.'@rDC=pFo*GiiIbIM;IAcUON*_Fki\\IXuT_Y\"MckTu`c]tr%lOh&t*fo\"JA6*if-eES]l`I'uVc=\\J7Lcu'pT\\iL9]tWrXC^?bec;*aaU^2HD.ef+`ICKlD6HCX\"uYc^2+9Ye.N3*3GtebJ^/#EV0`/=>\"Pa^_P<YVM]P-N%cP%(kXZb5\"-%_+A$t3HYPq6A+j*,L^n^\"`/qEJqkGnc+p!V4]8_R$KrHo<(%rA6=>Z0&mVMG(1`/@F!cPPr1Y[+5]LL0%W<<i=7%c-kLe]lbATM8-cLhH]*%?f1:$$.j;)hX<[gmFl[pf;e4#1!W_KiiCB1b&n^/VZiVeL\"2>-pQUTu\\dr[sB\"BJC;(7GuW1U'@,M<gC3C2EfMCV-AN--s,1JMprT$/4^kCU)(4N.(1UO<i+]I.J5Y?Nn3\\`EFKmFjImM'KsrA\\fI0GBIekGR583=Y6`H7)%=l5`G@)f1/$Da[9uVrJDE[SGEKc:B)0FooPQ9j7q\"jgr2iLA'n#EUI%UF;d!<^/PV%iT23Cf!FjA&^;hrVCLMbaicbe1\"Q.c]l/-F\"pq',qKsk8H<rJ^oHduphPdVXJJ$lD[A%=JIG8\\^G.XA3;gG84k,u^$uj=K\"g.Tk<;RqqS`3X]d:o2Tqh'`OK/NK2(ua#G\"!C!++];t#A9^EV:.k\\I(b?*7e\"gV'q*>mEQ.NS8'[AbqU*\\Vt?fCG,Lhm_:=8BQrXc1u9TP$o*N4<sUF&&p\"ce\\K)X]4t>]PR3=J;c20;,L5qFOZCd0hIs`7#hq>O=\\%:Q5C[un)1u9a1*O3EfXq,tK5'L!+IY7</9/tf-.CNtM79k0uj)m$P:?t\\i@Le#mPM0Hm<.e2RJXHFDE[p3831d;bZPAA*.`<k;p/\\k8N/N^6m<X-=Gd:S\\i\\.k2q&FE<Bh?fFlGe9\"F3X6WnsmcXCQ't!W+m[23]H^)i:U4B0_)KS#1p/Mr8$[@oj=M\"2/2R#^2Gt0R&+J@PP!*qRcUDo,D!DP:FQ76VrL0uhe)R_ak(Rh=nCZ^Mj@!,l,J[f+6Lo$Lqf%Dq+KZ_[Jtg=cq4.`3PsYbG:4iQZ@)d%X3Y1SIL#Olr@Z.ZK/)d]Ng[6kI7.!]eTI*=J6<R@IuRR0;@HSY+^^s'WKa;t*ecAgneKSNIP*n:lKVF-/+o)&T6Y)JAW85(Iatqdku3l1X*3O)TpXZnXPB4ZcBp\\\"DoD6a+g2]beQ'a$<o@:3>Oc0BnPq+Fc3jPUPS4?%>W2MZlO\\F^?\\1M?T,=AKc*N8;0_+>%psC*>q'05b0_cSIT$M^f_;DOc][lk9_@oIL?fccHF3@5SI:;V(0_FgX=PCK>PI4JGrmbel?,u4uZTRi&G<SRg-iM5eG1sr'3]HDLfmcYL3r6:elOrei-14C$Mp,V4R+Ji!(C\\!YOHlW]A[OBF`Ynn'L9p&V.SnMQ;fp=-SSiQ*a]KOSoaNmHQSn3^f#2anl5Z+&=\"uqcr1,b<n&k![fGa'^7TiUae,?K)l'oa9Etm!Q18r54?\"4Ppq;WH_[?.r\\2:*tuEt/u#L<N\\Sq\"rj`+$U!S]Dq?0\\:\"MOomI\\.Di;87eunG<4n\"eAKADjWpJLq`im4#Wf\"Yq(^@;#BF\"W5Nijs+^QcJ7N-Bb?&Ch?R9kL+rXf$?,;AOUt&5eBPPGdqPGFM9SI>$2fN]#J)6L@rMSTmI_O93AcG\"cIH.=Im2.kE6dEQ$q_C:Vl5J2#/Anr&u(7lVmbcVLSLak0GRQH^XY5,6&YsT<g34g*,Y'j6Wc2%^]m-Qp8lY:&a-kKYhu3qS,iHDIR6t7pC21nFns5pXuruEOr@bmJI`6!'as9l[2m*CHPe0GLcE!0IpKdIhjWlUQ2W5B\"],/,N\\NcHL@``JiQUAlga4eQ\"!bKVt@sFLN=Ju\\<B*=90?gE3Pd#V0:#5j>h8PUWQDZP@B@A;cIo_tEGIUb]QL@HqLD4@R[_4Kr4LBCa7:E4(0qUV^.J.@$&--*Kg-NK3Jft=9'BX/Ab*n<2j$=oBAT\"?Y.lZ?r4NC+[iPn7[H;s)H'fiUDNW8qet'+'B9+J?RiB\"q`V`\"Y$U`ur3>(jrcVA/>ccG;Aof3/CMcSn\"B8'(!/:L(]27EA.&Eb'n`V75Z98W\\;F_d#<jUN$cH#TlT;RP_i4MQ2ZnfB&Xr0`oW/lr1*\\KZ#ra;L9sC0['MD5+9>8:ALg\\I3W4B1;W$H&;b\\R4Juu37\\i\\\"F$quXG?,\"o>I77Wseg0jT!ljO5iHbl*RjqUH-6[qIf<\\S]7<#1RD>ojSeo,Jj3TDCEY@fWr3[T>6Sj;M8-dc:Oi):pH'A/nN,5>V_P,U'>Meek5@d;WRp`P9V/T[R5]RbU86\"YWcKI%2HBd[pUOsUk-*XIA^o\"4O7HrI(Y@a=g0,7h,>mUZj>aF@_bpGI'8n<3WOaZr`&u@3g_EFbCrneO$<aWF:(&sb2A@L7enJo,-mkVQ:@n'(`#m#*S:cKCIZ!s($MKk+[=rn-05P%\\l@/7cO^G1;d..^mBs%;m1W]B1,b-^do@tpI2XC@Prl=oZ3&'>b@O:BXOil9P*EJ!2RlZ&AZ^6;/i8`Ze=>-72O8,bV28<U7pBgh?Zo2C_R?PBKTeMqclE`t9=liT6.F(-\\6`PV'+kC2+P;R7R].RYLpXV#YXf6\\BpO@DQ0C'B+>6\\1,b[7>C3K:2,bbR'i1Q+;\\RRW4D9'<VYNm=GFDNMBiHWjWUUq#kC<j0f4>p3DsTDTH?I3/anj7tCkO68\"\">'&=c\"2dSK3YJah2p:_5oB4Nrj*;+-VZGQIDgX,nqgG&Sk59RCeVTZ3'+9q&][QdoZj-I*T\\%3Y]@$X1NbuN8De0ELlIHf%2'j<C)*Yp7rHD[LcJ95SF4j!?L@XX=NH^t\\kPALf?.YmlTVJBV6h!UdXA88cpWD\"A=adBBe99>VmWr+,H5Y_&q+IS`La8^*0dJQE\\m?.0?S9sOnesc.K6SerV:dl&K?I?Y-l6%&g6Hld9)S4*.YGJFT2q#:F)W@H3a&MinE8?t;t=:%YJ>I]jhLNb[/?I4AlS9/U%-1hDPD6sX-#j;C]?>8L4-n1q:lqZf,J+QpcC0W%,oVsg=:`kD`,5Z/kg-6b2i7:NFTsce=KP53HN:NMHEU3;a(F:lYp<=PHLNu5+XX<W5jC&Y5+adZ>Qf=C:):iX&elY2:gHH`*<i1([$,hk98+XPlKhPH\"?JKUaR$lj.)XskONo\"/M1F?p+hp_#@=-0@s.KNXEY6fJ\")2mAIYs7B4D-q`!jtsC&7Re_&n/nf>mB.YGhKS`K:oGUVcKkq?0!Zako2j2Z=J/ibtm,A+J7#pq&HZ%1`'&7]<hKQJer)hL<%jfiiO(NVAjSL,(P_)b4sbe]5kjQR_+?#,@X%/Ktd\">4h7NGT+=l451-UFsbNa@_3&hFr>;e(&bTeWq-/3B%tKd+6%S,@N\"u.6!-)b`luXe>eWli1Pa/?p>`1I*I+-E@XT?i-YabbA'C(WTmWue!J_-`[/0B*im5sK\\ZG_NHJtZ)7aB+1a35Xg5KmJfF6^gtNn(jpmVj-C46at[Bg^$uDrG[8E?n1p1b)eufj87&hRAL<fn_Q/)MVLpTPC4?/Ff>ia(Aqo?RL;H`(,hD2hA#V?qkBA<K:9=jsQA<$LS68UK6K*`q+VYREtP?cS/=P5-e1G]M?*?pUUHJ(X?OYdT'Pdn.)UGp;:D0[j5E@k)8E]<!L#sG@%OT+=PeNR/A7e^D@''/sfU3[c^HJd!X)eR!\"bKBE,`Tk![^_`qeg9*,PWqL0T)iD<]hmC\"?kpDW754G=b^Ge0Zc\\m:lu`FecY:g\\Uo[A=liJT6JX!ZB$^fjU%Z)Xj>ftM[+(=_gP_=@O?;!h8aP0_<f9(A!=Oi7.0.-U67`^h4+,MPO,dAB4`iEIL]H)]o/rZIDeu\\nAk37mXMdeJ2oDZB9J7b$O7?br0uHCnJBRJj*_]GY%mn!obqm7QZ_^t1<AfBkhNiM9))cQmp,2^%X.iCpq*ZmS^(VuI.,>RD62S$i(WqQeG0uOMRMAXPeGo>If#3eO`_:>Euk#4PF5t\\q\"qLGpOF*ekH/V>X+Is(9jA(0De;beqANJrpT!S)PK];nbSaG<q;^,&6<Y5qG]Dul--VuCL_\\O2eE<oEIe(PN3.Hrt6`uu]\\HQVdmafEPlIs:`=tgMc>aa1cGQ`LPXFC_N5F:HWWPjs`j%2GK=SkTPQueA^FVho4f\"^6)epKm_h]uKe^FjMN]lOjDSMH5m]Ri[p+,Z>\\3@8V<ZZ#`So/CC@Wm2^`:\\I^BhQ)XU>Z2KhprhPPGGAErl^;YPRe;(tM:^s=S?)4!*AMa^[O^UI?+E/Eg0WG_Rd@$O'h/%)_?0PeR?R)K_=9$b.'DeE0eb\\qJ;^4_kKdHMG(FmK0'=Zjk-^uN-^d2js(/<SOB/nt$0(CWibsB);<)TolAA\\BC*-(u\\IALt(hKg[p,E7erF>iP6pJQ1k$t3:GI66`i84b(m\\%trj63$YE6!H]7\",fW;H*U$!SQ&QGoPl0DKm2X8+Ka4f9f8'ft6gaa\"]9fdNl/YdEL7124K#qM!_\\VUjj`_,s0[-e$O!dpZ/[(3e%<>?`hiYGlH^>nb4`DnT/.h9RZ@BqBHkdJ'7].>jsdck46C\"3Li/eK2X/C$[pK52A^(6!gc4lInjY/QqLlejEahNLYKk65-\\GEWNes'5fA/T/3ZfK^sVQpU<_3Qoh#$/k9]Nmm#-d(auoc4@NLe$=(mY<hm/79`nrU9gme>H$,=Hn8j;8h2.iqW5$MbBa,I)[PIWJjWi:<Q$ZdY=28PaTHOEsg\\(3$l4&aJlCffaGBV3D=e3AhWMbU9Z3JhgXcbn___6jl-@jQefAKTK)gr's)6]_5J7Sr9%fa8)SG`G+(f\".@GMrS:1H2';[ku_B1gYCloMC03o7]L781sHCInKkNaa(K7SC\\4%0Y`nj?^PuaZmgB'J]e433n)3d(%:!^5%p.ftjn(_'fo;_Ps1:(3chs'Y^,Pl20Rlt^G4D&s2N>JbEj_D,Z*`]Ho&BCsEauB1ACg164a[/XJj7gOrZ<9I=<*5L5K'DkQZ6_N+6M-=_4os><ZR\\<7#A$**35;CX9>c4l4I4/Z0iCRG.@5<o$!`D)8g:[\"aJW8k^+K3T6^G'oZ7J#F6XspT\"]jcSF9:'_m(M/`f,5/plG*/O2l#9RD4h>NDF$\\EN8s?#5p2o]mUq#SJ49Bq'E<?1Ml4LGo?/r7=J\"4-FDWCZh\"&L3)/l.FGP\"VWl!X=5<juhp>6C@47bIV&_iFd@,@84Y(]sLhq\"F>gg.0COZe'j<!E_UME@#)\"C5*6E;:V/??cch0)R4p?$mWiXuqF09<V`HmFR_Lb[AsmloDRN69;YLCp!p\">gq]Ioo1*Vr%GoSr,$7`o,+Qmba+1QalHBG5*#HNFQ&,HiQNQc0BufJJ*6`24=eJM3AU@`r[LZeT#&\\>+&MCWn\\Lb`E5nNiHGYAXVMNK5(0Osb.5\\9'eXD:S?@+-tZ<VlE%,1?[U5+=b40>$7$gj@s4gAUYcfB\"LZ<n>1QFPuN=8Dk4mYS9,r`*CR_VK>59)4A'LGO&@WQd1VP;OV[<CHV+E[_K'?bD?nRDZt`:N>Op%rggN@lQLG\".WMA))J;uM95?kF`3*!5;kF*Qj^V0n*2t0mLV,;&T_l\\7qg5Oqo/CIT@]StETs_Sa,unLYYHh:cbQ`d3=t&giSE\")3735Er9f'mf3`o[NSKTQ9O:%Gha9;/&F?6L_9HeN/1iEDbL#/<jI7U<i86:BCNWFEcPLYi<UKHBo/EC<h\"D^Xg$7T3s)-r%?tJeE\\Wae_:Y/JUoolaj:Hi,2YOd=5_UuB\\NNd'9?_Lri_-+ADF=N&FP56l#eh'Bm68D\\4,$%,h=?sYj3Qfc4(2#kKV=UnMbdf*?o),7Ba]c7M;k/\"0\".%LJ@F;IkLRU-I5ruP'rO8Cm@rc'brhb9C`-p>ZZPF?t4LdAc.eGBuOhpq:B<g*8%5W20Qu0Kdp\"0<+E]sBS1?j!u,3BR5cbFm,/0Rf*B(C%>3M)#MLb6BfdGK50Z;fsDlSZLe:#l=LNQZ?0f?7$nZdV,hIn&:.\\\"@2.f1hMp4u_fb7%H2M]f'&lF'$c@TC?b5LhH4qqYLN=S]]VRXg9g[p1!3;a`:P4^bi7Ra9tXZZ5tc^Uala\\16L.Hhf\"\\(,:8WE.Uo(q0c>UZFUa6b+5tB4?VnE0,9/rH4WH]\\?(AG&\"O8W`s'G^:Mp>J,\\_Q2t33G,\"f>rHF\"t?FFr-?hp`0K$r*7t5')_$[EIZ,(\\r?KU)It3O\"NtKR$Km%Om:b;+).F!gV=OQAZK]_O5\\#fPJ$#:]\"@Q%$VaReH'M7N.C?EA2uM;P_@)?.7Nqs[d7!aB7'pK6)J:?9`e8Se9ZR8NS9C&V,P\\)R,gLbnjrH<LcVH@O-RpMSH)gK\":E-@bimVLdF-AqE<_Rqt)n.[.tBMAT#qPB8Sm8KmLr+<E$X(+CKh9u0Ot/^L!.bdk3>ali0XM+@++fl,iUMr2S>q3Q&7m3\"-/&Sl83*3KQea%XKD,<;VHXX*l:XN#7!o19qTI[#6J95p^iW8o@.'\\>L9^Mu&T1mk:V3ldk.>S^!cKjJ@b/rN07jnLRq_OkTPjR.Z8VYGTeQ*m\\P20)VQ7jr/f[Di!g27jRSMtO[;+.KmUka\\3sBqM8P)M<=k#>57Wl+CW-ERU<)GYHT#8cB_5Db+POOu+p[9X5t4;tf+*.cQQt_S.Q`PcH@[>p:U+im`f$nF7leihKH0`$a`_Mj&5.iPOka'N:UCWb2e,r7`rAA\\:D#hG!d\\@Polu;RT<6\\#=#u#_/]1mL3.=RZ5iE7[TA;BQBLS0r;=EaN>gp.^QqEA#UPGd7[,=;Q^o6-eE5Rs2.IlZ)l0_o&h\"InN96[\\(GSMcQ(,2GN!JD51\\9lp9ELg%%*epP0K_RP!f'!i/lR`P919&Yo/MKl[kgoRRZEr?d1VL:CE^eNqdOQ.3ngSq:H6ZY$Ag)F2,`Z'0j=2T7.k(STogTr&.;WI0h!Mrs%ZG5Gr;_M06poSEYAJnMc_!`HJAO)5d!NNhOL[KnA6E/\\[W<1`=cnX6X#V'tmS7XP',!q%NQsfpnB?l^%0U\"o*9e@hF/jTA#e4Nk-!6,\"HkA96Y#de>H(\"Y-9kQ<\"0Q>;%+j(@l:;>R]hqS0N+#9ZJ![97S8).bht7='sXRWA1CTTcT.l(+\\FJch\\F2Oi[U7tS3Y:]MrH(Cqg:uu:>07PG3<f\\5&Kq&Cd!nk94*#g@XbJd&V$feNr!`GQOVt84oW0\\HZMon>RM\\+[.8Q%IU*ZfHa%88_>Er&HdK/,3iC\\Lm&:oE0d)t%i>@Vtmi3\\fH^hr[L3,#6.iVZ+C1b<39,etE[`\"ImS'58<cZ<d$V`&hF&$oUjD66[J<uT[PKtR`3hdd[3:LsI<Aurh85$-6YoQbd.+1H2\\r8]Y;5#-T?5G'-l.cW[smR_'8=::e?Q6J6F50N#@DJHrLSJBKHBtjmU;qB`,R@Bd,g]MaY>'Ed?j[t^S,g.uZ>b`J9ZG[0d(L1R?'1F:FruR\"CXaK7G:3Bjms.2)qIU:641&%csG0K?nhLfEZ&q?uWr;;<C^H';:<V96F>#tP\\1Dks=[Fe7S%K)'fS`4!V`^Ci,k;\\VB@@7i0Dq6,TZ6ip6It)?;+1`D,]>SmebF`O$]fc<q&WPO17+4HX?Yc:#`dG5R]+&&iO6P_m.GX&\"j)[oSDccZ3,lD3_?M:Cq7]]\\BrGO0`ePGftffeF2MOBFRKEgSFS>U&Sa?25I\"b#3`4P%4Bf94DPIV]pPH0Y9#C_LO*F*XCJ&M'/@rbVP@m^$ciadfAnMN.!VFB=s0^/t9>o061F^jG\"#IGeE$VeVRd>E/LPDVq(,:KG_!C[s5FB-/dOjOd=Z:/X7KDRm]<@-qk,j*3d_3CY?cT[,.KD!!)ACP0StT1rcqp%`tE\\[$[Tp2Q]Yn\\-cD_`]`#YP_7INqVT&r0as'aks8YSIitIesY1C-t?`3<NfP`fTH2(6WX)t;tXCq`_DmhHOq)T`ZMsmISY`.a@)4Y\"0Lo)pVu*n2KCq?R-*p_j\\NNjg0uVIfc,FLg,R1g(0JIV:Ib6WDJWDR-=\"SS`G[!Q.=AOp;fhpck3l3:YL_FVb2OLKs)NKM'K]-mQ_j!s#kj,kcLQ^Lo4Q\"#,Cc1t3Q[_%-@;i1jk[=_;@G[q+*Q8Rd<oq--h[3R?i<jtZdHM!c;j8c7\"8Q@(umO#Lp[4sSO]g-_tg`ehYZFf0=U'`*:\"Tb\"e=W8.*!oAFO)Qe0%k2(P.OEJ05!.p5NR$-&q@oEqL+CS\"n%PmC%8\"Ahu1KXbTH/s1qg5UKtGN.NI0Q8Y8h+Ij>!X8Ym,`\")EC<4f0&2\\Xj3L-4:(mK8&o5tbG>T`n!WO0HBt2=hl%l^q,PC@X84`sSiH1Vr)rCSa567<3/uCLpP\"LO#[@#raJ6T/\"NL2!P>3pWIIGlRA]n,fDs]Ionn,!^OZ)JeP2/uPPH:aeMk`c=ZEHt-UE_Kqd@tL<Ib\";hEK(q5]8b\\7VLP'7rStj<[OeHW2lWF-;Hq9^J#+S4=dmX0jKGN>lf<:tBa^\\3[GTtFogCuR@:cESrJhm'[T:i-b3)F;ouZf@cY7\"1>Sd?g\"4%EsIp9XfIrF>O\\[KQYcR'@VC<B[>f3sl8:4%I,q6-&VjaF9g`\\Zph;6DiSXe;/hNlMu\\URIesl+=PcV>j\"Kj\"\\Dl2Ud&8D=\"+'c8c<ZQ2a'j^hK>"
+        custom bool omni:ignorePrim = 1
+        custom string render = "{}"
+        custom string sunstudy = '{"date": null, "time": null, "location": [null, null, null]}'
+
+        def "OmniverseKit_Persp"
+        {
+            custom float4[] clippingPlanes = []
+            custom float2 clippingRange = (0.01, 10000000)
+            custom float exposure = 0
+            custom float focalLength = 18.147562
+            custom float focusDistance = 400
+            custom float fStop = 0
+            custom float horizontalAperture = 20.955
+            custom float horizontalApertureOffset = 0
+            custom bool omni:ignorePrim = 1
+            custom vector3d omni:kit:centerOfInterest = (-2.220446049250313e-16, 1.1102230246251565e-16, -6.4451767212011255)
+            custom token projection = "perspective"
+            custom token purpose = "default"
+            custom double shutter:close = 0
+            custom double shutter:open = 0
+            custom token stereoRole = "mono"
+            custom float verticalAperture = 15.2908
+            custom float verticalApertureOffset = 0
+            custom token visibility = "inherited"
+            custom float3 xformOp:rotateXYZ = (78.58051, -0, 115.39627)
+            custom float3 xformOp:scale = (1, 1, 1)
+            custom double3 xformOp:translate = (2.4072086244517283, 0.9747294608115312, 1.0026461890297074)
+            custom token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+        }
+    }
+}
+

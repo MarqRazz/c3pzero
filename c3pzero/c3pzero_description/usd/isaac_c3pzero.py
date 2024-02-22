@@ -79,7 +79,7 @@ stage.add_reference_to_stage(BACKGROUND_USD_PATH, BACKGROUND_STAGE_PATH)
 prims.create_prim(
     C3PZERO_STAGE_PATH,
     "Xform",
-    position=np.array([1, 0, 0.17]),
+    position=np.array([0, 0, 0]),
     orientation=rotations.gf_rotation_to_np_array(Gf.Rotation(Gf.Vec3d(0, 0, 1), 90)),
     usd_path=GEN3_USD_PATH,
 )

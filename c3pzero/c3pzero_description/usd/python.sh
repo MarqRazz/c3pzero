@@ -3,6 +3,7 @@
 # Script to call the isaac launch system (see python.sh in the ISAAC_SCRIPT_DIR)
 
 # ISAAC_SCRIPT_DIR="$HOME/.local/share/ov/pkg/isaac_sim-2022.2.1"
+# ISAAC_SCRIPT_DIR="/home/mimic/.local/share/ov/pkg/isaac_sim-2023.1.0"
 ISAAC_SCRIPT_DIR="/isaac-sim"
 
 # Prepend the path to all arguments passed in and also pass the current directory

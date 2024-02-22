@@ -3,10 +3,9 @@ Panels:
     Help Height: 0
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /MotionPlanning1
+      Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 312
+    Tree Height: 182
   - Class: rviz_common/Help
     Name: Help
   - Class: rviz_common/Views
@@ -198,6 +197,11 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
           rr_caster:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          tote_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -434,6 +438,11 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          tote_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           wrist_camera_link:
             Alpha: 1
             Show Axes: false
@@ -489,6 +498,59 @@ Visualization Manager:
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 1
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Selectable: false
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Points
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /wrist_mounted_camera/depth/color/points
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Class: rviz_default_plugins/Camera
+      Enabled: true
+      Far Plane Distance: 100
+      Image Rendering: background and overlay
+      Name: Camera
+      Overlay Alpha: 0.5
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /wrist_mounted_camera/color/image_raw
+      Value: true
+      Visibility:
+        Grid: false
+        MotionPlanning: false
+        PointCloud2: false
+        Value: true
+      Zoom Factor: 1
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -507,27 +569,29 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.947645425796509
+      Distance: 2.0185868740081787
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.12256991118192673
-        Y: 0.23251095414161682
-        Z: 0.5736060738563538
+        X: 0.03113711066544056
+        Y: -0.28234097361564636
+        Z: 0.6878793239593506
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.21500010788440704
+      Pitch: 0.3950002193450928
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: 4.995179653167725
+      Yaw: 5.285181045532227
     Saved: ~
 Window Geometry:
+  Camera:
+    collapsed: false
   Displays:
     collapsed: false
   Height: 975
@@ -539,9 +603,9 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000200000000000001f700000379fc0200000004fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000003f00fffffffb000000100044006900730070006c006100790073010000003b00000173000000c700fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001b4000002000000016900fffffffb0000000800480065006c0070000000029a0000006e0000006e00ffffff000000010000019b00000379fc0200000001fb0000000a00560069006500770073000000003b00000379000000a000ffffff000002b30000037900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000002000000000000024300000379fc0200000006fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000003f00fffffffb000000100044006900730070006c006100790073010000003b000000f1000000c700fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000132000001b50000016900fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000c00430061006d00650072006101000002ed000000c70000002800fffffffb0000000a0049006d0061006700650000000321000000930000000000000000000000010000019b00000379fc0200000001fb0000000a00560069006500770073000000003b00000379000000a000ffffff000002670000037900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: true
   Width: 1200
-  X: 172
-  Y: 27
+  X: 2253
+  Y: 14
