@@ -17,7 +17,7 @@
 services:
   cpu:
     image: c3pzero:latest
-    container_name: c3pzero
+#    container_name: c3pzero
     build:
       context: .
       dockerfile: .docker/Dockerfile

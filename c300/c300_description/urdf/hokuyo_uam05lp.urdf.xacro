@@ -8,9 +8,7 @@
       frame="${prefix}_laser"
       topic="${topic}"
       min_angle="${min_angle}"
-      max_angle="${max_angle}"
-      sim_gazebo="false"
-      sim_ignition="true"/>
+      max_angle="${max_angle}"/>
 
     <joint name="${prefix}_laser_mount_joint" type="fixed">
       <xacro:insert_block name="origin" />

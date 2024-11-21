@@ -8,7 +8,7 @@ Panels:
         - /Status1
         - /LaserScan1/Topic1
       Splitter Ratio: 0.5
-    Tree Height: 659
+    Tree Height: 733
 Visualization Manager:
   Class: ""
   Displays:
@@ -135,6 +135,8 @@ Visualization Manager:
       Value: true
     - Class: rviz_default_plugins/TF
       Enabled: false
+      Filter (blacklist): ""
+      Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: true
@@ -150,7 +152,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -183,18 +185,18 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5497963428497314
+      Pitch: 0.24979758262634277
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.13539719581604
+      Yaw: 1.8553873300552368
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1043
+  Height: 1016
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000001da00000381fc0200000001fb000000100044006900730070006c0061007900730100000069000003810000017800ffffff0000059a0000038100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  Width: 1920
-  X: 151
-  Y: 1223
+  QMainWindow State: 000000ff00000000fd0000000100000000000001da000003a2fc0200000001fb000000100044006900730070006c006100790073010000003b000003a2000000c700ffffff0000055a000003a200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1850
+  X: 70
+  Y: 27

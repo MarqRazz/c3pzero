@@ -4,7 +4,7 @@
   <xacro:macro name="load_c300" params="
     prefix
     sim_isaac:=false
-    sim_ignition:=false
+    sim_gazebo:=false
     isaac_joint_commands:=/isaac_joint_commands
     isaac_joint_states:=/isaac_joint_states
     use_fake_hardware:=false">
@@ -12,7 +12,7 @@
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/hokuyo_uam05lp.urdf.xacro" />
 
-    <xacro:if value="${use_fake_hardware or sim_ignition or sim_isaac}">
+    <xacro:if value="${use_fake_hardware or sim_gazebo or sim_isaac}">
       <!-- ros2 control is only used for simulation -->
       <xacro:include filename="$(find c300_description)/urdf/c300.ros2_control.xacro" />
       <xacro:property name="ros2_control_name" value="C300_Base"/>
@@ -22,9 +22,7 @@
         sim_isaac="${sim_isaac}"
         isaac_joint_commands="${isaac_joint_commands}"
         isaac_joint_states="${isaac_joint_states}"
-        sim_ignition="${sim_ignition}"/>
-      <xacro:include filename="$(find c300_description)/urdf/c300_transmission_macro.xacro" />
-      <xacro:load_gazebo_base_transmissions/>
+        sim_gazebo="${sim_gazebo}"/>
 
       <xacro:include filename="$(find c300_description)/urdf/c300_base.gazebo.xacro" />
     </xacro:if>

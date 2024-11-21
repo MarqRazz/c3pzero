@@ -26,7 +26,7 @@ def generate_launch_description():
     # Simulation specific arguments
     declared_arguments.append(
         DeclareLaunchArgument(
-            "sim_ignition",
+            "sim_gazebo",
             default_value="true",
             description="Use Ignition for simulation",
         )
@@ -77,13 +77,13 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "use_sim_time",
-            default_value="True",
+            default_value="true",
             description="Use simulation (Gazebo) clock if true",
         )
     )
 
     # Initialize Arguments
-    sim_ignition = LaunchConfiguration("sim_ignition")
+    sim_gazebo = LaunchConfiguration("sim_gazebo")
     # General arguments
     runtime_config_package = LaunchConfiguration("runtime_config_package")
     description_package = LaunchConfiguration("description_package")
@@ -106,8 +106,8 @@ def generate_launch_description():
                 [FindPackageShare(description_package), "urdf", description_file]
             ),
             " ",
-            "sim_ignition:=",
-            sim_ignition,
+            "sim_gazebo:=",
+            sim_gazebo,
             " ",
         ]
     )
@@ -136,12 +136,7 @@ def generate_launch_description():
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        parameters=[{"use_sim_time": use_sim_time}],
-        arguments=[
-            "joint_state_broadcaster",
-            "--controller-manager",
-            "/controller_manager",
-        ],
+        arguments=["joint_state_broadcaster"],
     )
 
     # Delay rviz start after `joint_state_broadcaster`
@@ -182,7 +177,7 @@ def generate_launch_description():
             "-Y",
             "0.0",
         ],
-        condition=IfCondition(sim_ignition),
+        condition=IfCondition(sim_gazebo),
     )
 
     ignition_launch_description = IncludeLaunchDescription(
@@ -194,9 +189,9 @@ def generate_launch_description():
         #  0: No output, 1: Error, 2: Error and warning, 3: Error, warning, and info, 4: Error, warning, info, and debug.
         # -s launches Gazebo headless
         launch_arguments={
-            "gz_args": " -r -v 3 -s /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
+            "gz_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
         }.items(),
-        condition=IfCondition(sim_ignition),
+        condition=IfCondition(sim_gazebo),
     )
 
     # Bridge
@@ -205,8 +200,8 @@ def generate_launch_description():
         executable="parameter_bridge",
         parameters=[{"use_sim_time": use_sim_time}],
         arguments=[
-            "/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
-            "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
+            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
         ],
         output="screen",
     )
