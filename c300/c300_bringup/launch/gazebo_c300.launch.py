@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Author: Marq Rasmussen
 
-from launch import LaunchDescription
+from launch import LaunchDescription, LaunchContext
 from launch.actions import (
     DeclareLaunchArgument,
-    ExecuteProcess,
     IncludeLaunchDescription,
+    OpaqueFunction,
     RegisterEventHandler,
 )
 from launch.event_handlers import OnProcessExit
@@ -19,83 +19,42 @@ from launch.substitutions import (
 )
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from ament_index_python.packages import get_package_share_directory
+
+
+def launch_gz(context: LaunchContext):
+    gz_world_file = get_package_share_directory("c300_bringup") + "/worlds/depot.sdf"
+    # -r is to run the simulation on start
+    # -v is the verbose level
+    #  0: No output, 1: Error, 2: Error and warning, 3: Error, warning, and info, 4: Error, warning, info, and debug.
+    sim_options = "-r -v 3"
+    if LaunchConfiguration("headless").perform(context) == "true":
+        sim_options += " -s"  # -s is to only run the server (headless mode).
+    gz_launch_description = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
+        ),
+        launch_arguments=[("gz_args", [f"{sim_options} {gz_world_file}"])],
+    )
+    return [gz_launch_description]
 
 
 def generate_launch_description():
     declared_arguments = []
-    # Simulation specific arguments
     declared_arguments.append(
-        DeclareLaunchArgument(
-            "sim_gazebo",
-            default_value="true",
-            description="Use Ignition for simulation",
-        )
-    )
-    # General arguments
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "runtime_config_package",
-            default_value="c300_bringup",
-            description='Package with the controller\'s configuration in "config" folder. \
-        Usually the argument is not set, it enables use of a custom setup.',
-        )
+        DeclareLaunchArgument("rviz", default_value="true", description="Launch RViz?")
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "description_package",
-            default_value="c300_description",
-            description="Description package with robot URDF/XACRO files. Usually the argument \
-        is not set, it enables use of a custom description.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "description_file",
-            default_value="c300_base.urdf",
-            description="URDF/XACRO description file with the robot.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "robot_name",
-            default_value="c300",
-            description="Robot name.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "diff_drive_controller",
-            default_value="diff_drive_base_controller",
-            description="Diff drive base controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "launch_rviz", default_value="true", description="Launch RViz?"
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "use_sim_time",
-            default_value="true",
-            description="Use simulation (Gazebo) clock if true",
+            "headless", default_value="true", description="Launch Gazebo headless?"
         )
     )
 
     # Initialize Arguments
-    sim_gazebo = LaunchConfiguration("sim_gazebo")
-    # General arguments
-    runtime_config_package = LaunchConfiguration("runtime_config_package")
-    description_package = LaunchConfiguration("description_package")
-    description_file = LaunchConfiguration("description_file")
-    robot_name = LaunchConfiguration("robot_name")
-    prefix = LaunchConfiguration("prefix")
-    diff_drive_controller = LaunchConfiguration("diff_drive_controller")
-    launch_rviz = LaunchConfiguration("launch_rviz")
-    use_sim_time = LaunchConfiguration("use_sim_time")
+    launch_rviz = LaunchConfiguration("rviz")
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(runtime_config_package), "rviz", "bringup_config.rviz"]
+        [FindPackageShare("c300_bringup"), "rviz", "bringup_config.rviz"]
     )
 
     robot_description_content = Command(
@@ -103,11 +62,10 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", description_file]
+                [FindPackageShare("c300_description"), "urdf", "c300_base.urdf"]
             ),
             " ",
-            "sim_gazebo:=",
-            sim_gazebo,
+            "sim_gazebo:=true",
             " ",
         ]
     )
@@ -118,7 +76,7 @@ def generate_launch_description():
         output="both",
         parameters=[
             {
-                "use_sim_time": use_sim_time,
+                "use_sim_time": True,
                 "robot_description": robot_description_content,
             }
         ],
@@ -129,6 +87,7 @@ def generate_launch_description():
         executable="rviz2",
         name="rviz2",
         output="log",
+        parameters=[{"use_sim_time": True}],
         arguments=["-d", rviz_config_file],
         condition=IfCondition(launch_rviz),
     )
@@ -150,7 +109,7 @@ def generate_launch_description():
     diff_drive_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=[diff_drive_controller, "-c", "/controller_manager"],
+        arguments=["diff_drive_base_controller", "-c", "/controller_manager"],
     )
 
     ignition_spawn_entity = Node(
@@ -161,7 +120,7 @@ def generate_launch_description():
             "-string",
             robot_description_content,
             "-name",
-            robot_name,
+            "c300",
             "-allow_renaming",
             "true",
             "-x",
@@ -177,31 +136,17 @@ def generate_launch_description():
             "-Y",
             "0.0",
         ],
-        condition=IfCondition(sim_gazebo),
-    )
-
-    ignition_launch_description = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
-        ),
-        # TODO (marqrazz): fix the hardcoded path to the gazebo world
-        # -v is the verbose level
-        #  0: No output, 1: Error, 2: Error and warning, 3: Error, warning, and info, 4: Error, warning, info, and debug.
-        # -s launches Gazebo headless
-        launch_arguments={
-            "gz_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
-        }.items(),
-        condition=IfCondition(sim_gazebo),
     )
 
     # Bridge
     gazebo_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        parameters=[{"use_sim_time": use_sim_time}],
+        parameters=[{"use_sim_time": True}],
         arguments=[
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
+            "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
         ],
         output="screen",
     )
@@ -211,7 +156,7 @@ def generate_launch_description():
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
         diff_drive_controller_spawner,
-        ignition_launch_description,
+        OpaqueFunction(function=launch_gz),
         ignition_spawn_entity,
         gazebo_bridge,
     ]

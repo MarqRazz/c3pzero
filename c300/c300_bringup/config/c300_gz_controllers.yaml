@@ -14,7 +14,7 @@ diff_drive_base_controller:
     right_wheel_names: ["drivewhl_r_joint"]
     wheels_per_side: 1
 
-    wheel_separation: 0.61 # outside distance between the wheels
+    wheel_separation: 0.6 # Shortest distance between the left and right wheels
     wheel_radius: 0.1715
 
     wheel_separation_multiplier: 1.0
@@ -33,7 +33,6 @@ diff_drive_base_controller:
 
     cmd_vel_timeout: 0.5
     #publish_limited_velocity: true
-    use_stamped_vel: false
     #velocity_rolling_window_size: 10
 
     # Velocity and acceleration limits

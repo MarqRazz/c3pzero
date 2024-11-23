@@ -202,5 +202,12 @@
       <origin xyz="0 0 0.155" rpy="0 0 0" />
     </xacro:hokuyo_uam05lp>
 
+    <link name="imu_link"/>
+    <joint name="imu_joint" type="fixed">
+      <parent link="base_link" />
+      <child link="imu_link"/>
+      <origin xyz="-0.1 0 0.155" rpy="0 0 0" />
+    </joint>
+
   </xacro:macro>
 </robot>

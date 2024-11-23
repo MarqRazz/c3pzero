@@ -7,13 +7,67 @@
       <parameters>$(arg simulation_controllers)</parameters>
       <controller_manager_node_name>controller_manager</controller_manager_node_name>
       <ros>
-        <remapping>/diff_drive_base_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
+        <remapping>/diff_drive_base_controller/cmd_vel:=/cmd_vel_nav</remapping>
         <remapping>/diff_drive_base_controller/odom:=/odom</remapping>
       </ros>
     </plugin>
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <sensor name="imu" type="imu">
+      <gz_frame_id>imu_link</gz_frame_id>
+      <topic>/imu</topic>
+      <update_rate>100</update_rate>
+      <always_on>1</always_on>
+      <visualize>false</visualize>
+      <enable_metrics>false</enable_metrics>
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
   </gazebo>
 
   <gazebo reference="drivewhl_l_link">
@@ -23,7 +77,7 @@
             <ode>
               <mu>0.8</mu>
               <mu2>0.8</mu2>
-              <fdir1 gz:expressed_in='${prefix}base_link'>1 1 0</fdir1>
+              <fdir1 gz:expressed_in='base_link'>1 1 0</fdir1>
             </ode>
         </friction>
       </surface>
@@ -37,7 +91,7 @@
             <ode>
               <mu>0.8</mu>
               <mu2>0.8</mu2>
-              <fdir1 gz:expressed_in='${prefix}base_link'>1 1 0</fdir1>
+              <fdir1 gz:expressed_in='base_link'>1 1 0</fdir1>
             </ode>
         </friction>
       </surface>
