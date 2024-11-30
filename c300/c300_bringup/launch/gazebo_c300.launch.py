@@ -92,24 +92,24 @@ def generate_launch_description():
         condition=IfCondition(launch_rviz),
     )
 
-    joint_state_broadcaster_spawner = Node(
+    controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_state_broadcaster"],
+        parameters=[{"use_sim_time": True}],
+        arguments=[
+            "diff_drive_base_controller",
+            "joint_state_broadcaster",
+            "--controller-manager",
+            "/controller_manager",
+        ],
     )
 
     # Delay rviz start after `joint_state_broadcaster`
-    delay_rviz_after_joint_state_broadcaster_spawner = RegisterEventHandler(
+    delay_rviz_after_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
-            target_action=joint_state_broadcaster_spawner,
+            target_action=controller_spawner,
             on_exit=[rviz_node],
         )
-    )
-
-    diff_drive_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["diff_drive_base_controller", "-c", "/controller_manager"],
     )
 
     ignition_spawn_entity = Node(
@@ -153,9 +153,8 @@ def generate_launch_description():
 
     nodes_to_start = [
         robot_state_publisher_node,
-        joint_state_broadcaster_spawner,
-        delay_rviz_after_joint_state_broadcaster_spawner,
-        diff_drive_controller_spawner,
+        controller_spawner,
+        delay_rviz_after_controller_spawner,
         OpaqueFunction(function=launch_gz),
         ignition_spawn_entity,
         gazebo_bridge,
