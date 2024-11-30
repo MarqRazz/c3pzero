@@ -1,0 +1,404 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 85
+    Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.5
+    Tree Height: 795
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_laser_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        drivewhl_l_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        drivewhl_r_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_gripper_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_tool_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_armbase_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armgripper_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armleft_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armlink_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armlink_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armlink_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armlink_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armlink_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armlink_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_armright_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_armtool_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        lr_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        platform_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rr_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tote_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_footprint:
+          Value: true
+        base_laser:
+          Value: true
+        base_laser_mount:
+          Value: true
+        base_link:
+          Value: true
+        drivewhl_l_link:
+          Value: true
+        drivewhl_r_link:
+          Value: true
+        imu_link:
+          Value: true
+        left_arm_base_link:
+          Value: true
+        left_arm_gripper_base_link:
+          Value: true
+        left_arm_left_finger:
+          Value: true
+        left_arm_link_1:
+          Value: true
+        left_arm_link_2:
+          Value: true
+        left_arm_link_3:
+          Value: true
+        left_arm_link_4:
+          Value: true
+        left_arm_link_5:
+          Value: true
+        left_arm_link_6:
+          Value: true
+        left_arm_mount_link:
+          Value: true
+        left_arm_right_finger:
+          Value: true
+        left_arm_tool_0:
+          Value: true
+        left_armbase_link:
+          Value: true
+        left_armgripper_base_link:
+          Value: true
+        left_armleft_finger:
+          Value: true
+        left_armlink_1:
+          Value: true
+        left_armlink_2:
+          Value: true
+        left_armlink_3:
+          Value: true
+        left_armlink_4:
+          Value: true
+        left_armlink_5:
+          Value: true
+        left_armlink_6:
+          Value: true
+        left_armright_finger:
+          Value: true
+        left_armtool_0:
+          Value: true
+        lr_caster:
+          Value: true
+        platform_link:
+          Value: true
+        right_arm_mount_link:
+          Value: true
+        rr_caster:
+          Value: true
+        tote_link:
+          Value: true
+      Marker Scale: 0.30000001192092896
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: false
+      Tree:
+        base_link:
+          base_footprint:
+            {}
+          base_laser_mount:
+            base_laser:
+              {}
+          drivewhl_l_link:
+            {}
+          drivewhl_r_link:
+            {}
+          imu_link:
+            {}
+          lr_caster:
+            {}
+          platform_link:
+            left_arm_mount_link:
+              left_arm_base_link:
+                left_arm_link_1:
+                  left_arm_link_2:
+                    left_arm_link_3:
+                      left_arm_link_4:
+                        left_arm_link_5:
+                          left_arm_link_6:
+                            left_arm_tool_0:
+                              left_arm_gripper_base_link:
+                                left_arm_left_finger:
+                                  {}
+                                left_arm_right_finger:
+                                  {}
+            right_arm_mount_link:
+              left_armbase_link:
+                left_armlink_1:
+                  left_armlink_2:
+                    left_armlink_3:
+                      left_armlink_4:
+                        left_armlink_5:
+                          left_armlink_6:
+                            left_armtool_0:
+                              left_armgripper_base_link:
+                                left_armleft_finger:
+                                  {}
+                                left_armright_finger:
+                                  {}
+          rr_caster:
+            {}
+          tote_link:
+            {}
+      Update Interval: 0
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 214; 214; 214
+    Fixed Frame: base_footprint
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 1.8022266626358032
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: -0.24028433859348297
+        Y: -0.039687931537628174
+        Z: 0.40212562680244446
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.36479753255844116
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 0.9254047870635986
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1043
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000001000000000000015a000003b1fc0200000001fb000000100044006900730070006c0061007900730100000044000003b1000000eb00ffffff0000039f000003b100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1280
+  X: 1280
+  Y: 34

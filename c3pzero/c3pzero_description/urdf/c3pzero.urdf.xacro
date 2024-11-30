@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+
+<robot name="c3pzero_kinova_gen3" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:arg name="sim_gazebo" default="false" />
+    <xacro:arg name="sim_isaac" default="false" />
+    <xacro:arg name="prefix" default="" />
+    <xacro:arg name="mock_hardware" default="false" />
+    <xacro:arg name="fake_sensor_commands" default="false" />
+
+    <!-- Import macros for main hardware components -->
+    <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
+    <xacro:include filename="$(find piper_description)/urdf/piper_macro.xacro" />
+    <!-- <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro"/> -->
+
+    <xacro:if value="$(arg sim_gazebo)">
+      <xacro:include filename="$(find c3pzero_description)/urdf/c3pzero.gazebo.xacro" />
+      <xacro:arg name="simulation_controllers" default="$(find c3pzero_bringup)/config/c3pzero_gz_controllers.yaml" />
+    </xacro:if>
+
+    <xacro:load_c300
+      prefix="$(arg prefix)"
+      sim_gazebo="$(arg sim_gazebo)"
+      sim_isaac="$(arg sim_isaac)"
+      isaac_joint_commands="/mobile_base_joint_commands"
+      isaac_joint_states="/isaac_joint_states"
+      mock_hardware="false"/>
+
+    <!-- right_arm_mount_link is the location on the c300 base where the robot arm is mounted -->
+    <link name="right_arm_mount_link"/>
+    <joint name="right_arm_mount_joint" type="fixed">
+        <parent link="platform_link"/>
+        <child link="right_arm_mount_link"/>
+        <origin xyz="0.28 -0.25 0.18" rpy="0 0 ${pi/5}"/>
+    </joint>
+
+    <!-- Load the robot -->
+    <xacro:load_piper
+        parent="right_arm_mount_link"
+        prefix="$(arg prefix)right_arm_"
+        mock_hardware="$(arg mock_hardware)"
+        sim_gazebo="$(arg sim_gazebo)"
+        sim_isaac="$(arg sim_isaac)">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:load_piper>
+
+    <!-- left_arm_mount_link is the location on the c300 base where the robot arm is mounted -->
+    <link name="left_arm_mount_link"/>
+    <joint name="left_arm_mount_joint" type="fixed">
+        <parent link="platform_link"/>
+        <child link="left_arm_mount_link"/>
+        <origin xyz="0.28 0.25 0.18" rpy="0 0 -${pi/5}"/>
+    </joint>
+
+    <!-- Load the robot -->
+    <xacro:load_piper
+        parent="left_arm_mount_link"
+        prefix="$(arg prefix)left_arm_"
+        mock_hardware="$(arg mock_hardware)"
+        sim_gazebo="$(arg sim_gazebo)"
+        sim_isaac="$(arg sim_isaac)">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:load_piper>
+
+    <link name="wrist_camera_link"/>
+
+    <joint name="wrist_camera_joint" type="fixed">
+      <parent link="$(arg prefix)bracelet_link"/>
+      <child link = "wrist_camera_link"/>
+      <origin xyz="0 -0.06841 -0.05044" rpy="0 ${3.14 / 180.0 * 100} -1.5708"/>
+    </joint>
+
+    <xacro:sensor_d415 parent="wrist_camera_link" name="wrist_mounted_camera" use_nominal_extrinsics="true">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:sensor_d415>
+
+    <link name="wrist_camera_mount_link">
+      <inertial>
+        <origin xyz="0.000281 0.011402 -0.029798" rpy="0 0 0" />
+        <mass value="0.5" />
+        <inertia ixx="0.000587" ixy="3E-06" ixz="3E-06" iyy="0.000369" iyz="-0.000118" izz="0.000609" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/realsense_bracket_for_kinova.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/realsense_bracket_for_kinova.dae" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="wrist_camera_mount_joint" type="fixed">
+      <origin xyz="0 0 0.0" rpy="0 0 0" />
+      <parent link="$(arg prefix)bracelet_link" />
+      <child link="wrist_camera_mount_link" />
+    </joint>
+
+    <!-- Storage Tote -->
+    <link name="tote_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1.0" />
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/tote.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/tote.dae" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="tote_joint" type="fixed">
+      <origin xyz="-0.25 0.02 0.34" rpy="0 0 ${pi/2}" />
+      <parent link="base_link" />
+      <child link="tote_link" />
+    </joint>
+
+</robot>

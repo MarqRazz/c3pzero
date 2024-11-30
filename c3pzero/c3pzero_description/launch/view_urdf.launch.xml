@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <let name="robot_description"
+         value="$(command 'xacro $(find-pkg-share c3pzero_description)/urdf/c3pzero.urdf.xacro')" />
+
+    <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" output="both"/>
+
+    <node pkg="robot_state_publisher" exec="robot_state_publisher" output="both">
+        <param name="robot_description" value="$(var robot_description)" />
+    </node>
+
+    <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share c3pzero_description)/rviz/robot_urdf.rviz" output="both"/>
+</launch>
