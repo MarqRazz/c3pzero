@@ -11,7 +11,7 @@
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
     <xacro:include filename="$(find piper_description)/urdf/piper_macro.xacro" />
-    <!-- <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro"/> -->
+    <xacro:include filename="$(find c3pzero_description)/urdf/wrist_realsense.urdf.xacro" />
 
     <xacro:if value="$(arg sim_gazebo)">
       <xacro:include filename="$(find c3pzero_description)/urdf/c3pzero.gazebo.xacro" />
@@ -26,81 +26,54 @@
       isaac_joint_states="/isaac_joint_states"
       mock_hardware="false"/>
 
-    <!-- right_arm_mount_link is the location on the c300 base where the robot arm is mounted -->
-    <link name="right_arm_mount_link"/>
-    <joint name="right_arm_mount_joint" type="fixed">
-        <parent link="platform_link"/>
-        <child link="right_arm_mount_link"/>
+    <!-- Right Arm -->
+    <link name="$(arg prefix)right_arm_mount_link"/>
+    <joint name="$(arg prefix)right_arm_mount_joint" type="fixed">
+        <parent link="$(arg prefix)platform_link"/>
+        <child link="$(arg prefix)right_arm_mount_link"/>
         <origin xyz="0.28 -0.25 0.18" rpy="0 0 ${pi/5}"/>
     </joint>
 
-    <!-- Load the robot -->
     <xacro:load_piper
-        parent="right_arm_mount_link"
+        parent="$(arg prefix)right_arm_mount_link"
         prefix="$(arg prefix)right_arm_"
+        include_gripper="true"
         mock_hardware="$(arg mock_hardware)"
         sim_gazebo="$(arg sim_gazebo)"
         sim_isaac="$(arg sim_isaac)">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:load_piper>
 
-    <!-- left_arm_mount_link is the location on the c300 base where the robot arm is mounted -->
-    <link name="left_arm_mount_link"/>
-    <joint name="left_arm_mount_joint" type="fixed">
-        <parent link="platform_link"/>
-        <child link="left_arm_mount_link"/>
+    <xacro:wrist_camera
+        parent="$(arg prefix)right_arm_gripper_aux_mount"
+        prefix="$(arg prefix)right_arm_">
+    </xacro:wrist_camera>
+
+    <!-- Left Arm -->
+    <link name="$(arg prefix)left_arm_mount_link"/>
+    <joint name="$(arg prefix)left_arm_mount_joint" type="fixed">
+        <parent link="$(arg prefix)platform_link"/>
+        <child link="$(arg prefix)left_arm_mount_link"/>
         <origin xyz="0.28 0.25 0.18" rpy="0 0 -${pi/5}"/>
     </joint>
 
-    <!-- Load the robot -->
     <xacro:load_piper
-        parent="left_arm_mount_link"
+        parent="$(arg prefix)left_arm_mount_link"
         prefix="$(arg prefix)left_arm_"
+        include_gripper="true"
         mock_hardware="$(arg mock_hardware)"
         sim_gazebo="$(arg sim_gazebo)"
         sim_isaac="$(arg sim_isaac)">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:load_piper>
 
-    <link name="wrist_camera_link"/>
-
-    <joint name="wrist_camera_joint" type="fixed">
-      <parent link="$(arg prefix)bracelet_link"/>
-      <child link = "wrist_camera_link"/>
-      <origin xyz="0 -0.06841 -0.05044" rpy="0 ${3.14 / 180.0 * 100} -1.5708"/>
-    </joint>
-
-    <xacro:sensor_d415 parent="wrist_camera_link" name="wrist_mounted_camera" use_nominal_extrinsics="true">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:sensor_d415>
-
-    <link name="wrist_camera_mount_link">
-      <inertial>
-        <origin xyz="0.000281 0.011402 -0.029798" rpy="0 0 0" />
-        <mass value="0.5" />
-        <inertia ixx="0.000587" ixy="3E-06" ixz="3E-06" iyy="0.000369" iyz="-0.000118" izz="0.000609" />
-      </inertial>
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/realsense_bracket_for_kinova.dae" />
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/realsense_bracket_for_kinova.dae" />
-        </geometry>
-      </collision>
-    </link>
-    <joint name="wrist_camera_mount_joint" type="fixed">
-      <origin xyz="0 0 0.0" rpy="0 0 0" />
-      <parent link="$(arg prefix)bracelet_link" />
-      <child link="wrist_camera_mount_link" />
-    </joint>
+    <xacro:wrist_camera
+        parent="$(arg prefix)left_arm_gripper_aux_mount"
+        prefix="$(arg prefix)left_arm_">
+    </xacro:wrist_camera>
 
     <!-- Storage Tote -->
-    <link name="tote_link">
+    <link name="$(arg prefix)storage_tote">
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="1.0" />
@@ -119,10 +92,10 @@
         </geometry>
       </collision>
     </link>
-    <joint name="tote_joint" type="fixed">
-      <origin xyz="-0.25 0.02 0.34" rpy="0 0 ${pi/2}" />
-      <parent link="base_link" />
-      <child link="tote_link" />
+    <joint name="$(arg prefix)tote_joint" type="fixed">
+      <origin xyz="-0.25 0.3 0.04" rpy="0 0 ${-pi/2}" />
+      <parent link="$(arg prefix)platform_link" />
+      <child link="$(arg prefix)storage_tote" />
     </joint>
 
 </robot>

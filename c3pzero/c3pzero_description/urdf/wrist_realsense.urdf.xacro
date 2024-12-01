@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot name="piper_wrist_camera" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro"/>
+
+    <xacro:macro name="wrist_camera" params="
+      prefix
+      parent
+      sim_gazebo:=false">
+
+    <link name="${prefix}wrist_camera_bracket_link">
+      <!-- TODO design bracket
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.5" />
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find piper_description)/meshes/piper_realsense_bracket.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find piper_description)/meshes/piper_realsense_bracket.dae" />
+        </geometry>
+      </collision> -->
+    </link>
+    <joint name="${prefix}wrist_camera_mount_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${parent}" />
+      <child link="${prefix}wrist_camera_bracket_link" />
+    </joint>
+
+    <xacro:sensor_d415 parent="${prefix}wrist_camera_bracket_link" name="${prefix}wrist_camera" use_nominal_extrinsics="true">
+      <origin xyz="-0.01 0 0.02" rpy="0 0.1 0" />
+    </xacro:sensor_d415>
+
+    <xacro:if value="${sim_gazebo}">
+      <xacro:include filename="$(find realsense2_gz_description)/urdf/_d415.gazebo.xacro" />
+      <xacro:gazebo_d415 name="${prefix}wrist_camera" gz_topic_name="${prefix}wrist_camera" type="rgb" fps="1"/>
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>
