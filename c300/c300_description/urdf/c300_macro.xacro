@@ -15,7 +15,7 @@
     <xacro:if value="${mock_hardware or sim_gazebo or sim_isaac}">
       <!-- ros2 control is only used for simulation -->
       <xacro:include filename="$(find c300_description)/urdf/c300.ros2_control.xacro" />
-      <xacro:property name="ros2_control_name" value="C300_Base"/>
+      <xacro:property name="ros2_control_name" value="c300_control"/>
       <xacro:c300_ros2_control
         name="${ros2_control_name}"
         mock_hardware="${mock_hardware}"
@@ -23,8 +23,6 @@
         isaac_joint_commands="${isaac_joint_commands}"
         isaac_joint_states="${isaac_joint_states}"
         sim_gazebo="${sim_gazebo}"/>
-
-      <xacro:include filename="$(find c300_description)/urdf/c300_base.gazebo.xacro" />
     </xacro:if>
 
     <!-- Define robot constants -->

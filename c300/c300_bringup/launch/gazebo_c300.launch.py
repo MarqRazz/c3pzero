@@ -54,7 +54,7 @@ def generate_launch_description():
     launch_rviz = LaunchConfiguration("rviz")
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare("c300_bringup"), "rviz", "bringup_config.rviz"]
+        [FindPackageShare("c300_bringup"), "rviz", "c300.rviz"]
     )
 
     robot_description_content = Command(
@@ -62,7 +62,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("c300_description"), "urdf", "c300_base.urdf"]
+                [FindPackageShare("c300_description"), "urdf", "c300.urdf.xacro"]
             ),
             " ",
             "sim_gazebo:=true",
@@ -104,7 +104,7 @@ def generate_launch_description():
         ],
     )
 
-    # Delay rviz start after `joint_state_broadcaster`
+    # Delay rviz start after `controller_spawner`
     delay_rviz_after_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=controller_spawner,
@@ -112,7 +112,7 @@ def generate_launch_description():
         )
     )
 
-    ignition_spawn_entity = Node(
+    gazebo_spawn_entity = Node(
         package="ros_gz_sim",
         executable="create",
         output="screen",
@@ -156,7 +156,7 @@ def generate_launch_description():
         controller_spawner,
         delay_rviz_after_controller_spawner,
         OpaqueFunction(function=launch_gz),
-        ignition_spawn_entity,
+        gazebo_spawn_entity,
         gazebo_bridge,
     ]
 

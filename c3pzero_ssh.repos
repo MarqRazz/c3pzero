@@ -1,25 +1,9 @@
 repositories:
-  topic_based_ros2_control:
+  piper_ros2:
     type: git
-    url: git@github.com:PickNikRobotics/topic_based_ros2_control.git
+    url: git@github.com:MarqRazz/piper_ros2.git
+    version: jazzy
+  realsense2_gz_description:
+    type: git
+    url: git@github.com:locusrobotics/realsense2_gz_description.git
     version: main
-  ros2_kortex:
-    type: git
-    url: git@github.com:Kinovarobotics/ros2_kortex.git
-    version: main
-  ros2_controllers:
-    type: git
-    url: git@github.com:MarqRazz/ros2_controllers.git
-    version: fix_diff_drive_odom
-  realsense-ros:
-    type: git
-    url: git@github.com:MarqRazz/realsense-ros.git
-    version: ros2-development
-  ros2_robotiq_gripper:
-    type: git
-    url: git@github.com:PickNikRobotics/ros2_robotiq_gripper.git
-    version: main
-  serial:
-    type: git
-    url: https://github.com/tylerjw/serial.git
-    version: ros2

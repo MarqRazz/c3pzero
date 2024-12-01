@@ -34,12 +34,12 @@
     </joint>
 
     <xacro:sensor_d415 parent="${prefix}wrist_camera_bracket_link" name="${prefix}wrist_camera" use_nominal_extrinsics="true">
-      <origin xyz="-0.01 0 0.02" rpy="0 0.1 0" />
+      <origin xyz="-0.01 0 0.02" rpy="0 0.2 0" />
     </xacro:sensor_d415>
 
     <xacro:if value="${sim_gazebo}">
       <xacro:include filename="$(find realsense2_gz_description)/urdf/_d415.gazebo.xacro" />
-      <xacro:gazebo_d415 name="${prefix}wrist_camera" gz_topic_name="${prefix}wrist_camera" type="rgb" fps="1"/>
+      <xacro:gazebo_d415 name="${prefix}wrist_camera" gz_topic_name="${prefix}wrist_camera" type="rgbd" fps="6"/>
     </xacro:if>
 
   </xacro:macro>

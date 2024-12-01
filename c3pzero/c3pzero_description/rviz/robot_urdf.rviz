@@ -82,6 +82,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        left_arm_gripper_aux_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         left_arm_gripper_base_link:
           Alpha: 1
           Show Axes: false
@@ -134,59 +138,51 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        left_armbase_link:
+        left_arm_wrist_camera_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_bracket_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra1_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra1_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra2_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra2_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_armgripper_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armleft_finger:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armlink_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armlink_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armlink_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armlink_4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armlink_5:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armlink_6:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_armright_finger:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_armtool_0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         lr_caster:
           Alpha: 1
           Show Axes: false
@@ -197,16 +193,118 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        right_arm_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_gripper_aux_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_gripper_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         right_arm_mount_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        right_arm_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_tool_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_bracket_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra1_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra1_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra2_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra2_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         rr_caster:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tote_link:
+        storage_tote:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -220,137 +318,21 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz_default_plugins/TF
-      Enabled: true
+      Enabled: false
       Filter (blacklist): ""
       Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_footprint:
-          Value: true
-        base_laser:
-          Value: true
-        base_laser_mount:
-          Value: true
-        base_link:
-          Value: true
-        drivewhl_l_link:
-          Value: true
-        drivewhl_r_link:
-          Value: true
-        imu_link:
-          Value: true
-        left_arm_base_link:
-          Value: true
-        left_arm_gripper_base_link:
-          Value: true
-        left_arm_left_finger:
-          Value: true
-        left_arm_link_1:
-          Value: true
-        left_arm_link_2:
-          Value: true
-        left_arm_link_3:
-          Value: true
-        left_arm_link_4:
-          Value: true
-        left_arm_link_5:
-          Value: true
-        left_arm_link_6:
-          Value: true
-        left_arm_mount_link:
-          Value: true
-        left_arm_right_finger:
-          Value: true
-        left_arm_tool_0:
-          Value: true
-        left_armbase_link:
-          Value: true
-        left_armgripper_base_link:
-          Value: true
-        left_armleft_finger:
-          Value: true
-        left_armlink_1:
-          Value: true
-        left_armlink_2:
-          Value: true
-        left_armlink_3:
-          Value: true
-        left_armlink_4:
-          Value: true
-        left_armlink_5:
-          Value: true
-        left_armlink_6:
-          Value: true
-        left_armright_finger:
-          Value: true
-        left_armtool_0:
-          Value: true
-        lr_caster:
-          Value: true
-        platform_link:
-          Value: true
-        right_arm_mount_link:
-          Value: true
-        rr_caster:
-          Value: true
-        tote_link:
-          Value: true
       Marker Scale: 0.30000001192092896
       Name: TF
       Show Arrows: false
       Show Axes: true
       Show Names: false
       Tree:
-        base_link:
-          base_footprint:
-            {}
-          base_laser_mount:
-            base_laser:
-              {}
-          drivewhl_l_link:
-            {}
-          drivewhl_r_link:
-            {}
-          imu_link:
-            {}
-          lr_caster:
-            {}
-          platform_link:
-            left_arm_mount_link:
-              left_arm_base_link:
-                left_arm_link_1:
-                  left_arm_link_2:
-                    left_arm_link_3:
-                      left_arm_link_4:
-                        left_arm_link_5:
-                          left_arm_link_6:
-                            left_arm_tool_0:
-                              left_arm_gripper_base_link:
-                                left_arm_left_finger:
-                                  {}
-                                left_arm_right_finger:
-                                  {}
-            right_arm_mount_link:
-              left_armbase_link:
-                left_armlink_1:
-                  left_armlink_2:
-                    left_armlink_3:
-                      left_armlink_4:
-                        left_armlink_5:
-                          left_armlink_6:
-                            left_armtool_0:
-                              left_armgripper_base_link:
-                                left_armleft_finger:
-                                  {}
-                                left_armright_finger:
-                                  {}
-          rr_caster:
-            {}
-          tote_link:
-            {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 214; 214; 214
@@ -372,25 +354,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.8022266626358032
+      Distance: 2.018493890762329
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.24028433859348297
-        Y: -0.039687931537628174
-        Z: 0.40212562680244446
+        X: -0.29688960313796997
+        Y: -0.038694750517606735
+        Z: 0.489205926656723
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.36479753255844116
+      Pitch: 0.3797975182533264
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.9254047870635986
+      Yaw: 0.7304049730300903
     Saved: ~
 Window Geometry:
   Displays:

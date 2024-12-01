@@ -1,10 +1,17 @@
 <?xml version="1.0"?>
-<robot name="c300" xmlns:xacro="http://ros.org/wiki/xacro" xmlns:gz="http://gazebosim.org/schema">
+<robot name="c300_gazebo" xmlns:xacro="http://ros.org/wiki/xacro" xmlns:gz="http://gazebosim.org/schema">
 
-  <xacro:arg name="simulation_controllers" default="$(find c300_bringup)/config/c300_gz_controllers.yaml" />
+  <!--
+Gazebo plugins can only be included once. Use this xacro as an example of how to run ros2_control in Gazebo.
+Required Gazebo plugins:
+  - gz_ros2_control::GazeboSimROS2ControlPlugin
+    required to read and publish the robots joint states
+-->
+<xacro:macro name="c300_gazebo" params="simulation_controllers">
+
   <gazebo>
     <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>$(arg simulation_controllers)</parameters>
+      <parameters>${simulation_controllers}</parameters>
       <controller_manager_node_name>controller_manager</controller_manager_node_name>
       <ros>
         <remapping>/diff_drive_base_controller/cmd_vel:=/cmd_vel_nav</remapping>
@@ -125,4 +132,5 @@
     </collision>
   </gazebo>
 
+</xacro:macro>
 </robot>

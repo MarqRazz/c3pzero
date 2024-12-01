@@ -1,21 +1,24 @@
 <?xml version="1.0"?>
 
-<robot name="c3pzero_kinova_gen3" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="c3pzero" xmlns:xacro="http://ros.org/wiki/xacro">
 
+    <!-- Arguments -->
+    <xacro:arg name="prefix" default="" />
     <xacro:arg name="sim_gazebo" default="false" />
     <xacro:arg name="sim_isaac" default="false" />
-    <xacro:arg name="prefix" default="" />
     <xacro:arg name="mock_hardware" default="false" />
-    <xacro:arg name="fake_sensor_commands" default="false" />
 
     <!-- Import macros for main hardware components -->
-    <xacro:include filename="$(find c300_description)/urdf/c300_base.urdf.xacro" />
+    <xacro:include filename="$(find c300_description)/urdf/c300_macro.xacro" />
     <xacro:include filename="$(find piper_description)/urdf/piper_macro.xacro" />
     <xacro:include filename="$(find c3pzero_description)/urdf/wrist_realsense.urdf.xacro" />
 
     <xacro:if value="$(arg sim_gazebo)">
-      <xacro:include filename="$(find c3pzero_description)/urdf/c3pzero.gazebo.xacro" />
+      <!-- c300.gazebo.xacro includes all of the plugins and tags we need to simulate this robot -->
+      <xacro:include filename="$(find c300_description)/urdf/c300.gazebo.xacro" />
       <xacro:arg name="simulation_controllers" default="$(find c3pzero_bringup)/config/c3pzero_gz_controllers.yaml" />
+      <xacro:c300_gazebo
+            simulation_controllers="$(arg simulation_controllers)"/>
     </xacro:if>
 
     <xacro:load_c300
@@ -46,7 +49,8 @@
 
     <xacro:wrist_camera
         parent="$(arg prefix)right_arm_gripper_aux_mount"
-        prefix="$(arg prefix)right_arm_">
+        prefix="$(arg prefix)right_arm_"
+        sim_gazebo="$(arg sim_gazebo)">
     </xacro:wrist_camera>
 
     <!-- Left Arm -->
@@ -69,7 +73,8 @@
 
     <xacro:wrist_camera
         parent="$(arg prefix)left_arm_gripper_aux_mount"
-        prefix="$(arg prefix)left_arm_">
+        prefix="$(arg prefix)left_arm_"
+        sim_gazebo="$(arg sim_gazebo)">
     </xacro:wrist_camera>
 
     <!-- Storage Tote -->
