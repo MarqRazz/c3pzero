@@ -14,7 +14,12 @@ ros2 launch c3pzero_bringup gazebo_c3pzero.launch.py headless:=false rviz:=true
 
 ### To start MoveIt to control the simulated robot run the following command:
 ``` bash
-ros2 launch c3pzero_moveit_config move_group.launch.py
+ros2 launch c3pzero_moveit_config demo.launch.xml mock_hardware:=true
+```
+
+or if simulating in Gazebo or Isaac:
+``` bash
+ros2 launch c3pzero_moveit_config demo.launch.xml use_sim_time:=true
 ```
 
 ### To test out the controllers in simulation you can run the following commands:
