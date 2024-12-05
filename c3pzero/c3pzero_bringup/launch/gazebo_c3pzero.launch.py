@@ -131,7 +131,7 @@ def generate_launch_description():
             "-y",
             "0.0",
             "-z",
-            "0.3",
+            "0.0",
             "-R",
             "0.0",
             "-P",

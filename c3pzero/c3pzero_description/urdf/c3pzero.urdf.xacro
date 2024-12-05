@@ -13,6 +13,11 @@
     <xacro:include filename="$(find piper_description)/urdf/piper_macro.xacro" />
     <xacro:include filename="$(find c3pzero_description)/urdf/wrist_realsense.urdf.xacro" />
 
+    <!-- initial position for simulation (currently applies to both arms) -->
+    <xacro:arg name="initial_positions_file" default="$(find c3pzero_description)/config/initial_positions.yaml"/>
+    <!-- convert to property to use substitution in function -->
+    <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
+
     <xacro:if value="$(arg sim_gazebo)">
       <!-- c300.gazebo.xacro includes all of the plugins and tags we need to simulate this robot -->
       <xacro:include filename="$(find c300_description)/urdf/c300.gazebo.xacro" />
@@ -43,7 +48,8 @@
         include_gripper="true"
         mock_hardware="$(arg mock_hardware)"
         sim_gazebo="$(arg sim_gazebo)"
-        sim_isaac="$(arg sim_isaac)">
+        sim_isaac="$(arg sim_isaac)"
+        initial_positions="${xacro.load_yaml(initial_positions_file)}">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:load_piper>
 
@@ -67,7 +73,8 @@
         include_gripper="true"
         mock_hardware="$(arg mock_hardware)"
         sim_gazebo="$(arg sim_gazebo)"
-        sim_isaac="$(arg sim_isaac)">
+        sim_isaac="$(arg sim_isaac)"
+        initial_positions="${xacro.load_yaml(initial_positions_file)}">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:load_piper>
 
