@@ -23,18 +23,18 @@
 
     <xacro:load_c300
       prefix="$(arg prefix)"
+      mock_hardware="$(arg mock_hardware)"
       sim_gazebo="$(arg sim_gazebo)"
       sim_isaac="$(arg sim_isaac)"
       isaac_joint_commands="/mobile_base_joint_commands"
-      isaac_joint_states="/isaac_joint_states"
-      mock_hardware="false"/>
+      isaac_joint_states="/isaac_joint_states"/>
 
     <!-- Right Arm -->
     <link name="$(arg prefix)right_arm_mount_link"/>
     <joint name="$(arg prefix)right_arm_mount_joint" type="fixed">
         <parent link="$(arg prefix)platform_link"/>
         <child link="$(arg prefix)right_arm_mount_link"/>
-        <origin xyz="0.28 -0.25 0.18" rpy="0 0 ${pi/5}"/>
+        <origin xyz="0.28 -0.25 0.1" rpy="0 0 ${pi/5}"/>
     </joint>
 
     <xacro:load_piper
@@ -58,7 +58,7 @@
     <joint name="$(arg prefix)left_arm_mount_joint" type="fixed">
         <parent link="$(arg prefix)platform_link"/>
         <child link="$(arg prefix)left_arm_mount_link"/>
-        <origin xyz="0.28 0.25 0.18" rpy="0 0 -${pi/5}"/>
+        <origin xyz="0.28 0.25 0.1" rpy="0 0 -${pi/5}"/>
     </joint>
 
     <xacro:load_piper

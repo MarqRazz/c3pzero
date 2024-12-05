@@ -1,27 +1,50 @@
-# MoveIt uses this configuration for controller management
-
-moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
-
-moveit_simple_controller_manager:
-  controller_names:
-    - joint_trajectory_controller
-    - robotiq_gripper_controller
-
-  joint_trajectory_controller:
-    type: FollowJointTrajectory
-    action_ns: follow_joint_trajectory
-    default: true
-    joints:
-      - gen3_joint_1
-      - gen3_joint_2
-      - gen3_joint_3
-      - gen3_joint_4
-      - gen3_joint_5
-      - gen3_joint_6
-      - gen3_joint_7
-  robotiq_gripper_controller:
-    type: GripperCommand
-    joints:
-      - gen3_robotiq_85_left_knuckle_joint
-    action_ns: gripper_cmd
-    default: true
+/**:
+  ros__parameters:
+    trajectory_execution:
+      allowed_execution_duration_scaling: 1.2
+      allowed_goal_duration_margin: 0.5
+      allowed_start_tolerance: 0.01
+      trajectory_duration_monitoring: true
+    moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+    moveit_simple_controller_manager:
+      controller_names:
+        - right_arm_jtc
+        - left_arm_jtc
+        - right_arm_gripper_controller
+        - left_arm_gripper_controller
+      right_arm_jtc:
+        type: FollowJointTrajectory
+        action_ns: follow_joint_trajectory
+        default: true
+        joints:
+          - right_arm_joint_1
+          - right_arm_joint_2
+          - right_arm_joint_3
+          - right_arm_joint_4
+          - right_arm_joint_5
+          - right_arm_joint_6
+      left_arm_jtc:
+        type: FollowJointTrajectory
+        action_ns: follow_joint_trajectory
+        default: true
+        joints:
+          - left_arm_joint_1
+          - left_arm_joint_2
+          - left_arm_joint_3
+          - left_arm_joint_4
+          - left_arm_joint_5
+          - left_arm_joint_6
+      # ParallelGripperCommand is not yet supported.
+      # see https://github.com/moveit/moveit2/issues/3017
+      right_arm_gripper_controller:
+        type: ParallelGripperCommand
+        joints:
+          - right_arm_gripper_joint
+        action_ns: gripper_cmd
+        default: true
+      left_arm_gripper_controller:
+        type: ParallelGripperCommand
+        joints:
+          - left_arm_gripper_joint
+        action_ns: gripper_cmd
+        default: true

@@ -1,10 +1,10 @@
 moveit_setup_assistant_config:
   urdf:
     package: c3pzero_description
-    relative_path: urdf/c3pzero_kinova_gen3.xacro
+    relative_path: urdf/c3pzero.urdf.xacro
   srdf:
-    relative_path: config/c3pzero_kinova_gen3.srdf
+    relative_path: config/c3pzero.srdf
   package_settings:
     author_name: Marq Rasmussen
     author_email: marq.razz@gmail.com
-    generated_timestamp: 1690059728
+    generated_timestamp: 1733147502
