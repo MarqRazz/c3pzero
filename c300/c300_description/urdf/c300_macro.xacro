@@ -4,29 +4,25 @@
   <xacro:macro name="load_c300" params="
     prefix
     sim_isaac:=false
-    sim_ignition:=false
+    sim_gazebo:=false
     isaac_joint_commands:=/isaac_joint_commands
     isaac_joint_states:=/isaac_joint_states
-    use_fake_hardware:=false">
+    mock_hardware:=false">
 
     <!-- Import macros for main hardware components -->
     <xacro:include filename="$(find c300_description)/urdf/hokuyo_uam05lp.urdf.xacro" />
 
-    <xacro:if value="${use_fake_hardware or sim_ignition or sim_isaac}">
+    <xacro:if value="${mock_hardware or sim_gazebo or sim_isaac}">
       <!-- ros2 control is only used for simulation -->
       <xacro:include filename="$(find c300_description)/urdf/c300.ros2_control.xacro" />
-      <xacro:property name="ros2_control_name" value="C300_Base"/>
+      <xacro:property name="ros2_control_name" value="c300_control"/>
       <xacro:c300_ros2_control
         name="${ros2_control_name}"
-        use_fake_hardware="${use_fake_hardware}"
+        mock_hardware="${mock_hardware}"
         sim_isaac="${sim_isaac}"
         isaac_joint_commands="${isaac_joint_commands}"
         isaac_joint_states="${isaac_joint_states}"
-        sim_ignition="${sim_ignition}"/>
-      <xacro:include filename="$(find c300_description)/urdf/c300_transmission_macro.xacro" />
-      <xacro:load_gazebo_base_transmissions/>
-
-      <xacro:include filename="$(find c300_description)/urdf/c300_base.gazebo.xacro" />
+        sim_gazebo="${sim_gazebo}"/>
     </xacro:if>
 
     <!-- Define robot constants -->
@@ -203,6 +199,13 @@
     <xacro:hokuyo_uam05lp prefix="base" topic="scan" parent_link="base_link">
       <origin xyz="0 0 0.155" rpy="0 0 0" />
     </xacro:hokuyo_uam05lp>
+
+    <link name="imu_link"/>
+    <joint name="imu_joint" type="fixed">
+      <parent link="base_link" />
+      <child link="imu_link"/>
+      <origin xyz="-0.1 0 0.155" rpy="0 0 0" />
+    </joint>
 
   </xacro:macro>
 </robot>

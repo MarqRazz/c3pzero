@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Author: Marq Rasmussen
 
-import shlex
-from launch import LaunchDescription
+from launch import LaunchDescription, LaunchContext
 from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
+    OpaqueFunction,
     RegisterEventHandler,
 )
 from launch.event_handlers import OnProcessExit
@@ -19,98 +19,42 @@ from launch.substitutions import (
 )
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from ament_index_python.packages import get_package_share_directory
+
+
+def launch_gz(context: LaunchContext):
+    gz_world_file = get_package_share_directory("c300_bringup") + "/worlds/depot.sdf"
+    # -r is to run the simulation on start
+    # -v is the verbose level
+    #  0: No output, 1: Error, 2: Error and warning, 3: Error, warning, and info, 4: Error, warning, info, and debug.
+    sim_options = "-r -v 3"
+    if LaunchConfiguration("headless").perform(context) == "true":
+        sim_options += " -s"  # -s is to only run the server (headless mode).
+    gz_launch_description = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
+        ),
+        launch_arguments=[("gz_args", [f"{sim_options} {gz_world_file}"])],
+    )
+    return [gz_launch_description]
 
 
 def generate_launch_description():
     declared_arguments = []
-    # Simulation specific arguments
     declared_arguments.append(
-        DeclareLaunchArgument(
-            "sim_ignition",
-            default_value="True",
-            description="Use Ignition Gazebo for simulation",
-        )
-    )
-    # General arguments
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "runtime_config_package",
-            default_value="c3pzero_bringup",
-            description='Package with the controller\'s configuration in "config" folder. \
-        Usually the argument is not set, it enables use of a custom setup.',
-        )
+        DeclareLaunchArgument("rviz", default_value="false", description="Launch RViz?")
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "description_package",
-            default_value="c3pzero_description",
-            description="Description package with robot URDF/XACRO files. Usually the argument \
-        is not set, it enables use of a custom description.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "description_file",
-            default_value="c3pzero_kinova_gen3.xacro",
-            description="URDF/XACRO description file with the robot.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "robot_name",
-            default_value="c3pzero",
-            description="Robot name.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "diff_drive_controller",
-            default_value="diff_drive_base_controller",
-            description="Diff drive base controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "jtc_controller",
-            default_value="joint_trajectory_controller",
-            description="Robot controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "robot_hand_controller",
-            default_value="robotiq_gripper_controller",
-            description="Robot hand controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "launch_rviz", default_value="True", description="Launch RViz?"
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "use_sim_time",
-            default_value="True",
-            description="Use simulation (Gazebo) clock if true",
+            "headless", default_value="true", description="Launch Gazebo headless?"
         )
     )
 
     # Initialize Arguments
-    sim_ignition = LaunchConfiguration("sim_ignition")
-    # General arguments
-    runtime_config_package = LaunchConfiguration("runtime_config_package")
-    description_package = LaunchConfiguration("description_package")
-    description_file = LaunchConfiguration("description_file")
-    robot_name = LaunchConfiguration("robot_name")
-    diff_drive_controller = LaunchConfiguration("diff_drive_controller")
-    robot_traj_controller = LaunchConfiguration("jtc_controller")
-    robot_hand_controller = LaunchConfiguration("robot_hand_controller")
-    launch_rviz = LaunchConfiguration("launch_rviz")
-    use_sim_time = LaunchConfiguration("use_sim_time")
+    launch_rviz = LaunchConfiguration("rviz")
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(runtime_config_package), "rviz", "bringup_config.rviz"]
+        [FindPackageShare("c3pzero_bringup"), "rviz", "c3pzero.rviz"]
     )
 
     robot_description_content = Command(
@@ -118,11 +62,10 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", description_file]
+                [FindPackageShare("c3pzero_description"), "urdf", "c3pzero.urdf.xacro"]
             ),
             " ",
-            "sim_ignition:=",
-            sim_ignition,
+            "sim_gazebo:=true",
             " ",
         ]
     )
@@ -133,7 +76,7 @@ def generate_launch_description():
         output="both",
         parameters=[
             {
-                "use_sim_time": use_sim_time,
+                "use_sim_time": True,
                 "robot_description": robot_description_content,
             }
         ],
@@ -148,44 +91,31 @@ def generate_launch_description():
         condition=IfCondition(launch_rviz),
     )
 
-    joint_state_broadcaster_spawner = Node(
+    controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        parameters=[{"use_sim_time": use_sim_time}],
+        parameters=[{"use_sim_time": True}],
         arguments=[
+            "diff_drive_base_controller",
+            "right_arm_jtc",
+            "left_arm_jtc",
+            "right_arm_gripper_controller",
+            "left_arm_gripper_controller",
             "joint_state_broadcaster",
             "--controller-manager",
             "/controller_manager",
         ],
     )
 
-    # Delay rviz start after `joint_state_broadcaster`
-    delay_rviz_after_joint_state_broadcaster_spawner = RegisterEventHandler(
+    # Delay rviz start after `controller_spawner`
+    delay_rviz_after_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
-            target_action=joint_state_broadcaster_spawner,
+            target_action=controller_spawner,
             on_exit=[rviz_node],
         )
     )
 
-    robot_traj_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[robot_traj_controller, "-c", "/controller_manager"],
-    )
-
-    diff_drive_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[diff_drive_controller, "-c", "/controller_manager"],
-    )
-
-    robot_hand_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[robot_hand_controller, "-c", "/controller_manager"],
-    )
-
-    ignition_spawn_entity = Node(
+    gazebo_spawn_entity = Node(
         package="ros_gz_sim",
         executable="create",
         output="screen",
@@ -193,7 +123,7 @@ def generate_launch_description():
             "-string",
             robot_description_content,
             "-name",
-            robot_name,
+            "c3pzero",
             "-allow_renaming",
             "true",
             "-x",
@@ -201,7 +131,7 @@ def generate_launch_description():
             "-y",
             "0.0",
             "-z",
-            "0.3",
+            "0.0",
             "-R",
             "0.0",
             "-P",
@@ -209,52 +139,57 @@ def generate_launch_description():
             "-Y",
             "0.0",
         ],
-        condition=IfCondition(sim_ignition),
-    )
-
-    ignition_launch_description = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"]
-        ),
-        # TODO (marqrazz): fix the hardcoded path to the gazebo world
-        launch_arguments={
-            "gz_args": " -r -v 3 /root/c3pzero_ws/src/c3pzero/c300/c300_bringup/worlds/depot.sdf"
-        }.items(),
-        condition=IfCondition(sim_ignition),
     )
 
     # Bridge
     gazebo_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        parameters=[{"use_sim_time": use_sim_time}],
+        parameters=[{"use_sim_time": True}],
         arguments=[
-            "/rgbd_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image",
-            "/rgbd_camera/depth_image@sensor_msgs/msg/Image[ignition.msgs.Image",
-            "/rgbd_camera/points@sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked",
-            "/rgbd_camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
-            # "/segmentation/colored_map@sensor_msgs/msg/Image[ignition.msgs.Image",
-            # '/segmentation/labels_map@sensor_msgs/msg/Image@ignition.msgs.Image',
-            # "/segmentation/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo",
-            "/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
-            "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+            "/right_arm_wrist_camera/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/right_arm_wrist_camera/depth_image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/right_arm_wrist_camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
+            "/right_arm_wrist_camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+            "/left_arm_wrist_camera/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/left_arm_wrist_camera/depth_image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/left_arm_wrist_camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
+            "/left_arm_wrist_camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
+            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
         ],
         remappings=[
             (
-                "/rgbd_camera/image",
-                "/wrist_mounted_camera/color/image_raw",
+                "/right_arm_wrist_camera/image",
+                "/right_arm_wrist_camera/color/image_raw",
             ),
             (
-                "/rgbd_camera/depth_image",
-                "/wrist_mounted_camera/depth/image_rect_raw",
+                "/right_arm_wrist_camera/depth_image",
+                "/right_arm_wrist_camera/depth/image_rect_raw",
             ),
             (
-                "/rgbd_camera/points",
-                "/wrist_mounted_camera/depth/color/points",
+                "/right_arm_wrist_camera/points",
+                "/right_arm_wrist_camera/depth/color/points",
             ),
             (
-                "/rgbd_camera/camera_info",
-                "/wrist_mounted_camera/color/camera_info",
+                "/right_arm_wrist_camera/camera_info",
+                "/right_arm_wrist_camera/color/camera_info",
+            ),
+            (
+                "/left_arm_wrist_camera/image",
+                "/left_arm_wrist_camera/color/image_raw",
+            ),
+            (
+                "/left_arm_wrist_camera/depth_image",
+                "/left_arm_wrist_camera/depth/image_rect_raw",
+            ),
+            (
+                "/left_arm_wrist_camera/points",
+                "/left_arm_wrist_camera/depth/color/points",
+            ),
+            (
+                "/left_arm_wrist_camera/camera_info",
+                "/left_arm_wrist_camera/color/camera_info",
             ),
         ],
         output="screen",
@@ -262,13 +197,10 @@ def generate_launch_description():
 
     nodes_to_start = [
         robot_state_publisher_node,
-        joint_state_broadcaster_spawner,
-        delay_rviz_after_joint_state_broadcaster_spawner,
-        diff_drive_controller_spawner,
-        robot_traj_controller_spawner,
-        robot_hand_controller_spawner,
-        ignition_launch_description,
-        ignition_spawn_entity,
+        controller_spawner,
+        delay_rviz_after_controller_spawner,
+        OpaqueFunction(function=launch_gz),
+        gazebo_spawn_entity,
         gazebo_bridge,
     ]
 

@@ -1,12 +1,6 @@
-FROM osrf/ros:humble-desktop-full-jammy
+FROM osrf/ros:jazzy-desktop-full
 
 SHELL ["/bin/bash", "-c", "-o", "pipefail"]
-
-# Add the latest binaries for MoveIt2
-RUN echo "deb [trusted=yes] https://raw.githubusercontent.com/moveit/moveit2_packages/jammy-humble/ ./" \
-    | tee /etc/apt/sources.list.d/moveit_moveit2_packages.list
-RUN echo "yaml https://raw.githubusercontent.com/moveit/moveit2_packages/jammy-humble/local.yaml humble" \
-    | tee /etc/ros/rosdep/sources.list.d/1-moveit_moveit2_packages.list
 
 # Bring the container up to date to get the latest ROS2 humble sync
 # hadolint ignore=DL3008, DL3013
@@ -61,16 +55,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-humble-navigation2 \
     ros-humble-nav2-bringup \
     ros-humble-rmw-cyclonedds-cpp \
-    && rm -rf /var/lib/apt/lists/*
-
-# Upgrade binaries for Gazebo to get working RGBD camera
-# hadolint ignore=DL3008
-RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable jammy main" > /etc/apt/sources.list.d/gazebo-stable.list && \
-    wget -q http://packages.osrfoundation.org/gazebo.key && \
-    apt-key add gazebo.key && \
-    apt-get update && apt-get install --no-install-recommends -y \
-    libsdformat12 \
-    libignition-sensors6=6.7.1-1~jammy \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy over the source code to rosdep install other dependencies.

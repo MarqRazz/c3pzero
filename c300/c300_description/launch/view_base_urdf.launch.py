@@ -15,7 +15,7 @@ def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(
         package="c300_description"
     ).find("c300_description")
-    default_model_path = os.path.join(pkg_share, "urdf/c300_base.urdf")
+    default_model_path = os.path.join(pkg_share, "urdf/c300.urdf.xacro")
     default_rviz_config_path = os.path.join(pkg_share, "rviz/view_urdf.rviz")
 
     robot_state_publisher_node = launch_ros.actions.Node(

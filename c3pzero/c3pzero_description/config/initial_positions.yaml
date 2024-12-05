@@ -1,0 +1,7 @@
+# Start the arms off the joint limits to keep Gazebo from falling on the negative side of the limit and getting stuck
+joint_1: 0.0
+joint_2: 0.2
+joint_3: -0.2
+joint_4: 0.0
+joint_5: 0.0
+joint_6: 0.0

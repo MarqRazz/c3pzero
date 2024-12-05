@@ -1,74 +1,88 @@
-# c3pzero Mobile Robot
+# c3pzero Mobile Manipulator
 
-## To view the robots URDF in Rviz you can use the following launch file:
+### To view the robots URDF in Rviz you can use the following launch file:
 ``` bash
-ros2 launch c3pzero_description view_robot_urdf.launch.py
+ros2 launch c3pzero_description view_urdf.launch.xml
 ```
 
 <img src="../doc/c3pzero_urdf.png"  width="50%" >
 
-## To start the `c3pzero` mobile robot in Gazebo run the following command:
+### To start the `c3pzero` mobile robot in Gazebo run the following command:
 ``` bash
-ros2 launch c3pzero_bringup gazebo_c3pzero.launch.py launch _rviz:=false
+ros2 launch c3pzero_bringup gazebo_c3pzero.launch.py headless:=false rviz:=true
 ```
 
-## To start the `c3pzero` mobile robot in Isaac run the following commands:
-From the `c3pzero_description/usd` folder on the host start the robot in Isaac Sim
+### To start MoveIt to control the simulated robot run the following command:
 ``` bash
-./python.sh isaac_c3pzero.py
-```
-Inside the `c3pzero` Docker container start the robot controllers
-``` bash
-ros2 launch c3pzero_bringup gazebo_c3pzero.launch.py launch _rviz:=false
+ros2 launch c3pzero_moveit_config demo.launch.xml mock_hardware:=true
 ```
 
-## To start MoveIt to control the simulated robot run the following command:
+or if simulating in Gazebo or Isaac:
 ``` bash
-ros2 launch c3pzero_moveit_config move_group.launch.py
+ros2 launch c3pzero_moveit_config demo.launch.xml use_sim_time:=true
 ```
 
-## To test out the controllers in simulation you can run the following commands:
+### To test out the controllers in simulation you can run the following commands:
 
-- Arm home pose
+- Example arm pose
 ``` bash
-ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/JointTrajectory "{
-  joint_names: [gen3_joint_1, gen3_joint_2, gen3_joint_3, gen3_joint_4, gen3_joint_5, gen3_joint_6, gen3_joint_7],
+ros2 topic pub /right_arm_jtc/joint_trajectory trajectory_msgs/JointTrajectory "{
+  joint_names: [right_arm_joint_1, right_arm_joint_2, right_arm_joint_3, right_arm_joint_4, right_arm_joint_5, right_arm_joint_6, ],
   points: [
-    { positions: [0.0, 0.26, 3.14, -2.27, 0.0, 0.96, 1.57], time_from_start: { sec: 2 } },
+    { positions: [-0.2, 0.85, -0.75, 0.0, 0.5, 0.0], time_from_start: { sec: 1 } },
+  ]
+}" -1
+```
+``` bash
+ros2 topic pub /left_arm_jtc/joint_trajectory trajectory_msgs/JointTrajectory "{
+  joint_names: [left_arm_joint_1, left_arm_joint_2, left_arm_joint_3, left_arm_joint_4, left_arm_joint_5, left_arm_joint_6, ],
+  points: [
+    { positions: [-2.0, 0.85, -1.0, 0.0, 1.2, 0.0], time_from_start: { sec: 1 } },
   ]
 }" -1
 ```
 
 - Arm retracted pose
 ``` bash
-ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/JointTrajectory "{
-  joint_names: [gen3_joint_1, gen3_joint_2, gen3_joint_3, gen3_joint_4, gen3_joint_5, gen3_joint_6, gen3_joint_7],
+ros2 topic pub /right_arm_jtc/joint_trajectory trajectory_msgs/JointTrajectory "{
+  joint_names: [right_arm_joint_1, right_arm_joint_2, right_arm_joint_3, right_arm_joint_4, right_arm_joint_5, right_arm_joint_6, ],
   points: [
-    { positions: [0.0, -0.35, 3.14, -2.54, 0.0, -0.87, 1.57], time_from_start: { sec: 2 } },
+    { positions: [-0.2, 0.0, 0.0, 0.0, 0.0, 0.0], time_from_start: { sec: 1 } },
+  ]
+}" -1
+```
+``` bash
+ros2 topic pub /left_arm_jtc/joint_trajectory trajectory_msgs/JointTrajectory "{
+  joint_names: [left_arm_joint_1, left_arm_joint_2, left_arm_joint_3, left_arm_joint_4, left_arm_joint_5, left_arm_joint_6, ],
+  points: [
+    { positions: [0.2, 0.0, 0.0, 0.0, 0.0, 0.0], time_from_start: { sec: 1 } },
   ]
 }" -1
 ```
 
-- GripperActionController (Open position: 0, Closed: 0.8)
+- GripperActionController (Closed position: 0.0, Open: 0.38)
 ``` bash
-ros2 action send_goal /robotiq_gripper_controller/gripper_cmd control_msgs/action/GripperCommand "{command: {position: 0.0}}"
+ros2 action send_goal /right_arm_gripper_controller/gripper_cmd control_msgs/action/ParallelGripperCommand "{command: {name: [gripper_joint], position: [0.03]}}"
+```
+``` bash
+ros2 action send_goal /left_arm_gripper_controller/gripper_cmd control_msgs/action/ParallelGripperCommand "{command: {name: [gripper_joint], position: [0.03]}}"
 ```
 
-## To test sending commands directly to Isaac Sim you can run the following commands:
+### To test sending commands directly to Isaac Sim you can run the following commands:
 > NOTE: sending command that are far away from the robots current pose can cause the simulation to go unstable and be thrown around in the world.
 
 - Arm home pose
 ``` bash
 ros2 topic pub /isaac_joint_commands sensor_msgs/JointState "{
-  name: [gen3_joint_1, gen3_joint_2, gen3_joint_3, gen3_joint_4, gen3_joint_5, gen3_joint_6, gen3_joint_7],
-  position: [0.0, 0.26, 3.14, -2.27, 0.0, 0.96, 1.57]
+  name: [joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint_7],
+  position: [-0.2, 0.85, -0.75, 0.0, 0.5, 0.0]
 }" -1
 ```
 
 - Arm retracted pose
 ``` bash
 ros2 topic pub /isaac_joint_commands sensor_msgs/JointState "{
-  name: [gen3_joint_1, gen3_joint_2, gen3_joint_3, gen3_joint_4, gen3_joint_5, gen3_joint_6, gen3_joint_7],
-  position: [0.0, -0.35, 3.14, -2.54, 0.0, -0.87, 1.57]
+  name: [joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint_7],
+  position: [-0.2, 0.85, -0.75, 0.0, 0.5, 0.0]
 }" -1
 ```

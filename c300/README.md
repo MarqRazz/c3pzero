@@ -14,4 +14,4 @@ ros2 launch c300_bringup gazebo_c300.launch.py
 ``` bash
 ros2 launch c300_driver teleop.launch.py
 ```
-> NOTE: in simulation the `cmd_vel` topic is on `/diff_drive_base_controller/cmd_vel_unstamped`
+> NOTE: in simulation the `cmd_vel` topic is on `/cmd_vel_nav` to work with the ROS Navigation stack.

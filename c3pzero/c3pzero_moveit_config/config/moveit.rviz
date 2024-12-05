@@ -3,10 +3,9 @@ Panels:
     Help Height: 0
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /MotionPlanning1
+      Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 312
+    Tree Height: 275
   - Class: rviz_common/Help
     Name: Help
   - Class: rviz_common/Views
@@ -94,91 +93,112 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_base_link:
+          imu_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_bracelet_link:
+          left_arm_gripper_aux_mount:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_gripper_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_end_effector_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          gen3_forearm_link:
+          left_arm_left_finger:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_half_arm_1_link:
+          left_arm_link_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_half_arm_2_link:
+          left_arm_link_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_base_link:
+          left_arm_link_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_finger_link:
+          left_arm_link_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_finger_tip_link:
+          left_arm_link_5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_inner_knuckle_link:
+          left_arm_link_6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_right_finger:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_knuckle_link:
+          left_arm_tool_0:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_finger_link:
+          left_arm_wrist_camera_bottom_screw_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_finger_tip_link:
+          left_arm_wrist_camera_bracket_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_inner_knuckle_link:
+          left_arm_wrist_camera_color_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_knuckle_link:
+          left_arm_wrist_camera_color_optical_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_shoulder_link:
+          left_arm_wrist_camera_depth_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_spherical_wrist_1_link:
+          left_arm_wrist_camera_depth_optical_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_spherical_wrist_2_link:
+          left_arm_wrist_camera_infra1_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_infra1_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_infra2_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_infra2_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -193,67 +213,124 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          robot_mount_link:
+          right_arm_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
+          right_arm_gripper_aux_mount:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_gripper_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_left_finger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_4:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_5:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_right_finger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_tool_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_bottom_screw_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_bracket_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_color_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_color_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_depth_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_depth_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra1_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra1_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra2_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra2_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           rr_caster:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          wrist_camera_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_camera_mount_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          wrist_mounted_camera_bottom_screw_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_color_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_color_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_depth_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_depth_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra1_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra1_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra2_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra2_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_link:
+          storage_tote:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
         Loop Animation: false
-        Robot Alpha: 0.5
+        Robot Alpha: 1
         Robot Color: 150; 50; 150
         Show Robot Collision: false
         Show Robot Visual: true
@@ -275,7 +352,7 @@ Visualization Manager:
         Goal State Color: 250; 128; 0
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
-        Planning Group: manipulator
+        Planning Group: right_manipulator
         Query Goal State: true
         Query Start State: false
         Show Workspace: false
@@ -326,91 +403,112 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_base_link:
+          imu_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_bracelet_link:
+          left_arm_gripper_aux_mount:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_gripper_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_end_effector_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          gen3_forearm_link:
+          left_arm_left_finger:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_half_arm_1_link:
+          left_arm_link_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_half_arm_2_link:
+          left_arm_link_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_base_link:
+          left_arm_link_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_finger_link:
+          left_arm_link_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_finger_tip_link:
+          left_arm_link_5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_inner_knuckle_link:
+          left_arm_link_6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_right_finger:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          gen3_robotiq_85_left_knuckle_link:
+          left_arm_tool_0:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_finger_link:
+          left_arm_wrist_camera_bottom_screw_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_finger_tip_link:
+          left_arm_wrist_camera_bracket_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_inner_knuckle_link:
+          left_arm_wrist_camera_color_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_robotiq_85_right_knuckle_link:
+          left_arm_wrist_camera_color_optical_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_shoulder_link:
+          left_arm_wrist_camera_depth_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_spherical_wrist_1_link:
+          left_arm_wrist_camera_depth_optical_frame:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          gen3_spherical_wrist_2_link:
+          left_arm_wrist_camera_infra1_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_infra1_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_infra2_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_infra2_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          left_arm_wrist_camera_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -425,66 +523,123 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          robot_mount_link:
+          right_arm_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
+          right_arm_gripper_aux_mount:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_gripper_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_left_finger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_4:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_5:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_link_6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_right_finger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          right_arm_tool_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_bottom_screw_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_bracket_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_color_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_color_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_depth_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_depth_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra1_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra1_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra2_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_infra2_optical_frame:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          right_arm_wrist_camera_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           rr_caster:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          wrist_camera_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_camera_mount_link:
+          storage_tote:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          wrist_mounted_camera_bottom_screw_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_color_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_color_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_depth_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_depth_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra1_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra1_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra2_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_infra2_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          wrist_mounted_camera_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-        Robot Alpha: 0.5
+        Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
@@ -492,7 +647,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base_footprint
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -507,41 +662,41 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.947645425796509
+      Distance: 2.100095510482788
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.12256991118192673
-        Y: 0.23251095414161682
-        Z: 0.5736060738563538
+        X: -0.062461890280246735
+        Y: 0.15434633195400238
+        Z: 0.4571358561515808
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.21500010788440704
+      Pitch: 0.37500035762786865
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: 4.995179653167725
+      Yaw: 5.465185642242432
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 975
+  Height: 1369
   Help:
     collapsed: false
   Hide Left Dock: false
-  Hide Right Dock: true
+  Hide Right Dock: false
   MotionPlanning:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000200000000000001f700000379fc0200000004fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000003f00fffffffb000000100044006900730070006c006100790073010000003b00000173000000c700fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001b4000002000000016900fffffffb0000000800480065006c0070000000029a0000006e0000006e00ffffff000000010000019b00000379fc0200000001fb0000000a00560069006500770073000000003b00000379000000a000ffffff000002b30000037900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002b4000004f7fc0200000005fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720100000044000000470000004700fffffffb000000100044006900730070006c006100790073010000009200000154000000eb00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001ed0000024b000001a100fffffffb0000000800480065006c0070000000029a0000006e0000008100fffffffb0000000a00560069006500770073010000043f000000fc000000b900ffffff000006ff000004f700000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
-    collapsed: true
-  Width: 1200
-  X: 172
-  Y: 27
+    collapsed: false
+  Width: 2490
+  X: 70
+  Y: 34

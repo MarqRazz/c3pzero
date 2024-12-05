@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<robot name="c300_gazebo" xmlns:xacro="http://ros.org/wiki/xacro" xmlns:gz="http://gazebosim.org/schema">
+
+  <!--
+Gazebo plugins can only be included once. Use this xacro as an example of how to run ros2_control in Gazebo.
+Required Gazebo plugins:
+  - gz_ros2_control::GazeboSimROS2ControlPlugin
+    required to read and publish the robots joint states
+-->
+<xacro:macro name="c300_gazebo" params="simulation_controllers">
+
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>${simulation_controllers}</parameters>
+      <controller_manager_node_name>controller_manager</controller_manager_node_name>
+      <ros>
+        <remapping>/diff_drive_base_controller/cmd_vel:=/cmd_vel_nav</remapping>
+        <remapping>/diff_drive_base_controller/odom:=/odom</remapping>
+      </ros>
+    </plugin>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <sensor name="imu" type="imu">
+      <gz_frame_id>imu_link</gz_frame_id>
+      <topic>/imu</topic>
+      <update_rate>100</update_rate>
+      <always_on>1</always_on>
+      <visualize>false</visualize>
+      <enable_metrics>false</enable_metrics>
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="drivewhl_l_link">
+    <collision>
+      <surface>
+        <friction>
+            <ode>
+              <mu>0.8</mu>
+              <mu2>0.8</mu2>
+              <fdir1 gz:expressed_in='base_link'>1 1 0</fdir1>
+            </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+  <gazebo reference="drivewhl_r_link">
+    <collision>
+      <surface>
+        <friction>
+            <ode>
+              <mu>0.8</mu>
+              <mu2>0.8</mu2>
+              <fdir1 gz:expressed_in='base_link'>1 1 0</fdir1>
+            </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+
+  <gazebo reference="rr_caster">
+    <collision>
+      <surface>
+        <friction>
+            <ode>
+              <mu>0.01</mu>
+              <mu2>0.01</mu2>
+            </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+  <gazebo reference="lr_caster">
+    <collision>
+      <surface>
+        <friction>
+            <ode>
+              <mu>0.01</mu>
+              <mu2>0.01</mu2>
+            </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+</xacro:macro>
+</robot>

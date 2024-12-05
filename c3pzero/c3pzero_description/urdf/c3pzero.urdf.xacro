@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<robot name="c3pzero" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Arguments -->
+    <xacro:arg name="prefix" default="" />
+    <xacro:arg name="sim_gazebo" default="false" />
+    <xacro:arg name="sim_isaac" default="false" />
+    <xacro:arg name="mock_hardware" default="false" />
+
+    <!-- Import macros for main hardware components -->
+    <xacro:include filename="$(find c300_description)/urdf/c300_macro.xacro" />
+    <xacro:include filename="$(find piper_description)/urdf/piper_macro.xacro" />
+    <xacro:include filename="$(find c3pzero_description)/urdf/wrist_realsense.urdf.xacro" />
+
+    <!-- initial position for simulation (currently applies to both arms) -->
+    <xacro:arg name="initial_positions_file" default="$(find c3pzero_description)/config/initial_positions.yaml"/>
+    <!-- convert to property to use substitution in function -->
+    <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
+
+    <xacro:if value="$(arg sim_gazebo)">
+      <!-- c300.gazebo.xacro includes all of the plugins and tags we need to simulate this robot -->
+      <xacro:include filename="$(find c300_description)/urdf/c300.gazebo.xacro" />
+      <xacro:arg name="simulation_controllers" default="$(find c3pzero_bringup)/config/c3pzero_gz_controllers.yaml" />
+      <xacro:c300_gazebo
+            simulation_controllers="$(arg simulation_controllers)"/>
+    </xacro:if>
+
+    <xacro:load_c300
+      prefix="$(arg prefix)"
+      mock_hardware="$(arg mock_hardware)"
+      sim_gazebo="$(arg sim_gazebo)"
+      sim_isaac="$(arg sim_isaac)"
+      isaac_joint_commands="/mobile_base_joint_commands"
+      isaac_joint_states="/isaac_joint_states"/>
+
+    <!-- Right Arm -->
+    <link name="$(arg prefix)right_arm_mount_link"/>
+    <joint name="$(arg prefix)right_arm_mount_joint" type="fixed">
+        <parent link="$(arg prefix)platform_link"/>
+        <child link="$(arg prefix)right_arm_mount_link"/>
+        <origin xyz="0.28 -0.25 0.1" rpy="0 0 ${pi/5}"/>
+    </joint>
+
+    <xacro:load_piper
+        parent="$(arg prefix)right_arm_mount_link"
+        prefix="$(arg prefix)right_arm_"
+        include_gripper="true"
+        mock_hardware="$(arg mock_hardware)"
+        sim_gazebo="$(arg sim_gazebo)"
+        sim_isaac="$(arg sim_isaac)"
+        initial_positions="${xacro.load_yaml(initial_positions_file)}">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:load_piper>
+
+    <xacro:wrist_camera
+        parent="$(arg prefix)right_arm_gripper_aux_mount"
+        prefix="$(arg prefix)right_arm_"
+        sim_gazebo="$(arg sim_gazebo)">
+    </xacro:wrist_camera>
+
+    <!-- Left Arm -->
+    <link name="$(arg prefix)left_arm_mount_link"/>
+    <joint name="$(arg prefix)left_arm_mount_joint" type="fixed">
+        <parent link="$(arg prefix)platform_link"/>
+        <child link="$(arg prefix)left_arm_mount_link"/>
+        <origin xyz="0.28 0.25 0.1" rpy="0 0 -${pi/5}"/>
+    </joint>
+
+    <xacro:load_piper
+        parent="$(arg prefix)left_arm_mount_link"
+        prefix="$(arg prefix)left_arm_"
+        include_gripper="true"
+        mock_hardware="$(arg mock_hardware)"
+        sim_gazebo="$(arg sim_gazebo)"
+        sim_isaac="$(arg sim_isaac)"
+        initial_positions="${xacro.load_yaml(initial_positions_file)}">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:load_piper>
+
+    <xacro:wrist_camera
+        parent="$(arg prefix)left_arm_gripper_aux_mount"
+        prefix="$(arg prefix)left_arm_"
+        sim_gazebo="$(arg sim_gazebo)">
+    </xacro:wrist_camera>
+
+    <!-- Storage Tote -->
+    <link name="$(arg prefix)storage_tote">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1.0" />
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/tote.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/tote.dae" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="$(arg prefix)tote_joint" type="fixed">
+      <origin xyz="-0.25 0.3 0.04" rpy="0 0 ${-pi/2}" />
+      <parent link="$(arg prefix)platform_link" />
+      <child link="$(arg prefix)storage_tote" />
+    </joint>
+
+</robot>

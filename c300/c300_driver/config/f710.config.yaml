@@ -1,19 +1,22 @@
 # Logitech F710
 teleop_twist_joy_node:
   ros__parameters:
-    axis_linear:  # Forward/Back
-      x: 1
+    publish_stamped_twist: true
+    frame: base_link
+    axis_linear:
+      x: 1 # Left joy forward/back axis index
+    axis_angular:
+      yaw: 3 # Right joy left/right axis index
+
+    # max linear and angular velocity
     scale_linear:
       x: 1.0
-    scale_linear_turbo:
-      x: 2.0
-
-    axis_angular:  # Twist
-      yaw: 3
     scale_angular:
       yaw: 0.8
+    scale_linear_turbo:
+      x: 2.0
     scale_angular_turbo:
       yaw: 2.0
 
-    enable_button: 5  # Trigger
-    enable_turbo_button: 4  # Button 2 aka thumb button
+    enable_button: 5  # Right Trigger
+    enable_turbo_button: 4  # Left Trigger

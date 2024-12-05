@@ -9,14 +9,14 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <exec_depend>c300_description</exec_depend>
+  <exec_depend>c3pzero_description</exec_depend>
   <exec_depend>c300_driver</exec_depend>
-  <exec_depend>depth_image_proc</exec_depend>
-  <exec_depend>ign_ros2_control</exec_depend>
-  <exec_depend>gripper_controllers</exec_depend>
+  <exec_depend>gz_ros2_control</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>parallel_gripper_controller</exec_depend>
   <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>joint_state_broadcaster</exec_depend>
-  <exec_depend>robotiq_description</exec_depend>
   <exec_depend>rviz2</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
