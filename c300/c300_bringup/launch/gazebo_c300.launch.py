@@ -147,6 +147,7 @@ def generate_launch_description():
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
+            "/gt_odom@nav_msgs/msg/Odometry[gz.msgs.Odometry",
         ],
         output="screen",
     )

@@ -131,7 +131,7 @@ def generate_launch_description():
             "-y",
             "0.0",
             "-z",
-            "0.0",
+            "0.172",
             "-R",
             "0.0",
             "-P",
@@ -156,6 +156,7 @@ def generate_launch_description():
             "/left_arm_wrist_camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
             "/left_arm_wrist_camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
+            "/gt_odom@nav_msgs/msg/Odometry[gz.msgs.Odometry",
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
         ],
         remappings=[
