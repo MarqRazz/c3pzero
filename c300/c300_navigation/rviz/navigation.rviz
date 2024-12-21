@@ -5,10 +5,9 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /TF1/Frames1
         - /TF1/Tree1
       Splitter Ratio: 0.5833333134651184
-    Tree Height: 344
+    Tree Height: 332
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -62,6 +61,270 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_laser_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        drivewhl_l_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        drivewhl_r_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_gripper_aux_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_gripper_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_link_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_arm_tool_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_bracket_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra1_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra1_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra2_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_infra2_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_arm_wrist_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lr_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        platform_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_gripper_aux_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_gripper_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_link_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_arm_tool_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_bracket_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra1_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra1_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra2_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_infra2_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_arm_wrist_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rr_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storage_tote:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -72,16 +335,220 @@ Visualization Manager:
       Visual Enabled: true
     - Class: rviz_default_plugins/TF
       Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_footprint:
+          Value: false
+        base_laser:
+          Value: false
+        base_laser_mount:
+          Value: false
+        base_link:
+          Value: true
+        drivewhl_l_link:
+          Value: false
+        drivewhl_r_link:
+          Value: false
+        imu_link:
+          Value: false
+        left_arm_base_link:
+          Value: false
+        left_arm_gripper_aux_mount:
+          Value: false
+        left_arm_gripper_base_link:
+          Value: false
+        left_arm_left_finger:
+          Value: false
+        left_arm_link_1:
+          Value: false
+        left_arm_link_2:
+          Value: false
+        left_arm_link_3:
+          Value: false
+        left_arm_link_4:
+          Value: false
+        left_arm_link_5:
+          Value: false
+        left_arm_link_6:
+          Value: false
+        left_arm_mount_link:
+          Value: false
+        left_arm_right_finger:
+          Value: false
+        left_arm_tool_0:
+          Value: false
+        left_arm_wrist_camera_bottom_screw_frame:
+          Value: false
+        left_arm_wrist_camera_bracket_link:
+          Value: false
+        left_arm_wrist_camera_color_frame:
+          Value: false
+        left_arm_wrist_camera_color_optical_frame:
+          Value: false
+        left_arm_wrist_camera_depth_frame:
+          Value: false
+        left_arm_wrist_camera_depth_optical_frame:
+          Value: false
+        left_arm_wrist_camera_infra1_frame:
+          Value: false
+        left_arm_wrist_camera_infra1_optical_frame:
+          Value: false
+        left_arm_wrist_camera_infra2_frame:
+          Value: false
+        left_arm_wrist_camera_infra2_optical_frame:
+          Value: false
+        left_arm_wrist_camera_link:
+          Value: false
+        lr_caster:
+          Value: false
+        map:
+          Value: false
+        odom:
+          Value: true
+        platform_link:
+          Value: false
+        right_arm_base_link:
+          Value: false
+        right_arm_gripper_aux_mount:
+          Value: false
+        right_arm_gripper_base_link:
+          Value: false
+        right_arm_left_finger:
+          Value: false
+        right_arm_link_1:
+          Value: false
+        right_arm_link_2:
+          Value: false
+        right_arm_link_3:
+          Value: false
+        right_arm_link_4:
+          Value: false
+        right_arm_link_5:
+          Value: false
+        right_arm_link_6:
+          Value: false
+        right_arm_mount_link:
+          Value: false
+        right_arm_right_finger:
+          Value: false
+        right_arm_tool_0:
+          Value: false
+        right_arm_wrist_camera_bottom_screw_frame:
+          Value: false
+        right_arm_wrist_camera_bracket_link:
+          Value: false
+        right_arm_wrist_camera_color_frame:
+          Value: false
+        right_arm_wrist_camera_color_optical_frame:
+          Value: false
+        right_arm_wrist_camera_depth_frame:
+          Value: false
+        right_arm_wrist_camera_depth_optical_frame:
+          Value: false
+        right_arm_wrist_camera_infra1_frame:
+          Value: false
+        right_arm_wrist_camera_infra1_optical_frame:
+          Value: false
+        right_arm_wrist_camera_infra2_frame:
+          Value: false
+        right_arm_wrist_camera_infra2_optical_frame:
+          Value: false
+        right_arm_wrist_camera_link:
+          Value: false
+        rr_caster:
+          Value: false
+        storage_tote:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        {}
+        map:
+          odom:
+            base_link:
+              base_footprint:
+                {}
+              base_laser_mount:
+                base_laser:
+                  {}
+              drivewhl_l_link:
+                {}
+              drivewhl_r_link:
+                {}
+              imu_link:
+                {}
+              lr_caster:
+                {}
+              platform_link:
+                left_arm_mount_link:
+                  left_arm_base_link:
+                    left_arm_link_1:
+                      left_arm_link_2:
+                        left_arm_link_3:
+                          left_arm_link_4:
+                            left_arm_link_5:
+                              left_arm_link_6:
+                                left_arm_tool_0:
+                                  left_arm_gripper_base_link:
+                                    left_arm_gripper_aux_mount:
+                                      left_arm_wrist_camera_bracket_link:
+                                        left_arm_wrist_camera_bottom_screw_frame:
+                                          left_arm_wrist_camera_link:
+                                            left_arm_wrist_camera_color_frame:
+                                              left_arm_wrist_camera_color_optical_frame:
+                                                {}
+                                            left_arm_wrist_camera_depth_frame:
+                                              left_arm_wrist_camera_depth_optical_frame:
+                                                {}
+                                            left_arm_wrist_camera_infra1_frame:
+                                              left_arm_wrist_camera_infra1_optical_frame:
+                                                {}
+                                            left_arm_wrist_camera_infra2_frame:
+                                              left_arm_wrist_camera_infra2_optical_frame:
+                                                {}
+                                    left_arm_left_finger:
+                                      {}
+                                    left_arm_right_finger:
+                                      {}
+                right_arm_mount_link:
+                  right_arm_base_link:
+                    right_arm_link_1:
+                      right_arm_link_2:
+                        right_arm_link_3:
+                          right_arm_link_4:
+                            right_arm_link_5:
+                              right_arm_link_6:
+                                right_arm_tool_0:
+                                  right_arm_gripper_base_link:
+                                    right_arm_gripper_aux_mount:
+                                      right_arm_wrist_camera_bracket_link:
+                                        right_arm_wrist_camera_bottom_screw_frame:
+                                          right_arm_wrist_camera_link:
+                                            right_arm_wrist_camera_color_frame:
+                                              right_arm_wrist_camera_color_optical_frame:
+                                                {}
+                                            right_arm_wrist_camera_depth_frame:
+                                              right_arm_wrist_camera_depth_optical_frame:
+                                                {}
+                                            right_arm_wrist_camera_infra1_frame:
+                                              right_arm_wrist_camera_infra1_optical_frame:
+                                                {}
+                                            right_arm_wrist_camera_infra2_frame:
+                                              right_arm_wrist_camera_infra2_optical_frame:
+                                                {}
+                                    right_arm_left_finger:
+                                      {}
+                                    right_arm_right_finger:
+                                      {}
+                storage_tote:
+                  {}
+              rr_caster:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -145,7 +612,6 @@ Visualization Manager:
       Topic:
         Depth: 5
         Durability Policy: Volatile
-        Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Best Effort
         Value: /mobile_base/sensors/bumper_pointcloud
@@ -153,6 +619,8 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Alpha: 1
+      Binary representation: false
+      Binary threshold: 100
       Class: rviz_default_plugins/Map
       Color Scheme: map
       Draw Behind: true
@@ -192,6 +660,8 @@ Visualization Manager:
     - Class: rviz_common/Group
       Displays:
         - Alpha: 0.30000001192092896
+          Binary representation: false
+          Binary threshold: 100
           Class: rviz_default_plugins/Map
           Color Scheme: costmap
           Draw Behind: false
@@ -213,6 +683,8 @@ Visualization Manager:
           Use Timestamp: false
           Value: true
         - Alpha: 0.30000001192092896
+          Binary representation: false
+          Binary threshold: 100
           Class: rviz_default_plugins/Map
           Color Scheme: costmap
           Draw Behind: false
@@ -288,7 +760,6 @@ Visualization Manager:
           Topic:
             Depth: 5
             Durability Policy: Volatile
-            Filter size: 10
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: /global_costmap/voxel_marked_cloud
@@ -313,6 +784,8 @@ Visualization Manager:
     - Class: rviz_common/Group
       Displays:
         - Alpha: 0.699999988079071
+          Binary representation: false
+          Binary threshold: 100
           Class: rviz_default_plugins/Map
           Color Scheme: costmap
           Draw Behind: false
@@ -413,7 +886,6 @@ Visualization Manager:
           Topic:
             Depth: 5
             Durability Policy: Volatile
-            Filter size: 10
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: /local_costmap/voxel_marked_cloud
@@ -465,7 +937,6 @@ Visualization Manager:
           Topic:
             Depth: 5
             Durability Policy: Volatile
-            Filter size: 10
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: /intel_realsense_r200_depth/points
@@ -547,7 +1018,7 @@ Window Geometry:
   Hide Right Dock: true
   Navigation 2:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd000000040000000000000282000003bdfc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003b00000193000000c700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb00000018004e0061007600690067006100740069006f006e0020003201000001d4000002240000012300fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002c6000000c10000002800ffffff000000010000010f0000034afc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d0000034a000000a000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004f8000003bd00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd000000040000000000000282000003b1fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006b00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007301000000440000018d000000eb00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb00000018004e0061007600690067006100740069006f006e0020003201000001d80000021d000001fa00fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002c6000000c10000001600ffffff000000010000010f0000034afc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d0000034a000000b900fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004f7000003b100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RealsenseCamera:
     collapsed: false
   Selection:
@@ -557,5 +1028,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1920
-  X: 0
-  Y: 0
+  X: 70
+  Y: 34

@@ -4,7 +4,7 @@ project(c3pzero_description)
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY config launch rviz urdf
+  DIRECTORY config launch meshes rviz urdf
   DESTINATION share/${PROJECT_NAME}
 )
 

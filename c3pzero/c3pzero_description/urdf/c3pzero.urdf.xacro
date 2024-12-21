@@ -94,13 +94,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/tote.dae" />
+          <mesh filename="file://$(find c3pzero_description)/meshes/tote.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find c3pzero_description)/urdf/meshes/tote.dae" />
+          <mesh filename="file://$(find c3pzero_description)/meshes/tote.dae" />
         </geometry>
       </collision>
     </link>

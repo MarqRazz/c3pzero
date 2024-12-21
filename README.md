@@ -4,7 +4,7 @@
 
 Description: This is a ROS 2 package for the c3pzero robot which consists of a Permobile C300 diff drive base and dual arm manipulators. This Package support the physical hardware, Gazebo and Nvidia Isaac simulation.
 
-<img src="doc/c3pzero_urdf.png"  width="50%" >
+<img src="doc/c3pzero.png"  width="75%" >
 
 <img src="doc/c300_isaac.png"  width="60%" >
 
