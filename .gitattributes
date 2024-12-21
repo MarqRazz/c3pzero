@@ -1,0 +1,6 @@
+# LFS configuration
+*.dae filter=lfs merge=lfs -text
+*.DAE filter=lfs merge=lfs -text
+*.stl filter=lfs merge=lfs -text
+*.STL filter=lfs merge=lfs -text
+*.usd filter=lfs merge=lfs -text
