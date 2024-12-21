@@ -8,24 +8,23 @@
       sim_gazebo:=false">
 
     <link name="${prefix}wrist_camera_bracket_link">
-      <!-- TODO design bracket
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="0.5" />
+        <mass value="0.1" />
         <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find piper_description)/meshes/piper_realsense_bracket.dae" />
+          <mesh filename="file://$(find c3pzero_description)/meshes/realsense_mount.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find piper_description)/meshes/piper_realsense_bracket.dae" />
+          <mesh filename="file://$(find c3pzero_description)/meshes/realsense_mount.dae" />
         </geometry>
-      </collision> -->
+      </collision>
     </link>
     <joint name="${prefix}wrist_camera_mount_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -34,7 +33,7 @@
     </joint>
 
     <xacro:sensor_d415 parent="${prefix}wrist_camera_bracket_link" name="${prefix}wrist_camera" use_nominal_extrinsics="true">
-      <origin xyz="-0.01 0 0.02" rpy="0 0.2 0" />
+      <origin xyz="-0.01 0 0.006" rpy="0 ${10 * pi/180} 0" />
     </xacro:sensor_d415>
 
     <xacro:if value="${sim_gazebo}">

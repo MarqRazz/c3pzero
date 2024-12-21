@@ -22,98 +22,22 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     declared_arguments = []
-    # Simulation specific arguments
     declared_arguments.append(
-        DeclareLaunchArgument(
-            "sim_isaac",
-            default_value="True",
-            description="Use Nvidia Isaac for simulation",
-        )
-    )
-    # General arguments
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "runtime_config_package",
-            default_value="c3pzero_bringup",
-            description='Package with the controller\'s configuration in "config" folder. \
-        Usually the argument is not set, it enables use of a custom setup.',
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "controllers_file",
-            default_value="c3pzero_isaac_controllers.yaml",
-            description="YAML file with the controllers configuration.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "description_package",
-            default_value="c3pzero_description",
-            description="Description package with robot URDF/XACRO files. Usually the argument \
-        is not set, it enables use of a custom description.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "description_file",
-            default_value="c3pzero_kinova_gen3.xacro",
-            description="URDF/XACRO description file with the robot.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "diff_drive_controller",
-            default_value="diff_drive_base_controller",
-            description="Diff drive base controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "jtc_controller",
-            default_value="joint_trajectory_controller",
-            description="Robot controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "robot_hand_controller",
-            default_value="robotiq_gripper_controller",
-            description="Robot hand controller to start.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "launch_rviz", default_value="True", description="Launch RViz?"
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "use_sim_time",
-            default_value="True",
-            description="Use simulation (Gazebo) clock if true",
-        )
+        DeclareLaunchArgument("rviz", default_value="false", description="Launch RViz?")
     )
 
     # Initialize Arguments
-    sim_isaac = LaunchConfiguration("sim_isaac")
-    # General arguments
-    runtime_config_package = LaunchConfiguration("runtime_config_package")
-    controllers_file = LaunchConfiguration("controllers_file")
-    description_package = LaunchConfiguration("description_package")
-    description_file = LaunchConfiguration("description_file")
-    diff_drive_controller = LaunchConfiguration("diff_drive_controller")
-    robot_traj_controller = LaunchConfiguration("jtc_controller")
-    robot_hand_controller = LaunchConfiguration("robot_hand_controller")
-    launch_rviz = LaunchConfiguration("launch_rviz")
-    use_sim_time = LaunchConfiguration("use_sim_time")
-
+    launch_rviz = LaunchConfiguration("rviz")
     robot_controllers = PathJoinSubstitution(
-        [FindPackageShare(runtime_config_package), "config", controllers_file]
+        [
+            FindPackageShare("c3pzero_bringup"),
+            "config",
+            "c3pzero_isaac_controllers.yaml",
+        ]
     )
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(runtime_config_package), "rviz", "bringup_config.rviz"]
+        [FindPackageShare("c3pzero_bringup"), "rviz", "c3pzero.rviz"]
     )
 
     robot_description_content = Command(
@@ -121,31 +45,12 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", description_file]
+                [FindPackageShare("c3pzero_description"), "urdf", "c3pzero.urdf.xacro"]
             ),
             " ",
-            "sim_isaac:=",
-            sim_isaac,
-            " ",
-            "sim_ignition:=False",
+            "sim_isaac:=true",
             " ",
         ]
-    )
-    robot_description = {"robot_description": robot_description_content}
-
-    control_node = Node(
-        package="controller_manager",
-        executable="ros2_control_node",
-        parameters=[
-            {"use_sim_time": use_sim_time},
-            robot_description,
-            robot_controllers,
-        ],
-        remappings=[
-            ("/diff_drive_base_controller/cmd_vel_unstamped", "/cmd_vel"),
-            ("/diff_drive_base_controller/odom", "/odom"),
-        ],
-        output="both",
     )
 
     robot_state_publisher_node = Node(
@@ -154,7 +59,7 @@ def generate_launch_description():
         output="both",
         parameters=[
             {
-                "use_sim_time": use_sim_time,
+                "use_sim_time": True,
                 "robot_description": robot_description_content,
             }
         ],
@@ -169,41 +74,47 @@ def generate_launch_description():
         condition=IfCondition(launch_rviz),
     )
 
-    joint_state_broadcaster_spawner = Node(
+    control_node = Node(
+        package="controller_manager",
+        executable="ros2_control_node",
+        parameters=[
+            {"use_sim_time": True, "robot_description": robot_description_content},
+            robot_controllers,
+        ],
+        remappings=[
+            ("/diff_drive_base_controller/cmd_vel_unstamped", "/cmd_vel"),
+            ("/diff_drive_base_controller/odom", "/odom"),
+        ],
+        output="both",
+    )
+
+    controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        parameters=[{"use_sim_time": use_sim_time}],
+        parameters=[{"use_sim_time": True}],
         arguments=[
+            "diff_drive_base_controller",
+            "right_arm_jtc",
+            "left_arm_jtc",
+            "right_arm_gripper_controller",
+            "left_arm_gripper_controller",
             "joint_state_broadcaster",
             "--controller-manager",
             "/controller_manager",
         ],
+        remappings=[
+            ("/diff_drive_base_controller/cmd_vel_unstamped", "/cmd_vel"),
+            ("/diff_drive_base_controller/odom", "/odom"),
+        ],
+        output="both",
     )
 
-    # Delay rviz start after `joint_state_broadcaster`
-    delay_rviz_after_joint_state_broadcaster_spawner = RegisterEventHandler(
+    # Delay rviz start after `controller_spawner`
+    delay_rviz_after_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
-            target_action=joint_state_broadcaster_spawner,
+            target_action=controller_spawner,
             on_exit=[rviz_node],
         )
-    )
-
-    robot_traj_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[robot_traj_controller, "-c", "/controller_manager"],
-    )
-
-    diff_drive_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[diff_drive_controller, "-c", "/controller_manager"],
-    )
-
-    robot_hand_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[robot_hand_controller, "-c", "/controller_manager"],
     )
 
     # launch point cloud plugin through rclcpp_components container
@@ -234,14 +145,11 @@ def generate_launch_description():
     )
 
     nodes_to_start = [
-        control_node,
         robot_state_publisher_node,
-        joint_state_broadcaster_spawner,
-        delay_rviz_after_joint_state_broadcaster_spawner,
-        diff_drive_controller_spawner,
-        robot_traj_controller_spawner,
-        robot_hand_controller_spawner,
-        point_cloud_node,
+        delay_rviz_after_controller_spawner,
+        control_node,
+        controller_spawner,
+        # point_cloud_node,
     ]
 
     return LaunchDescription(declared_arguments + nodes_to_start)

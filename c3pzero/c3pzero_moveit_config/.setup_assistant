@@ -3,8 +3,8 @@ moveit_setup_assistant_config:
     package: c3pzero_description
     relative_path: urdf/c3pzero.urdf.xacro
   srdf:
-    relative_path: config/c3pzero.srdf
+    relative_path: config/c3pzero.srdf.xacro
   package_settings:
     author_name: Marq Rasmussen
     author_email: marq.razz@gmail.com
-    generated_timestamp: 1733147502
+    generated_timestamp: 1734215560

@@ -28,25 +28,57 @@
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="right_arm_home" group="right_manipulator">
         <joint name="right_arm_joint_1" value="-0.45"/>
-        <joint name="right_arm_joint_2" value="0.03"/>
+        <joint name="right_arm_joint_2" value="0.1"/>
         <joint name="right_arm_joint_3" value="0"/>
         <joint name="right_arm_joint_4" value="0"/>
         <joint name="right_arm_joint_5" value="0"/>
         <joint name="right_arm_joint_6" value="0"/>
     </group_state>
+    <group_state name="right_arm_forward" group="right_manipulator">
+        <joint name="right_arm_joint_1" value="-0.45"/>
+        <joint name="right_arm_joint_2" value="1.0"/>
+        <joint name="right_arm_joint_3" value="-0.85"/>
+        <joint name="right_arm_joint_4" value="0"/>
+        <joint name="right_arm_joint_5" value="0.85"/>
+        <joint name="right_arm_joint_6" value="0"/>
+    </group_state>
+    <group_state name="right_arm_inspect_storage_tote" group="right_manipulator">
+        <joint name="right_arm_joint_1" value="0.62"/>
+        <joint name="right_arm_joint_2" value="1.2"/>
+        <joint name="right_arm_joint_3" value="-0.52"/>
+        <joint name="right_arm_joint_4" value="-0.84"/>
+        <joint name="right_arm_joint_5" value="1.29"/>
+        <joint name="right_arm_joint_6" value="2.26"/>
+    </group_state>
     <group_state name="left_arm_home" group="left_manipulator">
         <joint name="left_arm_joint_1" value="0.45"/>
-        <joint name="left_arm_joint_2" value="0.03"/>
+        <joint name="left_arm_joint_2" value="0.1"/>
         <joint name="left_arm_joint_3" value="0"/>
         <joint name="left_arm_joint_4" value="0"/>
         <joint name="left_arm_joint_5" value="0"/>
         <joint name="left_arm_joint_6" value="0"/>
     </group_state>
+    <group_state name="left_arm_forward" group="left_manipulator">
+        <joint name="left_arm_joint_1" value="0.45"/>
+        <joint name="left_arm_joint_2" value="1.0"/>
+        <joint name="left_arm_joint_3" value="-0.85"/>
+        <joint name="left_arm_joint_4" value="0"/>
+        <joint name="left_arm_joint_5" value="0.85"/>
+        <joint name="left_arm_joint_6" value="0"/>
+    </group_state>
+    <group_state name="left_arm_inspect_storage_tote" group="left_manipulator">
+        <joint name="left_arm_joint_1" value="-0.62"/>
+        <joint name="left_arm_joint_2" value="1.2"/>
+        <joint name="left_arm_joint_3" value="-0.52"/>
+        <joint name="left_arm_joint_4" value="0.84"/>
+        <joint name="left_arm_joint_5" value="1.29"/>
+        <joint name="left_arm_joint_6" value="-2.26"/>
+    </group_state>
     <group_state name="open" group="right_gripper">
         <joint name="right_arm_gripper_joint" value="0.038"/>
     </group_state>
     <group_state name="closed" group="right_gripper">
-        <joint name="right_arm_gripper_joint" value="0.0"/>
+        <joint name="right_arm_gripper_joint" value="0"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="right_eff" parent_link="right_arm_tool_0" group="right_gripper" parent_group="right_manipulator"/>
@@ -58,83 +90,62 @@
     <disable_collisions link1="base_laser_mount" link2="left_arm_base_link" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="left_arm_link_1" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="left_arm_link_2" reason="Never"/>
-    <disable_collisions link1="base_laser_mount" link2="left_arm_link_3" reason="Never"/>
-    <disable_collisions link1="base_laser_mount" link2="left_arm_link_4" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="platform_link" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="right_arm_base_link" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="right_arm_link_1" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="right_arm_link_2" reason="Never"/>
-    <disable_collisions link1="base_laser_mount" link2="right_arm_link_3" reason="Never"/>
-    <disable_collisions link1="base_laser_mount" link2="right_arm_link_4" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="base_laser_mount" link2="storage_tote" reason="Never"/>
     <disable_collisions link1="base_link" link2="drivewhl_l_link" reason="Adjacent"/>
     <disable_collisions link1="base_link" link2="drivewhl_r_link" reason="Adjacent"/>
     <disable_collisions link1="base_link" link2="left_arm_base_link" reason="Never"/>
-    <disable_collisions link1="base_link" link2="left_arm_gripper_base_link" reason="Never"/>
     <disable_collisions link1="base_link" link2="left_arm_link_1" reason="Never"/>
     <disable_collisions link1="base_link" link2="left_arm_link_2" reason="Never"/>
     <disable_collisions link1="base_link" link2="left_arm_link_3" reason="Never"/>
     <disable_collisions link1="base_link" link2="left_arm_link_4" reason="Never"/>
-    <disable_collisions link1="base_link" link2="left_arm_link_5" reason="Never"/>
-    <disable_collisions link1="base_link" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="base_link" link2="lr_caster" reason="Adjacent"/>
     <disable_collisions link1="base_link" link2="platform_link" reason="Adjacent"/>
     <disable_collisions link1="base_link" link2="right_arm_base_link" reason="Never"/>
-    <disable_collisions link1="base_link" link2="right_arm_gripper_base_link" reason="Never"/>
     <disable_collisions link1="base_link" link2="right_arm_link_1" reason="Never"/>
     <disable_collisions link1="base_link" link2="right_arm_link_2" reason="Never"/>
     <disable_collisions link1="base_link" link2="right_arm_link_3" reason="Never"/>
     <disable_collisions link1="base_link" link2="right_arm_link_4" reason="Never"/>
-    <disable_collisions link1="base_link" link2="right_arm_link_5" reason="Never"/>
-    <disable_collisions link1="base_link" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="base_link" link2="rr_caster" reason="Adjacent"/>
     <disable_collisions link1="base_link" link2="storage_tote" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="drivewhl_r_link" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="left_arm_base_link" reason="Never"/>
-    <disable_collisions link1="drivewhl_l_link" link2="left_arm_gripper_base_link" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="left_arm_link_1" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="left_arm_link_2" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="left_arm_link_3" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="left_arm_link_4" reason="Never"/>
-    <disable_collisions link1="drivewhl_l_link" link2="left_arm_link_5" reason="Never"/>
-    <disable_collisions link1="drivewhl_l_link" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="platform_link" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="right_arm_base_link" reason="Never"/>
-    <disable_collisions link1="drivewhl_l_link" link2="right_arm_gripper_base_link" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="right_arm_link_1" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="right_arm_link_2" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="right_arm_link_3" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="right_arm_link_4" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="right_arm_link_5" reason="Never"/>
-    <disable_collisions link1="drivewhl_l_link" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="drivewhl_l_link" link2="storage_tote" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="left_arm_base_link" reason="Never"/>
-    <disable_collisions link1="drivewhl_r_link" link2="left_arm_gripper_base_link" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="left_arm_link_1" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="left_arm_link_2" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="left_arm_link_3" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="left_arm_link_4" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="left_arm_link_5" reason="Never"/>
-    <disable_collisions link1="drivewhl_r_link" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="platform_link" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="right_arm_base_link" reason="Never"/>
-    <disable_collisions link1="drivewhl_r_link" link2="right_arm_gripper_base_link" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="right_arm_link_1" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="right_arm_link_2" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="right_arm_link_3" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="right_arm_link_4" reason="Never"/>
-    <disable_collisions link1="drivewhl_r_link" link2="right_arm_link_5" reason="Never"/>
-    <disable_collisions link1="drivewhl_r_link" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="drivewhl_r_link" link2="storage_tote" reason="Never"/>
     <disable_collisions link1="left_arm_base_link" link2="left_arm_link_1" reason="Adjacent"/>
     <disable_collisions link1="left_arm_base_link" link2="left_arm_link_2" reason="Never"/>
-    <disable_collisions link1="left_arm_base_link" link2="left_arm_link_3" reason="Never"/>
     <disable_collisions link1="left_arm_base_link" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_base_link" link2="platform_link" reason="Adjacent"/>
     <disable_collisions link1="left_arm_base_link" link2="right_arm_base_link" reason="Never"/>
@@ -147,15 +158,18 @@
     <disable_collisions link1="left_arm_gripper_base_link" link2="left_arm_link_4" reason="Never"/>
     <disable_collisions link1="left_arm_gripper_base_link" link2="left_arm_link_5" reason="Adjacent"/>
     <disable_collisions link1="left_arm_gripper_base_link" link2="left_arm_right_finger" reason="Adjacent"/>
-    <disable_collisions link1="left_arm_gripper_base_link" link2="left_arm_wrist_camera_link" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_gripper_base_link" link2="left_arm_wrist_camera_bracket_link" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_gripper_base_link" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="left_arm_gripper_base_link" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_gripper_base_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_left_finger" link2="left_arm_link_3" reason="Never"/>
     <disable_collisions link1="left_arm_left_finger" link2="left_arm_link_4" reason="Never"/>
     <disable_collisions link1="left_arm_left_finger" link2="left_arm_link_5" reason="Never"/>
     <disable_collisions link1="left_arm_left_finger" link2="left_arm_right_finger" reason="Default"/>
+    <disable_collisions link1="left_arm_left_finger" link2="left_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="left_arm_left_finger" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="left_arm_left_finger" link2="lr_caster" reason="Never"/>
+    <disable_collisions link1="left_arm_left_finger" link2="right_arm_right_finger" reason="Never"/>
     <disable_collisions link1="left_arm_left_finger" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_link_1" link2="left_arm_link_2" reason="Adjacent"/>
     <disable_collisions link1="left_arm_link_1" link2="left_arm_link_3" reason="Never"/>
@@ -176,22 +190,30 @@
     <disable_collisions link1="left_arm_link_3" link2="left_arm_link_4" reason="Adjacent"/>
     <disable_collisions link1="left_arm_link_3" link2="left_arm_link_5" reason="Never"/>
     <disable_collisions link1="left_arm_link_3" link2="left_arm_right_finger" reason="Never"/>
+    <disable_collisions link1="left_arm_link_3" link2="left_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="left_arm_link_3" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="left_arm_link_3" link2="lr_caster" reason="Never"/>
-    <disable_collisions link1="left_arm_link_3" link2="platform_link" reason="Never"/>
     <disable_collisions link1="left_arm_link_3" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_link_4" link2="left_arm_link_5" reason="Adjacent"/>
     <disable_collisions link1="left_arm_link_4" link2="left_arm_right_finger" reason="Never"/>
+    <disable_collisions link1="left_arm_link_4" link2="left_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="left_arm_link_4" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="left_arm_link_4" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_link_4" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_link_5" link2="left_arm_right_finger" reason="Never"/>
+    <disable_collisions link1="left_arm_link_5" link2="left_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="left_arm_link_5" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="left_arm_link_5" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_link_5" link2="rr_caster" reason="Never"/>
+    <disable_collisions link1="left_arm_right_finger" link2="left_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="left_arm_right_finger" link2="left_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="left_arm_right_finger" link2="lr_caster" reason="Never"/>
+    <disable_collisions link1="left_arm_right_finger" link2="right_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="left_arm_right_finger" link2="rr_caster" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_camera_bracket_link" link2="left_arm_wrist_camera_link" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_wrist_camera_bracket_link" link2="lr_caster" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_camera_bracket_link" link2="right_arm_left_finger" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_camera_bracket_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_wrist_camera_link" link2="lr_caster" reason="Never"/>
     <disable_collisions link1="left_arm_wrist_camera_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="lr_caster" link2="platform_link" reason="Never"/>
@@ -204,18 +226,17 @@
     <disable_collisions link1="lr_caster" link2="right_arm_link_4" reason="Never"/>
     <disable_collisions link1="lr_caster" link2="right_arm_link_5" reason="Never"/>
     <disable_collisions link1="lr_caster" link2="right_arm_right_finger" reason="Never"/>
+    <disable_collisions link1="lr_caster" link2="right_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="lr_caster" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="lr_caster" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="lr_caster" link2="storage_tote" reason="Never"/>
     <disable_collisions link1="platform_link" link2="right_arm_base_link" reason="Adjacent"/>
     <disable_collisions link1="platform_link" link2="right_arm_link_1" reason="Never"/>
     <disable_collisions link1="platform_link" link2="right_arm_link_2" reason="Never"/>
-    <disable_collisions link1="platform_link" link2="right_arm_link_3" reason="Never"/>
     <disable_collisions link1="platform_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="platform_link" link2="storage_tote" reason="Adjacent"/>
     <disable_collisions link1="right_arm_base_link" link2="right_arm_link_1" reason="Adjacent"/>
     <disable_collisions link1="right_arm_base_link" link2="right_arm_link_2" reason="Never"/>
-    <disable_collisions link1="right_arm_base_link" link2="right_arm_link_3" reason="Never"/>
     <disable_collisions link1="right_arm_base_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="right_arm_base_link" link2="storage_tote" reason="Never"/>
     <disable_collisions link1="right_arm_gripper_base_link" link2="right_arm_left_finger" reason="Adjacent"/>
@@ -223,12 +244,14 @@
     <disable_collisions link1="right_arm_gripper_base_link" link2="right_arm_link_4" reason="Never"/>
     <disable_collisions link1="right_arm_gripper_base_link" link2="right_arm_link_5" reason="Adjacent"/>
     <disable_collisions link1="right_arm_gripper_base_link" link2="right_arm_right_finger" reason="Adjacent"/>
-    <disable_collisions link1="right_arm_gripper_base_link" link2="right_arm_wrist_camera_link" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_gripper_base_link" link2="right_arm_wrist_camera_bracket_link" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_gripper_base_link" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="right_arm_gripper_base_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="right_arm_left_finger" link2="right_arm_link_3" reason="Never"/>
     <disable_collisions link1="right_arm_left_finger" link2="right_arm_link_4" reason="Never"/>
     <disable_collisions link1="right_arm_left_finger" link2="right_arm_link_5" reason="Never"/>
     <disable_collisions link1="right_arm_left_finger" link2="right_arm_right_finger" reason="Default"/>
+    <disable_collisions link1="right_arm_left_finger" link2="right_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="right_arm_left_finger" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="right_arm_left_finger" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="right_arm_link_1" link2="right_arm_link_2" reason="Adjacent"/>
@@ -241,17 +264,23 @@
     <disable_collisions link1="right_arm_link_3" link2="right_arm_link_4" reason="Adjacent"/>
     <disable_collisions link1="right_arm_link_3" link2="right_arm_link_5" reason="Never"/>
     <disable_collisions link1="right_arm_link_3" link2="right_arm_right_finger" reason="Never"/>
+    <disable_collisions link1="right_arm_link_3" link2="right_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="right_arm_link_3" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="right_arm_link_3" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="right_arm_link_4" link2="right_arm_link_5" reason="Adjacent"/>
     <disable_collisions link1="right_arm_link_4" link2="right_arm_right_finger" reason="Never"/>
+    <disable_collisions link1="right_arm_link_4" link2="right_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="right_arm_link_4" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="right_arm_link_4" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="right_arm_link_5" link2="right_arm_right_finger" reason="Never"/>
+    <disable_collisions link1="right_arm_link_5" link2="right_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="right_arm_link_5" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="right_arm_link_5" link2="rr_caster" reason="Never"/>
+    <disable_collisions link1="right_arm_right_finger" link2="right_arm_wrist_camera_bracket_link" reason="Never"/>
     <disable_collisions link1="right_arm_right_finger" link2="right_arm_wrist_camera_link" reason="Never"/>
     <disable_collisions link1="right_arm_right_finger" link2="rr_caster" reason="Never"/>
+    <disable_collisions link1="right_arm_wrist_camera_bracket_link" link2="right_arm_wrist_camera_link" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_wrist_camera_bracket_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="right_arm_wrist_camera_link" link2="rr_caster" reason="Never"/>
     <disable_collisions link1="rr_caster" link2="storage_tote" reason="Never"/>
 </robot>
