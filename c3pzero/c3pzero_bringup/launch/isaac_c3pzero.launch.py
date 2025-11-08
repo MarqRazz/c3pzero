@@ -78,11 +78,12 @@ def generate_launch_description():
         package="controller_manager",
         executable="ros2_control_node",
         parameters=[
-            {"use_sim_time": True, "robot_description": robot_description_content},
+            {"use_sim_time": True},
             robot_controllers,
         ],
         remappings=[
-            ("/diff_drive_base_controller/cmd_vel_unstamped", "/cmd_vel"),
+            ("~/robot_description", "/robot_description"),
+            ("/diff_drive_base_controller/cmd_vel", "/cmd_vel_nav"),
             ("/diff_drive_base_controller/odom", "/odom"),
         ],
         output="both",
@@ -101,10 +102,6 @@ def generate_launch_description():
             "joint_state_broadcaster",
             "--controller-manager",
             "/controller_manager",
-        ],
-        remappings=[
-            ("/diff_drive_base_controller/cmd_vel_unstamped", "/cmd_vel"),
-            ("/diff_drive_base_controller/odom", "/odom"),
         ],
         output="both",
     )

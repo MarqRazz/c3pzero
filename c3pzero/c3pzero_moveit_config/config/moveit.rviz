@@ -5,7 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 275
+    Tree Height: 485
   - Class: rviz_common/Help
     Name: Help
   - Class: rviz_common/Views
@@ -13,6 +13,29 @@ Panels:
       - /Current View1
     Name: Views
     Splitter Ratio: 0.5
+  - Class: moveit_task_constructor/Motion Planning Tasks
+    Global Settings:
+      Task View Settings:
+        Old task handling: Keep
+        Show Computation Times: true
+        Task Expansion: All Expanded
+    Name: Motion Planning Tasks
+    Tasks View:
+      property_splitter:
+        - 316
+        - 107
+      solution_sorting:
+        column: 0
+        order: 1
+      solutions_splitter:
+        - 424
+        - 212
+      solutions_view_columns: ~
+      tasks_view_columns:
+        - 335
+        - 26
+        - 26
+        - 35
 Visualization Manager:
   Class: ""
   Displays:
@@ -102,6 +125,10 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          left_arm_grasp_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           left_arm_gripper_aux_mount:
             Alpha: 1
             Show Axes: false
@@ -166,6 +193,7 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
           left_arm_wrist_camera_color_frame:
             Alpha: 1
             Show Axes: false
@@ -218,6 +246,10 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          right_arm_grasp_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           right_arm_gripper_aux_mount:
             Alpha: 1
             Show Axes: false
@@ -282,6 +314,7 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
           right_arm_wrist_camera_color_frame:
             Alpha: 1
             Show Axes: false
@@ -412,6 +445,10 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          left_arm_grasp_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           left_arm_gripper_aux_mount:
             Alpha: 1
             Show Axes: false
@@ -476,6 +513,7 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
           left_arm_wrist_camera_color_frame:
             Alpha: 1
             Show Axes: false
@@ -528,6 +566,10 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          right_arm_grasp_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           right_arm_gripper_aux_mount:
             Alpha: 1
             Show Axes: false
@@ -592,6 +634,7 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+            Value: true
           right_arm_wrist_camera_color_frame:
             Alpha: 1
             Show Axes: false
@@ -644,6 +687,101 @@ Visualization Manager:
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 1
+    - Class: moveit_task_constructor/Motion Planning Tasks
+      Enabled: false
+      Interrupt Display: false
+      Loop Animation: false
+      Markers:
+        All at once?: false
+        Value: true
+      Name: Motion Planning Tasks
+      Robot:
+        Fixed Robot Color: 150; 50; 150
+        Links:
+          All Links Enabled: true
+          Expand Joint Details: false
+          Expand Link Details: false
+          Expand Tree: false
+          Link Tree Style: Links in Alphabetic Order
+        Robot Alpha: 0.5
+        Show Robot Collision: false
+        Show Robot Visual: true
+        Use Fixed Robot Color: false
+        Value: ""
+      Robot Description: robot_description
+      Scene:
+        Attached Body Color: 150; 50; 150
+        Scene Alpha: 0.8999999761581421
+        Scene Color: 50; 230; 50
+        Value: true
+        Voxel Coloring: Z-Axis
+        Voxel Rendering: Occupied Voxels
+      Show Trail: false
+      State Display Time: 0.05 s
+      Task Solution Topic: /solution
+      Tasks:
+        {}
+      Trail Step Size: 1
+      Value: false
+    - Class: moveit_rviz_plugin/PlanningScene
+      Enabled: false
+      Move Group Namespace: ""
+      Name: PlanningScene
+      Planning Scene Topic: /monitored_planning_scene
+      Robot Description: robot_description
+      Scene Geometry:
+        Scene Alpha: 0.8999999761581421
+        Scene Color: 50; 230; 50
+        Scene Display Time: 0.009999999776482582
+        Show Scene Geometry: true
+        Voxel Coloring: Z-Axis
+        Voxel Rendering: Occupied Voxels
+      Scene Robot:
+        Attached Body Color: 150; 50; 150
+        Links:
+          All Links Enabled: true
+          Expand Joint Details: false
+          Expand Link Details: false
+          Expand Tree: false
+          Link Tree Style: Links in Alphabetic Order
+        Robot Alpha: 1
+        Show Robot Collision: false
+        Show Robot Visual: true
+      Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 0; 0
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 17
+      Min Color: 0; 0; 0
+      Min Intensity: 1
+      Name: LaserScan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /scan
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -662,41 +800,45 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.100095510482788
+      Distance: 3.4742915630340576
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.062461890280246735
-        Y: 0.15434633195400238
-        Z: 0.4571358561515808
+        X: 0.24386073648929596
+        Y: -0.9881587624549866
+        Z: 0.5298995971679688
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.37500035762786865
+      Pitch: 0.25000059604644775
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: 5.465185642242432
+      Yaw: 5.060180187225342
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1369
+  Height: 1403
   Help:
     collapsed: false
   Hide Left Dock: false
   Hide Right Dock: false
+  Motion Planning Tasks:
+    collapsed: false
+  Motion Planning Tasks - Slider:
+    collapsed: false
   MotionPlanning:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002b4000004f7fc0200000005fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720100000044000000470000004700fffffffb000000100044006900730070006c006100790073010000009200000154000000eb00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001ed0000024b000001a100fffffffb0000000800480065006c0070000000029a0000006e0000008100fffffffb0000000a00560069006500770073010000043f000000fc000000b900ffffff000006ff000004f700000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002b400000525fc0200000007fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c0069006400650072000000003b0000004a0000003f00fffffffb000000100044006900730070006c006100790073010000003b00000220000000c700fffffffc00000261000002ff000001840100001afa000000010100000002fb0000002a004d006f00740069006f006e00200050006c0061006e006e0069006e00670020005400610073006b00730100000000ffffffff000000b800fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000000000002b4000001c900fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000a005600690065007700730000000344000000c0000000a000fffffffb000000120020002d00200053006c00690064006500720000000000ffffffff0000000000000000fb0000003c004d006f00740069006f006e00200050006c0061006e006e0069006e00670020005400610073006b00730020002d00200053006c006900640065007200000004f0000000550000003f00ffffff000002460000052500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
-  Width: 2490
-  X: 70
-  Y: 34
+  Width: 1280
+  X: 3840
+  Y: 0

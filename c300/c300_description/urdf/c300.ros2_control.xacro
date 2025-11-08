@@ -15,15 +15,17 @@
           <plugin>gz_ros2_control/GazeboSimSystem</plugin>
         </xacro:if>
         <xacro:if value="${sim_isaac}">
-          <plugin>topic_based_ros2_control/TopicBasedSystem</plugin>
+          <plugin>joint_state_topic_hardware_interface/JointStateTopicSystem</plugin>
           <param name="joint_commands_topic">${isaac_joint_commands}</param>
           <param name="joint_states_topic">${isaac_joint_states}</param>
           <param name="sum_wrapped_joint_states">true</param>
+          <param name="trigger_joint_command_threshold">-1</param> <!-- always publish commands on the topic -->
         </xacro:if>
         <xacro:if value="${mock_hardware}">
           <plugin>mock_components/GenericSystem</plugin>
           <param name="fake_sensor_commands">false</param>
           <param name="state_following_offset">0.0</param>
+          <param name="calculate_dynamics">true</param>
         </xacro:if>
       </hardware>
       <joint name="drivewhl_l_joint">

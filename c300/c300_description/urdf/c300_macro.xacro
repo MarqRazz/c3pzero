@@ -5,7 +5,7 @@
     prefix
     sim_isaac:=false
     sim_gazebo:=false
-    isaac_joint_commands:=/isaac_joint_commands
+    isaac_joint_commands:=/base_joint_command
     isaac_joint_states:=/isaac_joint_states
     mock_hardware:=false">
 

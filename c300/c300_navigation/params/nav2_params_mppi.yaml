@@ -354,13 +354,13 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "CLOSED_LOOP"
-    max_velocity: [1.0, 0.0, 1.0] # [x, y, theta]
-    min_velocity: [-1.0, 0.0, -1.0] # [x, y, theta]
+    max_velocity: [2.0, 0.0, 2.0] # [x, y, theta]
+    min_velocity: [-2.0, 0.0, -2.0] # [x, y, theta]
     max_accel: [2.5, 0.0, 3.2]
     max_decel: [-2.5, 0.0, -3.2]
     odom_topic: "odom"
     odom_duration: 0.1
-    deadband_velocity: [0.0, 0.0, 0.0]
+    deadband_velocity: [0.05, 0.0, 0.15]
     velocity_timeout: 1.0
     enable_stamped_cmd_vel: True
 

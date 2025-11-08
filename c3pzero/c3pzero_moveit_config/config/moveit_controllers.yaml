@@ -34,17 +34,17 @@
           - left_arm_joint_4
           - left_arm_joint_5
           - left_arm_joint_6
-      # ParallelGripperCommand is not yet supported.
-      # see https://github.com/moveit/moveit2/issues/3017
       right_arm_gripper_controller:
         type: ParallelGripperCommand
         joints:
           - right_arm_gripper_joint
         action_ns: gripper_cmd
+        allow_stalling: true
         default: true
       left_arm_gripper_controller:
         type: ParallelGripperCommand
         joints:
           - left_arm_gripper_joint
         action_ns: gripper_cmd
+        allow_stalling: true
         default: true

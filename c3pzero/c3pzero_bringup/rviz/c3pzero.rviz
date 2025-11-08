@@ -5,8 +5,8 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /LaserScan1/Topic1
-      Splitter Ratio: 0.36942070722579956
-    Tree Height: 182
+      Splitter Ratio: 0.6189376711845398
+    Tree Height: 1022
 Visualization Manager:
   Class: ""
   Displays:
@@ -147,6 +147,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         left_arm_wrist_camera_color_frame:
           Alpha: 1
           Show Axes: false
@@ -263,6 +264,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         right_arm_wrist_camera_color_frame:
           Alpha: 1
           Show Axes: false
@@ -366,20 +368,20 @@ Visualization Manager:
       Axis: Z
       Channel Name: intensity
       Class: rviz_default_plugins/LaserScan
-      Color: 255; 255; 255
-      Color Transformer: Intensity
+      Color: 255; 0; 0
+      Color Transformer: FlatColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 0
+      Max Intensity: 17
       Min Color: 0; 0; 0
-      Min Intensity: 0
+      Min Intensity: 1
       Name: LaserScan
       Position Transformer: XYZ
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.009999999776482582
+      Size (m): 0.004999999888241291
       Style: Flat Squares
       Topic:
         Depth: 5
@@ -392,7 +394,7 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Class: rviz_default_plugins/Camera
-      Enabled: true
+      Enabled: false
       Far Plane Distance: 100
       Image Rendering: background and overlay
       Name: RightWristCamera
@@ -403,7 +405,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /right_arm_wrist_camera/color/image_raw
-      Value: true
+      Value: false
       Visibility:
         Grid: true
         LaserScan: true
@@ -414,7 +416,7 @@ Visualization Manager:
         Value: true
       Zoom Factor: 1
     - Class: rviz_default_plugins/Camera
-      Enabled: true
+      Enabled: false
       Far Plane Distance: 100
       Image Rendering: background and overlay
       Name: LeftWristCamera
@@ -425,7 +427,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /left_arm_wrist_camera/color/image_raw
-      Value: true
+      Value: false
       Visibility:
         Grid: true
         LaserScan: true
@@ -456,25 +458,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.973403215408325
+      Distance: 3.0082173347473145
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.18479067087173462
-        Y: -0.09187475591897964
-        Z: 0.46009013056755066
+        X: 0.2740049660205841
+        Y: -0.2658533453941345
+        Z: 0.6486567258834839
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5347971320152283
+      Pitch: 0.5897971391677856
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.175384283065796
+      Yaw: 3.3403968811035156
     Saved: ~
 Window Geometry:
   Displays:
@@ -484,9 +486,9 @@ Window Geometry:
   Hide Right Dock: true
   LeftWristCamera:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000003330000042dfc0200000003fb000000100044006900730070006c0061007900730100000044000000f7000000eb00fffffffb00000020005200690067006800740057007200690073007400430061006d0065007200610100000142000001940000001600fffffffb0000001e004c0065006600740057007200690073007400430061006d00650072006101000002dd000001940000001600ffffff000004460000042d00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000001b300000439fc0200000003fb000000100044006900730070006c006100790073010000003b00000439000000c700fffffffb00000020005200690067006800740057007200690073007400430061006d006500720061000000013b0000019a0000001600fffffffb0000001e004c0065006600740057007200690073007400430061006d00650072006100000001d90000029b0000001600ffffff000005c70000043900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RightWristCamera:
     collapsed: false
   Width: 1920
-  X: 588
-  Y: 141
+  X: 3200
+  Y: 166
