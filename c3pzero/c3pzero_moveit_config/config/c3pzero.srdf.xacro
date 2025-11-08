@@ -80,6 +80,12 @@
     <group_state name="closed" group="right_gripper">
         <joint name="right_arm_gripper_joint" value="0"/>
     </group_state>
+    <group_state name="open" group="left_gripper">
+        <joint name="left_arm_gripper_joint" value="0.038"/>
+    </group_state>
+    <group_state name="closed" group="left_gripper">
+        <joint name="left_arm_gripper_joint" value="0"/>
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="right_eff" parent_link="right_arm_tool_0" group="right_gripper" parent_group="right_manipulator"/>
     <end_effector name="left_eff" parent_link="left_arm_tool_0" group="left_gripper" parent_group="left_manipulator"/>

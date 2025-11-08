@@ -58,7 +58,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "description_file",
-            default_value="c300_base.urdf",
+            default_value="c300.urdf.xacro",
             description="URDF/XACRO description file with the robot.",
         )
     )
@@ -145,7 +145,7 @@ def generate_launch_description():
             robot_controllers,
         ],
         remappings=[
-            ("/diff_drive_base_controller/cmd_vel_unstamped", "/cmd_vel"),
+            ("/diff_drive_base_controller/cmd_vel", "/cmd_vel_nav"),
             ("/diff_drive_base_controller/odom", "/odom"),
         ],
         output="both",

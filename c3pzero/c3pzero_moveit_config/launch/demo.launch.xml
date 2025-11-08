@@ -21,11 +21,13 @@
         <node pkg="controller_manager" exec="ros2_control_node" output="both">
             <remap from="~/robot_description" to="/robot_description" />
             <param from="$(find-pkg-share c3pzero_bringup)/config/c3pzero_hardware_controllers.yaml" />
+            <remap from="/diff_drive_base_controller/cmd_vel" to="/cmd_vel_nav" />
+            <remap from="/diff_drive_base_controller/odom" to="/odom" />
         </node>
 
         <!-- ros2_control spawners -->
         <node pkg="controller_manager" exec="spawner"
-            args="right_arm_jtc left_arm_jtc right_arm_gripper_controller left_arm_gripper_controller joint_state_broadcaster -c /controller_manager" />
+            args="right_arm_jtc left_arm_jtc right_arm_gripper_controller left_arm_gripper_controller diff_drive_base_controller joint_state_broadcaster -c /controller_manager" />
     </group>
 
     <!-- MoveGroup -->
@@ -35,7 +37,7 @@
         <param from="$(find-pkg-share c3pzero_moveit_config)/config/kinematics.yaml" />
         <param from="$(find-pkg-share c3pzero_moveit_config)/config/joint_limits.yaml" />
         <param from="$(find-pkg-share c3pzero_moveit_config)/config/moveit_controllers.yaml" />
-        <!-- <param name="capabilities" value="move_group/ExecuteTaskSolutionCapability" /> only needed with MTC-->
+        <param name="capabilities" value="move_group/ExecuteTaskSolutionCapability" />
         <param name="publish_robot_description_semantic" value="true" />
         <param name="use_sim_time" value="$(var use_sim_time)" />
     </node>
@@ -50,4 +52,11 @@
             <param name="use_sim_time" value="$(var use_sim_time)" />
         </node>
     </group>
+
+    <node pkg="btcpp_ros2_samples" exec="sample_bt_executor" output="screen">
+        <param from="$(find-pkg-share c3pzero_moveit_config)/config/ompl_planning.yaml" />
+        <param from="$(find-pkg-share c3pzero_moveit_config)/config/kinematics.yaml" />
+        <param from="$(find-pkg-share c3pzero_moveit_config)/config/joint_limits.yaml" />
+        <param from="$(find-pkg-share task_bot_bringup)/config/task_bot_executor.yaml"/>
+    </node>
 </launch>

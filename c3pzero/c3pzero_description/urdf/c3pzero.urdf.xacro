@@ -31,7 +31,7 @@
       mock_hardware="$(arg mock_hardware)"
       sim_gazebo="$(arg sim_gazebo)"
       sim_isaac="$(arg sim_isaac)"
-      isaac_joint_commands="/mobile_base_joint_commands"
+      isaac_joint_commands="/base_joint_command"
       isaac_joint_states="/isaac_joint_states"/>
 
     <!-- Right Arm -->
@@ -52,6 +52,13 @@
         initial_positions="${xacro.load_yaml(initial_positions_file)}">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:load_piper>
+
+    <link name="$(arg prefix)right_arm_grasp_link"/>
+    <joint name="$(arg prefix)right_arm_grasp_joint" type="fixed">
+      <parent link="$(arg prefix)right_arm_gripper_base_link"/>
+      <child link="$(arg prefix)right_arm_grasp_link"/>
+      <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+    </joint>
 
     <xacro:wrist_camera
         parent="$(arg prefix)right_arm_gripper_aux_mount"
@@ -77,6 +84,13 @@
         initial_positions="${xacro.load_yaml(initial_positions_file)}">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:load_piper>
+
+    <link name="$(arg prefix)left_arm_grasp_link"/>
+    <joint name="$(arg prefix)left_arm_grasp_joint" type="fixed">
+      <parent link="$(arg prefix)left_arm_gripper_base_link"/>
+      <child link="$(arg prefix)left_arm_grasp_link"/>
+      <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+    </joint>
 
     <xacro:wrist_camera
         parent="$(arg prefix)left_arm_gripper_aux_mount"

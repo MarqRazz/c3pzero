@@ -45,7 +45,7 @@ diff_drive_base_controller:
 
     cmd_vel_timeout: 0.5
     #publish_limited_velocity: true
-    use_stamped_vel: false
+    use_stamped_vel: true
     #velocity_rolling_window_size: 10
 
     # Velocity and acceleration limits
@@ -86,6 +86,7 @@ right_arm_jtc:
     state_publish_rate: 100.0
     action_monitor_rate: 20.0
     allow_partial_joints_goal: false
+    allow_nonzero_velocity_at_trajectory_end: true
     constraints:
       stopped_velocity_tolerance: 0.0
       goal_time: 0.0
@@ -107,6 +108,7 @@ left_arm_jtc:
     state_publish_rate: 100.0
     action_monitor_rate: 20.0
     allow_partial_joints_goal: false
+    allow_nonzero_velocity_at_trajectory_end: true
     constraints:
       stopped_velocity_tolerance: 0.0
       goal_time: 0.0
